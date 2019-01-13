@@ -1,0 +1,80 @@
+main form{
+  padding: 20px;
+  box-shadow: 0 0 10px 0px black;
+  background-color: #FFF4;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+
+}
+main .conponent-item2-page form {
+	background-color: transparent;
+  box-shadow: unset;
+}
+
+main form legend,
+main form legend h2{
+  color: wheat;
+  text-shadow: 0 0 4px black;
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-transform: uppercase;
+}
+main form .error{
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #ffc46c;
+  display: block;
+  margin: auto;
+  width: 90%;
+}
+
+main form input[type=text],
+main form input[type=email],
+main form input[type=number],
+main form input[type=password]{
+  text-shadow: 0 0 0px black;
+  background-color: #FFF0;
+  border-bottom: 1px solid white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 0;
+  display: block;
+  margin: auto;
+  width: 90%;
+  color: white;
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+main .form-control:focus {
+    background-color: #FFF0;
+    border-color: #FFF0;
+    border-bottom: 1px solid white;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(26,26,26,0);
+    box-shadow: 0 0 0 0.2rem rgba(26,26,26,0);
+    color: #FFF;
+
+}
+
+main form .btn{
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-transform: uppercase;
+}
+
+form.ghost-form{
+  box-shadow:unset;
+  background-color: transparent;
+}
+
+
+main form select.form-control:focus{
+  color: black;
+}
+
+main form select.form-control{
+  color: white;
+  border: 0px solid;
+  background: transparent;
+  border-bottom: 1px solid white;
+  width: 90%;
+  margin: auto;
+}

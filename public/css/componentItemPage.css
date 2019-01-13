@@ -1,0 +1,71 @@
+.conponent-item-page form{
+  background:transparent;
+  box-shadow:none;
+  font-family: 'Roboto';
+}
+.conponent-item-page{
+  background-color: #0007;
+  /* box-shadow: 0 0 10px 0px black; */
+}
+
+.conponent-item2-page .image-item{
+  padding-left: 0px;
+  background-color: white;
+}
+.conponent-item2-page .image-item img{
+  width: 20vw;
+  max-width: 180px;
+  text-align: left;
+  min-width: 156px;
+}
+.conponent-item2-page{
+  background-color: #393939;
+  margin: 2vw;
+  border: 2px solid black;
+  background: linear-gradient(to bottom, #323232 0%,#1a1a1a 100%);
+  color: white;
+}
+
+.composants img {
+    min-width: unset;
+}
+
+.conponent-item2-page .infos-item{
+  padding: 10px 30px;
+}
+.conponent-item2-page .infos-item h2{
+  font-size: 1rem;
+  color: wheat;
+}
+
+.conponent-item2-page .tools a{
+  color: wheat;
+}
+.conponent-item2-page .pastie{
+  display: inline-block;
+  border-radius: 100%;
+  border: 1px solid black;
+  padding: 2px 8px;
+  color: #000;
+  font-weight: bold;
+}
+
+.conponent-item2-page .pastie.pastie0{
+  background-color: #000;
+  color: white;
+}
+.conponent-item2-page .pastie.pastie1{
+  background-color: #F00;
+}
+.conponent-item2-page .pastie.pastie2{
+  background-color: #FF5100;
+}
+.conponent-item2-page .pastie.pastie3{
+  background-color: #F70;
+}
+.conponent-item2-page .pastie.pastie4{
+  background-color: #F0FF00;;
+}
+.conponent-item2-page .pastie.pastie5{
+  background-color: #0F0;
+}
