@@ -3,12 +3,12 @@
       <div class="row">
         <div class="col">
           <div class="text-left">
-            <a href="/admin/resaleLink/" class="btn btn-secondary">Lien de revente</a>
+            <a href="/admin/composant/lien-du-revendeur/" class="btn btn-secondary">Lien de revente</a>
           </div>
         </div>
         <div class="col">
           <div class="text-right">
-            <a href="/admin/revendeur/creer-revendeur.php" class="btn btn-secondary">Nouveau Revendeur</a>
+            <a href="/admin/composant/lien-du-revendeur/creer-lien-de-revente.php" class="btn btn-secondary">Nouveau Revendeur</a>
           </div>
         </div>
       </div>

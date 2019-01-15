@@ -1,7 +1,7 @@
 <?php require 'view/admin/headerAdmin.php' ?>
 <div class="col-8 mb-3">
   <div class="text-right">
-    <a href="/admin/resaleLink/creer-lien-de-revente.php" class="btn btn-secondary">Nouveau lien</a>
+    <a href="/admin/composant/lien-du-revendeur/creer-lien-de-revente.php" class="btn btn-secondary">Nouveau lien</a>
   </div>
 </div>
 <div class="col-12 col-md-11 col-lg-8 indexUser">
@@ -22,29 +22,29 @@
       <span class="align-middle">prix</span>
     </div>
   </div>
-  <?php foreach ($variable as $key => $value): ?>
+  <?php foreach ($resellerLinks as $value): ?>
   <div class="row">
     <div class="col-1" style="height:21px;">
-      <p>1</p>
+      <p><?= $value->id ?></p>
     </div>
     <div class="col" style="height:21px;">
-      <p>2</p>
+      <p><?= $value->id_revendeur ?></p>
     </div>
     <div class="col" style="height:21px;">
-      <p>2</p>
+      <p><?= $value->id_composant ?></p>
     </div>
     <div class="col-1" style="height:21px;">
-      <p><a href="http://www.ldlc.com/5451248">Lien</a></p>
+      <p><a href="<?= $value->lien ?>">Lien</a></p>
     </div>
     <div class="col-1" style="height:21px;">
-      <p>699.58</p>
+      <p><?= $value->prix ?></p>
     </div>
     <div class="col-12 admin-tools-users" style="z-index:1">
       <span class="align-middle">
         <ul class="text-right">
           <!-- <li><a href="/admin/categorie/montrer-categorie-1.php"><i class="far fa-2x fa-eye"></i></a></li> -->
-          <li><a href="/admin/composant/lien-du-revendeur/supprimer-lien-de-revente-([0-9]+)\.php"><i class="fas fa-2x fa-trash"></i></a></li>
-          <li><a href="/admin/composant/lien-du-revendeur/modifier-lien-de-revente-([0-9]+)\.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
+          <li><a href="/admin/composant/lien-du-revendeur/supprimer-lien-de-revente-<?= $value->id ?>.php"><i class="fas fa-2x fa-trash"></i></a></li>
+          <li><a href="/admin/composant/lien-du-revendeur/modifier-lien-de-revente-<?= $value->id ?>.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
         </ul>
       </span>
     </div>

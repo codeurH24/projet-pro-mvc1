@@ -14,7 +14,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="/admin/creer-tag-composant.php" class="btn btn-secondary">Tager</a>
+          <a href="/admin/tagComponent/" class="btn btn-secondary">Tager</a>
         </div>
       </div>
       <div class="col-12 mt-3">

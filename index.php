@@ -192,7 +192,11 @@ $Route = new Route();
 
    ->get('^/admin/composant/lien-du-revendeur/supprimer-lien-de-revente-([0-9]+)\.php$', ['id'])
    ->controller('admin/resellerLinkController.php', 'delete')
-
+   /**
+    * taguer les composants
+    */
+   ->get('^/admin/tagComponent/$')
+   ->controller('admin/tagComponentController.php', 'index')
 
 
 
