@@ -9,7 +9,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="/admin/resaleLink/" class="btn btn-secondary">Lien de revente</a>
+          <a href="/admin/composant/lien-du-revendeur/" class="btn btn-secondary">Lien de revente</a>
         </div>
       </div>
       <div class="col-4">

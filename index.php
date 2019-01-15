@@ -149,8 +149,49 @@ $Route = new Route();
 
    ->get('^/admin/revendeur/supprimer-revendeur-([0-9]+)\.php$', ['id'])
    ->controller('admin/resellerController.php', 'delete')
+/**
+ * compatibilité
+ */
+
+   ->get('^/admin/composant/compatibilite/$')
+   ->controller('admin/compatibilityController.php', 'index')
+
+   ->get('^/admin/composant/compatibilite/creer-compatibilite.php$')
+   ->controller('admin/compatibilityController.php', 'create')
+
+   ->get('^/admin/composant/compatibilite/store/$')
+   ->controller('admin/compatibilityController.php', 'store')
+
+   ->get('^/admin/composant/compatibilite/modifier-compatibilite-([0-9]+)\.php$', ['id'])
+   ->controller('admin/compatibilityController.php', 'edit')
+
+   ->get('^/admin/composant/compatibilite/update/$')
+   ->controller('admin/compatibilityController.php', 'update')
 
 
+   ->get('^/admin/composant/compatibilite/supprimer-compatibilite-([0-9]+)\.php$', ['id'])
+   ->controller('admin/compatibilityController.php', 'delete')
+
+   /**
+    * Lien du revendeur
+    */
+   ->get('^/admin/composant/lien-du-revendeur/$')
+   ->controller('admin/resellerLinkController.php', 'index')
+
+   ->get('^/admin/composant/lien-du-revendeur/creer-lien-de-revente.php$')
+   ->controller('admin/resellerLinkController.php', 'create')
+
+   ->get('^/admin/composant/lien-du-revendeur/store/$')
+   ->controller('admin/resellerLinkController.php', 'store')
+
+   ->get('^/admin/composant/lien-du-revendeur/modifier-lien-de-revente-([0-9]+)\.php$', ['id'])
+   ->controller('admin/resellerLinkController.php', 'edit')
+
+   ->get('^/admin/composant/lien-du-revendeur/update/$')
+   ->controller('admin/resellerLinkController.php', 'update')
+
+   ->get('^/admin/composant/lien-du-revendeur/supprimer-lien-de-revente-([0-9]+)\.php$', ['id'])
+   ->controller('admin/resellerLinkController.php', 'delete')
 
 
 
