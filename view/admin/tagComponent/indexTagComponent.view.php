@@ -30,6 +30,15 @@
   </form>
   <div class="arrayHTML mt-4">
     <table>
+      <?php
+        $sqlTagCreate = "";
+        foreach($listOfComponent as $key => $component){
+        $id = $component->id;
+        $sqlTagCreate .= "INSERT INTO `compatibility_tag` (`id_composant`, `tag`) VALUES ('$id', '%%tag%%');";
+        ?><tr><td class="entete"><?= $component->id ?> <?= $component->model ?></td></tr><?php
+        }
+        $_SESSION['sqlTagComponentCreate'] = $sqlTagCreate;
+      ?>
     </table>
   </div>
 </div>

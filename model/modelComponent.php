@@ -1,5 +1,26 @@
 <?php
 // require '/app/class/db.php';
+
+function getComponentsLike($word)
+{
+	try
+	{
+	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+			$sql = 'SELECT * FROM `composant` WHERE `model` LIKE \'%'.$_POST['keyWord'].'%\' ';
+
+      $result = $bdd->query($sql);
+      $components = $result->fetchAll(PDO::FETCH_OBJ);
+      return $components;
+	}
+	catch(Exception $e)
+	{
+	    die('Erreur : '.$e->getMessage());
+	}
+
+}
+
+
 function getComponents($componentName='')
 {
 	try
