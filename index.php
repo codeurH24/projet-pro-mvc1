@@ -198,6 +198,18 @@ $Route = new Route();
    ->get('^/admin/tagComponent/$')
    ->controller('admin/tagComponentController.php', 'index')
 
+/*
+  admin utilisateur
+*/
+   ->get('^/admin/utilisateurs/$')
+   ->controller('admin/userController.php', 'index')
+
+   ->get('^/admin/utilisateurs/creer-un-utilisateur.php$')
+   ->controller('admin/userController.php', 'create')
+
+   ->get('^/admin/utilisateurs/store/$')
+   ->controller('admin/userController.php', 'store')
+
 
 
 

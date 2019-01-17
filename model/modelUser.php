@@ -1,5 +1,15 @@
 <?php
 // require '/app/class/db.php';
+function getUsers(){
+	$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+	$requete = $bdd->prepare('SELECT * FROM `user`');
+
+	$requete->execute();
+	$users = $requete->fetchAll(PDO::FETCH_OBJ);
+	return $users;
+}
+
 function getUser($userEmail, $userPassword='')
 {
 	try
@@ -68,6 +78,52 @@ function countAllUser(){
 			$requete = $bdd->query($sql);
 			$AllUser = $requete->fetch(PDO::FETCH_OBJ);
 			return $AllUser->count;
+	}
+	catch(Exception $e)
+	{
+			die('Erreur : '.$e->getMessage());
+	}
+}
+
+function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_registration, $date_last_login, $id_role){
+	try
+	{
+			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$sql = 'INSERT INTO user
+			(
+				`nom`,
+				`prenom`,
+				`pseudo`,
+				`email`,
+				`age`,
+				`password`,
+				`date_registration`,
+				`date_last_login`,
+				`id_role`
+			) VALUES (
+				:nom,
+				:prenom,
+				:pseudo,
+				:email,
+				:age,
+				:password,
+				:date_registration,
+				:date_last_login,
+				:id_role
+			)';
+			$requete = $bdd->prepare($sql);
+			$isSuccess = $requete->execute([
+				':nom' => $nom,
+				':prenom' => $prenom,
+				':pseudo' => $pseudo,
+				':email' => $email,
+				':age' => $age,
+				':password' => $password,
+				':date_registration' => $date_registration,
+				':date_last_login' => $date_last_login,
+				':id_role' => $id_role
+			]);
+			return $isSuccess;
 	}
 	catch(Exception $e)
 	{
