@@ -8,39 +8,38 @@
       <legend>Creer l'utilisateur</legend>
       <div class="form-group">
         <label for="nom">Nom</label>
-        <input name="lastname" type="text" class="form-control" id="nom" value="Luca" />
+        <input name="lastname" type="text" class="form-control" id="nom" value="" />
         <p class="error">We'll never share your email with anyone else.</p>
       </div>
       <div class="form-group">
         <label for="prenom">Prénom</label>
-        <input name="firstname" type="text" class="form-control" id="prenom"value="luc" />
+        <input name="firstname" type="text" class="form-control" id="prenom"value="" />
         <p class="error">We'll never share your email with anyone else.</p>
       </div>
       <div class="form-group">
         <label for="pseudo">Pseudo</label>
-        <input name="pseudo" type="text" class="form-control" id="pseudo" value="vador" />
+        <input name="pseudo" type="text" class="form-control" id="pseudo" value="" />
         <p class="error">We'll never share your email with anyone else.</p>
       </div>
       <div class="form-group">
         <label for="mail">Adresse e-mail</label>
-        <input name="email" type="email" class="form-control" id="mail" value="vador@gmail.com" />
+        <input name="email" type="email" class="form-control" id="mail" value="" />
         <p class="error">We'll never share your email with anyone else.</p>
       </div>
       <div class="form-group">
         <label for="age">Age</label>
-        <input name="age" type="text" class="form-control" id="age" value="18" />
+        <input name="age" type="text" class="form-control" id="age" value="" />
       </div>
       <div class="form-group">
         <label for="password1">Mot de passe</label>
-        <input name="password1" type="password" class="form-control" id="password1" value="1234">
+        <input name="password1" type="password" class="form-control" id="password1" value="">
       </div>
       <div class="form-group">
         <label for="password2">Confirmer le mot de passe</label>
-        <input name="password2" type="password" class="form-control" id="password2" value="1234">
+        <input name="password2" type="password" class="form-control" id="password2" value="">
       </div>
       <div class="form-group">
         <select name="id_role">
-          <option value="1">1</option>
           <?php foreach ($roles as $role): ?>
           <option value="<?= $role->id  ?>"><?= $role->nom  ?></option>
           <?php endforeach; ?>

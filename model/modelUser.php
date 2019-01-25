@@ -191,3 +191,22 @@ function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
 			die('Erreur : '.$e->getMessage());
 	}
 }
+
+function deleteUser($id){
+	try
+	{
+			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+			$sql = 'DELETE FROM `user` WHERE id = :id';
+
+			$requete = $bdd->prepare($sql);
+			$isSuccess = $requete->execute([
+				':id' => $id
+			]);
+
+			return $isSuccess;
+	}catch(Exception $e)
+	{
+			die('Erreur : '.$e->getMessage());
+	}
+}

@@ -106,7 +106,7 @@ function sendEmailPasswordChange(){
     'headers' => $headers,
   );
   $envoiEmail = redirect_post('http://sendmail.codeurh24.com/', $data);
-  
+
   header('Location: /admin/utilisateurs/');
 
 }
@@ -161,6 +161,30 @@ function passwordChange(){
 function passwordChangeSuccess(){
   view('admin/user/password-change-success.view.php',[
     'title' => 'PC-CONFIG'
+  ]);
+}
+
+function deleteRequest(){
+  view('admin/user/deleteUser.view.php',[
+    'title' => 'PC-CONFIG',
+    'user' => getUserByID($_GET['id'])
+  ]);
+}
+
+function delete(){
+  if( isset($_POST['id']) ){
+
+    deleteUser($_POST['id']);
+  }
+  header('Location: /admin/utilisateurs/');
+}
+
+function show(){
+  $user = getUserByID($_GET['id']);
+  view('admin/user/showUser.view.php',[
+    'title' => 'PC-CONFIG',
+    'roleName' => getRoleByID($user->id_role)->nom,
+    'user' =>  $user
   ]);
 }
 

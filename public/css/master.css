@@ -468,6 +468,7 @@ nav input[name=searchInput]{
 .arrayHTML td {
     background-color: transparent;
     border-bottom: 1px solid #FFF;
+    color: white;
 }
 
 

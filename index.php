@@ -230,6 +230,16 @@ $Route = new Route();
    ->controller('admin/userController.php', 'passwordChangeSuccess')
 
 
+   ->get('^/admin/utilisateurs/supprimer-un-utilisateur-([0-9]+)\.php$', ['id'])
+   ->controller('admin/userController.php', 'deleteRequest')
+
+   ->get('^/admin/utilisateurs/delete/$')
+   ->controller('admin/userController.php', 'delete')
+
+   ->get('^/admin/utilisateurs/montrer-un-utilisateur-([0-9]+)\.php$', ['id'])
+   ->controller('admin/userController.php', 'show')
+
+
 
 
 
