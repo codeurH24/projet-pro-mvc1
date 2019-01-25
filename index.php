@@ -239,9 +239,31 @@ $Route = new Route();
    ->get('^/admin/utilisateurs/montrer-un-utilisateur-([0-9]+)\.php$', ['id'])
    ->controller('admin/userController.php', 'show')
 
+   // admin roles
 
+   ->get('^/admin/roles/$')
+   ->controller('admin/roleController.php', 'index')
 
+   ->get('^/admin/roles/montrer-role-([0-9]+)\.php$', ['id'])
+   ->controller('admin/roleController.php', 'show')
 
+   ->get('^/admin/roles/creer-role.php$')
+   ->controller('admin/roleController.php', 'create')
+
+   ->get('^/admin/roles/store/$')
+   ->controller('admin/roleController.php', 'store')
+
+   ->get('^/admin/roles/modifier-role-([0-9]+)\.php$', ['id'])
+   ->controller('admin/roleController.php', 'edit')
+
+   ->get('^/admin/roles/update/$')
+   ->controller('admin/roleController.php', 'update')
+
+   ->get('^/admin/roles/supprimer-role-([0-9]+)\.php$', ['id'])
+   ->controller('admin/roleController.php', 'deleteRequest')
+   
+   ->get('^/admin/roles/delete/$', ['id'])
+   ->controller('admin/roleController.php', 'delete')
 
 
 
