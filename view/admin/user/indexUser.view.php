@@ -36,20 +36,26 @@
           <p><?= $user->email ?></p>
         </div>
         <div class="col" style="height:21px;z-index:10">
-          <select name="" disabled="">
-            <option value="1">membre</option><option value="2">contributeur</option><option value="3">admin</option><option value="4" selected="">super admin</option>
+          <select name="role" disabled="">
+            <?php foreach ($roles as $role): ?>
+              <?php if ($user->id_role == $role->id): ?>
+                <option value="<?= $role->id ?>" selected><?= $role->nom ?></option>
+              <?php else: ?>
+                <option value="<?= $role->id ?>"><?= $role->nom ?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="col" style="height:21px;">
-          <p>30-09-18</p>
+          <p><?= date('d/m/Y', strtotime($user->date_registration))   ?></p>
         </div>
         <div class="col-12 admin-tools-users" style="z-index:1">
           <span class="align-middle">
             <ul class="text-right">
-              <li><a href="/admin/utilisateurs/show-user-14.php"><i class="far fa-2x fa-eye"></i></a></li>
-              <li><a href="/admin/utilisateurs/supprimer-user-14.php"><i class="fas fa-2x fa-trash"></i></a></li>
-              <li><a href="/admin/utilisateurs/modifier-user-14.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
-              <li><a href="/admin/utilisateurs/14/demander-un-nouveau-mot-de-passe"><i class="fas fa-undo-alt"></i> <i class="fas fa-2x fa-key"></i></a></li>
+              <li><a href="/admin/utilisateurs/montrer-un-utilisateur-<?= $user->id ?>.php"><i class="far fa-2x fa-eye"></i></a></li>
+              <li><a href="/admin/utilisateurs/supprimer-un-utilisateur-<?= $user->id ?>.php"><i class="fas fa-2x fa-trash"></i></a></li>
+              <li><a href="/admin/utilisateurs/modifier-un-utilisateur-<?= $user->id ?>.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
+              <li><a href="/admin/utilisateurs/demande-de-nouveau-mot-de-passe-<?= $user->id ?>.php"><i class="fas fa-undo-alt"></i> <i class="fas fa-2x fa-key"></i></a></li>
             </ul>
           </span>
         </div>

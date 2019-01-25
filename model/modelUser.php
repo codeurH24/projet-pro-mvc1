@@ -10,6 +10,26 @@ function getUsers(){
 	return $users;
 }
 
+function getUserByID($id)
+{
+	try
+	{
+	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+			$requete = $bdd->prepare('SELECT * FROM `user` WHERE id = :id');
+
+			$requete->bindValue(':id', $id);
+			$requete->execute();
+      $user = $requete->fetch(PDO::FETCH_OBJ);
+      return $user;
+
+	}
+	catch(Exception $e)
+	{
+	    die('Erreur : '.$e->getMessage());
+	}
+
+}
 function getUser($userEmail, $userPassword='')
 {
 	try
@@ -36,7 +56,7 @@ function getUser($userEmail, $userPassword='')
 
 }
 
-function changePasswordUser($newPassword){
+function changePasswordUser($newPassword, $id=''){
 	try
 	{
 			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
@@ -45,7 +65,12 @@ function changePasswordUser($newPassword){
 				SET password = :password
 				WHERE id = :id';
 			$requete = $bdd->prepare('UPDATE `user`  SET password = :password WHERE id = :id');
-			$requete->execute(['id' => UID(), ':password' => md5($newPassword)]);
+			if( $id == ''){
+				$requete->execute(['id' => UID(), ':password' => md5($newPassword)]);
+			}else{
+				$requete->execute(['id' => $id, ':password' => md5($newPassword)]);
+			}
+
 
 	}
 	catch(Exception $e)
@@ -123,6 +148,42 @@ function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_regis
 				':date_last_login' => $date_last_login,
 				':id_role' => $id_role
 			]);
+			return $isSuccess;
+	}
+	catch(Exception $e)
+	{
+			die('Erreur : '.$e->getMessage());
+	}
+}
+
+
+function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
+	try
+	{
+			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+			$sql = 'UPDATE `user`
+			SET
+			`nom` = :nom,
+			`prenom` = :prenom,
+			`pseudo` = :pseudo,
+			`email` = :email,
+			`age` = :age,
+			`id_role` = :id_role
+			WHERE
+			id = :id';
+
+			$requete = $bdd->prepare($sql);
+			$isSuccess = $requete->execute([
+				':id' => $id,
+				':nom' => $nom,
+				':prenom' => $prenom,
+				':pseudo' => $pseudo,
+				':email' => $email,
+				':age' => $age,
+				':id_role' => $id_role
+			]);
+
 			return $isSuccess;
 	}
 	catch(Exception $e)

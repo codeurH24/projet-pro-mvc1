@@ -1,4 +1,5 @@
 <?php session_start();
+require('config.php');
 require('app/functions/global.php');
 require('app/class/Route.php');
 
@@ -209,6 +210,24 @@ $Route = new Route();
 
    ->get('^/admin/utilisateurs/store/$')
    ->controller('admin/userController.php', 'store')
+
+   ->get('^/admin/utilisateurs/modifier-un-utilisateur-([0-9]+)\.php$', ['id'])
+   ->controller('admin/userController.php', 'edit')
+
+   ->get('^/admin/utilisateurs/update/$')
+   ->controller('admin/userController.php', 'update')
+
+   ->get('^/admin/utilisateurs/demande-de-nouveau-mot-de-passe-([0-9]+)\.php$', ['id'])
+   ->controller('admin/userController.php', 'passwordRequest')
+
+   ->get('^/admin/utilisateurs/sendEmailPasswordChange/$')
+   ->controller('admin/userController.php', 'sendEmailPasswordChange')
+
+   ->get('^/change-mot-de-passse/([0-9]+)/token-([0-9a-f]+)\.php$', ['id-user','token'])
+   ->controller('admin/userController.php', 'passwordChange')
+
+   ->get('^/change-mot-de-passse-succes.php$')
+   ->controller('admin/userController.php', 'passwordChangeSuccess')
 
 
 
