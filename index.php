@@ -272,6 +272,8 @@ $Route = new Route();
    ->get('^/admin/log/$')
    ->controller('admin/logController.php', 'index')
 
+   
+
 
 
 
