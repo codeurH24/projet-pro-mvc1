@@ -261,9 +261,16 @@ $Route = new Route();
 
    ->get('^/admin/roles/supprimer-role-([0-9]+)\.php$', ['id'])
    ->controller('admin/roleController.php', 'deleteRequest')
-   
+
    ->get('^/admin/roles/delete/$', ['id'])
    ->controller('admin/roleController.php', 'delete')
+
+// admin log
+   ->get('^/admin/log/([0-9]+)$', ['pagination'])
+   ->controller('admin/logController.php', 'index')
+
+   ->get('^/admin/log/$')
+   ->controller('admin/logController.php', 'index')
 
 
 

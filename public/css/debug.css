@@ -1,0 +1,46 @@
+#debug{
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  min-height: 20px;
+  background-color: #191919;
+  border: 2px solid red;
+  color: white;
+  z-index: 10000;
+}
+#debug .nav{
+  background-color: #3b3c2b;
+}
+#debug .nav-pills .nav-link {
+    color: wheat;
+}
+#debug .nav-pills .nav-link.active {
+    color: white;
+}
+#debug pre{
+  color: white;
+}
+
+#debug .positions{
+  background-color: #4e0000;
+  border-bottom: 2px solid #999;
+}
+#debug .title{
+  position:absolute;
+  left:0;
+  padding: 5px;
+}
+#debug .tab-content{
+  padding: 10px;
+  max-height: 20vh;
+  overflow-y: scroll;
+}
+
+#debug .btn-sm, .btn-group-sm>.btn {
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    line-height: 0;
+    background-color: #4e0000;
+}

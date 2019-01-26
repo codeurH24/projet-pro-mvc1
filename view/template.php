@@ -10,9 +10,10 @@
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-ML9h/UCooefre72ZPxxOHyjbrLT1xKV0AHON1J+OlOV2iwcYemqmWyMfTcfyzLJ1" crossorigin="anonymous">
-  <link rel="stylesheet" href="/public/css/form.css">
-  <link rel="stylesheet" href="/public/css/master.css">
-  <link rel="stylesheet" href="/public/css/componentItemPage.css">
+  <link rel="stylesheet" href="/public/css/form.css" />
+  <link rel="stylesheet" href="/public/css/master.css" />
+  <link rel="stylesheet" href="/public/css/componentItemPage.css" />
+  <link rel="stylesheet" href="/public/css/debug.css" />
 
 
   <title><?= $title ?></title>
@@ -184,6 +185,35 @@
 
   </footer>
   <!-- Footer -->
+
+  <?php if (isset($debug)): ?>
+  <div id="debug">
+    <div class="positions text-right">
+      <p class="title">Console de diagnostic</p>
+      <button class="btn btn-sm btn-danger" onclick="debug.children[2].style.display='none';debug.children[1].style.display='none';"><i class="fas fa-window-minimize"></i></button>
+      <button class="btn btn-sm btn-danger" onclick="debug.children[2].style.display='block';debug.children[1].style.display='block';"><i class="fas fa-expand"></i></button>
+      <button class="btn btn-sm btn-danger" onclick="debug.style.top=0;debug.style.bottom='auto';"><i class="fas fa-arrow-up"></i></button>
+      <button class="btn btn-sm btn-danger" onclick="debug.style.top='auto';debug.style.bottom=0;"><i class="fas fa-arrow-down"></i></button>
+    </div>
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#debug-array" role="tab" aria-controls="pills-home" aria-selected="true">print_r()</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#debug-dump" role="tab" aria-controls="pills-profile" aria-selected="false">var_dump()</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="debug-array" role="tabpanel" aria-labelledby="pills-home-tab">
+        <pre><?= print_r($debug) ?></pre>
+      </div>
+      <div class="tab-pane fade" id="debug-dump" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <pre><?php var_dump($debug) ?></pre>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
