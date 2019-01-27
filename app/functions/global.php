@@ -47,4 +47,11 @@
         throw new Exception("Error loading '$url', $php_errormsg");
     }
 }
+
+function debug($value){
+    echo '<pre>';
+    print_r($value);
+    exit;
+}
+
 ?>

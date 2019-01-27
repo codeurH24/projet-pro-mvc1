@@ -15,7 +15,7 @@ function index(){
       'title' => 'PC-CONFIG',
       'logs' => getLogs($limit),
       'page' => '/admin/log/',
-      'numberSplits' => $numberSplits,
+      'numberSplits' => $numberSplits
     ]);
   }else{
     view('admin/log/indexLog.view.php',[

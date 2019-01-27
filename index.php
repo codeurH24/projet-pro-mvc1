@@ -272,7 +272,32 @@ $Route = new Route();
    ->get('^/admin/log/$')
    ->controller('admin/logController.php', 'index')
 
-   
+
+// admin $access
+  ->get('^/admin/acces/$')
+  ->controller('admin/accessController.php', 'index')
+
+  ->get('^/admin/acces/montrer-un-acces-([0-9]+)\.php$', ['id'])
+  ->controller('admin/accessController.php', 'show')
+
+  ->get('^/admin/acces/creer-un-acces.php$')
+  ->controller('admin/accessController.php', 'create')
+
+  ->get('^/admin/acces/store/$')
+  ->controller('admin/accessController.php', 'store')
+  
+  ->get('^/admin/acces/modifier-un-acces-([0-9]+)\.php$', ['id'])
+  ->controller('admin/accessController.php', 'edit')
+
+  ->get('^/admin/acces/update/$')
+  ->controller('admin/accessController.php', 'update')
+
+  ->get('^/admin/acces/supprimer-un-acces-([0-9]+)\.php$', ['id'])
+  ->controller('admin/accessController.php', 'deleteRequest')
+
+
+
+
 
 
 

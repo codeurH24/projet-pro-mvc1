@@ -202,13 +202,23 @@
       <li class="nav-item">
         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#debug-dump" role="tab" aria-controls="pills-profile" aria-selected="false">var_dump()</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#debug-count" role="tab" aria-controls="pills-profile" aria-selected="false">count()</a>
+      </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="debug-array" role="tabpanel" aria-labelledby="pills-home-tab">
         <pre><?= print_r($debug) ?></pre>
       </div>
       <div class="tab-pane fade" id="debug-dump" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <pre><?php var_dump($debug) ?></pre>
+        <pre><?= var_dump($debug) ?></pre>
+      </div>
+      <div class="tab-pane fade" id="debug-count" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <?php if (is_array($debug) || $debug instanceof Countable){ ?>
+          <pre><?= count($debug) ?></pre>
+        <?php }else{ ?>
+          <p>Not countable</p>
+        <?php } ?>
       </div>
     </div>
   </div>
