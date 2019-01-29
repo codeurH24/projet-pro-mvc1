@@ -550,7 +550,7 @@ nav input[name=searchInput]{
 }
 
 .pageBackground{
-  background-image: url(/public/image/BD495g_2.png);
+  background-image: url(/public/image/background2.png);
   background-size: cover;
   background-attachment: fixed;
 }
