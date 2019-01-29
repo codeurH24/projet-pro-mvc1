@@ -1,5 +1,5 @@
-<main class="container-fluid">
-  <div class="row justify-content-center">
+<main class="container-fluid pageBackgroundComponents">
+  <div class="row justify-content-center ">
     <div class="col-12 col-md-8 col-xl-7  menuItemCategorie">
       <div class="row">
         <div class="col-3">

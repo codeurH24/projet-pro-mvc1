@@ -1,4 +1,4 @@
-<main class="container-fluid">
+<main class="container-fluid pageBackground">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-xl-6">
       <form method="post">

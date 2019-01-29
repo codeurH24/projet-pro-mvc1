@@ -124,6 +124,7 @@ header img.logo{
   margin: 2vw;
   border: 2px solid black;
   background: linear-gradient(to bottom, #323232 0%,#1a1a1a 100%);
+  background: linear-gradient(to bottom, #000000cc 0%,#000000f0 100%);
 }
 .menuItemCategorie img{
   display:block;
@@ -138,6 +139,8 @@ a.menuItemCategorie{
   background-color: #535353;
   border: 2px solid #FFF;
   background: linear-gradient(to bottom, #565353 0%,#1a1a1a 100%);
+  background: linear-gradient(to bottom, #33333399 0%,#333333f0 100%);
+  background: linear-gradient(to bottom, #121300bf 0%,#150c0cf0 100%);
   box-shadow: 0 0 10px white;
 }
 
@@ -544,4 +547,22 @@ nav input[name=searchInput]{
 
 .descriptionCat{
   color:white;
+}
+
+.pageBackground{
+  background-image: url(/public/image/Technology-Photo-HD-1.png);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.pageBackgroundLogin{
+  background-color: #FFF;
+  background-image: url(/public/image/login2.png);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.pageBackgroundComponents{
+  background-color: #FFF;
+  background-image: url(/public/image/background-components.png);
+  background-size: cover;
+  background-attachment: fixed;
 }
