@@ -3,7 +3,8 @@ require 'model/modelUser.php';
 require 'model/modelCreation.php';
 function login(){
   view('account/login.view.php',[
-    'title' => 'PC-CONFIG'
+    'title' => 'PC-CONFIG',
+    'class' => 'pageBackgroundLogin'
   ]);
 }
 function submitLogin(){
@@ -24,7 +25,8 @@ function submitLogin(){
 function registration(){
   $title = 'Projet MVC';
   view('account/registration.view.php',[
-    'title' => 'PC-CONFIG'
+    'title' => 'PC-CONFIG',
+    'class' => 'pageBackgroundRegistration'
   ]);
 }
 function logout(){

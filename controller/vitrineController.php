@@ -14,7 +14,8 @@ function livelyMemory(){
     'title' => 'Projet MVC',
     'components' => getComponentsLimit($categorie, $limit),
     'numberSplits' => $numberSplits,
-    'page' => 'composants/memoire-vive-'
+    'page' => 'composants/memoire-vive-',
+    'class' => 'pageBackgroundDDR'
   ]);
 }
 
@@ -30,7 +31,8 @@ function mainBoard(){
     'title' => 'Projet MVC',
     'components' => getComponentsLimit('carte mère', $limit),
     'numberSplits' => $numberSplits,
-    'page' => 'composants/carte-mere-'
+    'page' => 'composants/carte-mere-',
+    'class' => 'pageBackgroundMotherboard'
   ]);
 }
 
@@ -45,7 +47,8 @@ function processor(){
     'title' => 'Projet MVC',
     'components' => getComponentsLimit('processeur', $limit),
     'numberSplits' => $numberSplits,
-    'page' => 'composants/processeur-'
+    'page' => 'composants/processeur-',
+    'class' => 'pageBackgroundProcessor'
   ]);
 }
 
@@ -60,7 +63,8 @@ function graphicCard(){
     'title' => 'Projet MVC',
     'components' => getComponentsLimit('carte graphique', $limit),
     'numberSplits' => $numberSplits,
-    'page' => 'composants/carte-graphique-'
+    'page' => 'composants/carte-graphique-',
+    'class' => 'pageBackgroundGraphicCard'
   ]);
 }
 ?>

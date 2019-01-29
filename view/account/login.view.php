@@ -1,4 +1,4 @@
-<main class="container-fluid pageBackgroundLogin">
+<main class="container-fluid <?= $class ?>">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-xl-4">
       <form method="post" action="submit/">

@@ -1,4 +1,4 @@
-<main class="container-fluid pageBackgroundComponents">
+<main class="container-fluid <?= $class ?>">
   <div class="row justify-content-center ">
     <div class="col-12 col-md-8 col-xl-7  menuItemCategorie">
       <div class="row">

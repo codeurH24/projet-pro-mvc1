@@ -1,4 +1,4 @@
-<main class="container-fluid composants pageBackgroundComponents">
+<main class="container-fluid composants <?= $class ?>">
 <?php
   require 'view/vitrine/pagination.php';
   foreach ($components as $value){
