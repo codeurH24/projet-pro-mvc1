@@ -128,7 +128,7 @@
         <div class="col">
           <ul class="list-unstyled">
             <li>
-              <a href="/accueil.php">
+              <a href="/">
                 <i class="fas fa-home"></i>
                 Accueil <span class="sr-only">(current)</span>
               </a>
@@ -150,22 +150,22 @@
         <div class="col">
           <ul class="list-unstyled">
             <li>
-              <a href="composants-carte-mere-1.php">
+              <a href="/composants/carte-mere-1.php">
                 Carte Mère
               </a>
             </li>
             <li>
-              <a href="composants-carte-graphique-1.php">
+              <a href="/composants/carte-graphique-1.php">
                 Carte Graphique
               </a>
             </li>
             <li>
-              <a href="composants-memoire-vive-1.php">
+              <a href="/composants/memoire-vive-1.php">
                 Mémoire Vive
               </a>
             </li>
             <li>
-              <a href="/composants-processeur-1.php">
+              <a href="/composants/processeur-1.php">
                 Processeur
               </a>
             </li>

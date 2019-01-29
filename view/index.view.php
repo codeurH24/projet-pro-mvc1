@@ -3,12 +3,12 @@
     <div class="col-12 col-md-8 col-xl-7  menuItemCategorie">
       <div class="row">
         <div class="col-3">
-          <a href="composants-carte-graphique-1.php">
+          <a href="/composants/carte-graphique-1.php">
             <img src="public/image/gpu.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
-          <a href="composants-carte-graphique-1.php">
+          <a href="/composants/carte-graphique-1.php">
             <p class="titleCat">
               <h1>Carte Graphique</h1>
             </p>
@@ -22,12 +22,12 @@
     <div class="col-12 col-md-8 col-xl-7 menuItemCategorie">
       <div class="row">
         <div class="col-3">
-          <a href="composants-carte-mere-1.php">
+          <a href="/composants/carte-mere-1.php">
             <img src="public/image/mainboard1.png" alt="carte mere" />
           </a>
         </div>
         <div class="col">
-          <a href="composants-carte-mere-1.php">
+          <a href="/composants/carte-mere-1.php">
             <p class="titleCat">
               <h1>Carte mere</h1>
             </p>
@@ -41,12 +41,12 @@
     <div class="col-12 col-md-8 col-xl-7 menuItemCategorie">
       <div class="row">
         <div class="col-3">
-          <a href="composants-memoire-vive-1.php">
+          <a href="/composants/memoire-vive-1.php">
             <img src="public/image/ram2.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
-          <a href="composants-memoire-vive-1.php">
+          <a href="/composants/memoire-vive-1.php">
             <p class="titleCat">
               <h1>Memoire vive</h1>
             </p>
@@ -60,12 +60,12 @@
     <div class="col-12 col-md-8 col-xl-7 menuItemCategorie">
       <div class="row">
         <div class="col-3">
-          <a href="/composants-processeur-1.php">
+          <a href="/composants/processeur-1.php">
             <img src="public/image/processeur.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
-          <a href="/composants-processeur-1.php">
+          <a href="/composants/processeur-1.php">
             <p class="titleCat">
               <h1>Processeur</h1>
             </p>
