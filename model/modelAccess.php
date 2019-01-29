@@ -83,4 +83,20 @@ function updateAccess($id, $url, $id_role, $pass_right){
   }
 }
 
+function deleteAccess($id){
+  try
+  {
+      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+      $sql = 'DELETE FROM `access` WHERE id = :id';
+
+      $result = $bdd->prepare($sql);
+      return $result->execute([':id' => $id]);
+  }
+  catch(Exception $e)
+  {
+      die('Erreur : '.$e->getMessage());
+  }
+}
+
  ?>

@@ -285,7 +285,7 @@ $Route = new Route();
 
   ->get('^/admin/acces/store/$')
   ->controller('admin/accessController.php', 'store')
-  
+
   ->get('^/admin/acces/modifier-un-acces-([0-9]+)\.php$', ['id'])
   ->controller('admin/accessController.php', 'edit')
 
@@ -294,6 +294,9 @@ $Route = new Route();
 
   ->get('^/admin/acces/supprimer-un-acces-([0-9]+)\.php$', ['id'])
   ->controller('admin/accessController.php', 'deleteRequest')
+
+  ->get('^/admin/acces/delete/$')
+  ->controller('admin/accessController.php', 'delete')
 
 
 

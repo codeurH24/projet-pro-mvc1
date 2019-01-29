@@ -55,12 +55,18 @@ function update(){
   }
 }
 
-function editRequest(){
-  view('admin/access/deleteAccess.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
-}
-function delete(){
 
+function delete(){
+  if (isset($_POST['deleteAccess']) && isset($_POST['id'])) {
+    deleteAccess($_POST['id']);
+  }
+  header('Location: /admin/acces/');
+}
+
+function deleteRequest(){
+  view('admin/access/deleteAccess.view.php',[
+    'title' => 'PC-CONFIG',
+    'access' => getAccessByID($_GET['id'])
+  ]);
 }
  ?>
