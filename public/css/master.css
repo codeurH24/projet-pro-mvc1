@@ -124,7 +124,7 @@ header img.logo{
   margin: 2vw;
   border: 2px solid black;
   background: linear-gradient(to bottom, #323232 0%,#1a1a1a 100%);
-  background: linear-gradient(to bottom, #000000cc 0%,#000000f0 100%);
+  background: linear-gradient(to bottom, #00000054 0%,#00000087 100%);
 }
 .menuItemCategorie img{
   display:block;
@@ -550,7 +550,7 @@ nav input[name=searchInput]{
 }
 
 .pageBackground{
-  background-image: url(/public/image/background2.png);
+  background-image: url(/public/image/blockchain-corrupcao1.png);
   background-size: cover;
   background-attachment: fixed;
 }
