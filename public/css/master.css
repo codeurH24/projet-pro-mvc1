@@ -135,12 +135,15 @@ a.menuItemCategorie{
   display: block;
   position: relative;
 }
+.menuItemCategorie{
+  background-color: #535353;
+  border: 2px solid #FFF;
+  background: linear-gradient(to bottom, #14150cbf 0%,#150c0c66 100%);
+}
 .menuItemCategorie:hover{
   background-color: #535353;
   border: 2px solid #FFF;
-  background: linear-gradient(to bottom, #565353 0%,#1a1a1a 100%);
-  background: linear-gradient(to bottom, #33333399 0%,#333333f0 100%);
-  background: linear-gradient(to bottom, #121300bf 0%,#150c0cf0 100%);
+  background: linear-gradient(to bottom, #14150cbf 0%,#150c0cab 100%);
   box-shadow: 0 0 10px white;
 }
 
@@ -550,7 +553,7 @@ nav input[name=searchInput]{
 }
 
 .pageBackground{
-  background-image: url(/public/image/blockchain-corrupcao1.png);
+  background-image: url(/public/image/white-wallpaper-6.png);
   background-size: cover;
   background-attachment: fixed;
 }

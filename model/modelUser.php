@@ -43,7 +43,10 @@ function getUser($userEmail, $userPassword='')
 			}
 
 			$requete->bindValue(':userEmail', $userEmail);
-			$requete->bindValue(':userPassword', $userPassword);
+			if($userPassword != ''){
+				$requete->bindValue(':userPassword', $userPassword);
+			}
+
 			$requete->execute();
       $user = $requete->fetchAll(PDO::FETCH_OBJ);
       return ( count($user) > 0) ?  $user[0] : false;

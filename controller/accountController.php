@@ -8,8 +8,8 @@ function login(){
   ]);
 }
 function submitLogin(){
-  $user = getUser($_POST['mail'], md5($_POST['password']));
-  if ($user !== false){
+  $user = getUser($_POST['mail']);
+  if ($user !== false && password_verify ( $_POST['password'].secretKey, $user->password ) ){
     $_SESSION['user'] = [
       'id' =>  $user->id,
       'pseudo' => $user->pseudo,
@@ -23,20 +23,47 @@ function submitLogin(){
   }
 }
 function registration(){
-  $title = 'Projet MVC';
   view('account/registration.view.php',[
     'title' => 'PC-CONFIG',
     'class' => 'pageBackgroundRegistration'
   ]);
 }
+
+function createRegistration(){
+
+  require 'resquest/form/rule/account/registrationRules.php';
+
+  if(count($errorsForm) > 0){
+    view('account/registration.view.php',[
+      'class' => 'pageBackgroundRegistration'
+    ]);
+    exit;
+  }
+
+  createUser(
+    '',
+    '',
+    $_POST['pseudo'],
+    $_POST['email'],
+    0,
+    password_hash($_POST['password1'].secretKey, PASSWORD_BCRYPT),
+    dbDate(),
+    dbDate(),
+    1
+  );
+
+  header('Location: /mon-compte/inscription/');
+}
+
+
+
+
 function logout(){
   $_SESSION['user'] = [];
   unset($_SESSION['user']);
   header('Location: /');
 }
 function myAccount(){
-  $title = 'Projet MVC';
-
 $componentList = getComponentOfCreationUser();
 
 

@@ -4,6 +4,18 @@ require('app/functions/global.php');
 require('app/class/Route.php');
 
 
+// si le role de l'utilisateur n'est pas autorisé a passer avec l'url en cours
+// alors ont le redirige
+  if ( access() === false ) {
+
+    ob_start();
+    header('Location: http://'.$_SERVER['HTTP_HOST']);
+    exit();
+  }
+
+
+
+
 
 $Route = new Route();
 
@@ -35,6 +47,9 @@ $Route = new Route();
 
       ->get('^/mon-compte/inscription/$')
       ->controller('accountController.php', 'registration')
+
+      ->get('^/mon-compte/create-inscription/$')
+      ->controller('accountController.php', 'createRegistration')
       //
       ->get('^/mon-compte/connexion/$')
       ->controller('accountController.php', 'login')

@@ -1,4 +1,5 @@
 <ul class="nav flex-column">
+  <?php if (accessElement('/admin/categorie/')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/categorie/" style="color:white">
@@ -6,6 +7,8 @@
       </a>
     </div>
   </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/composant/')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/composant/" style="color:white">
@@ -13,6 +16,8 @@
       </a>
     </div>
   </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/revendeur/')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/revendeur/" style="color:white">
@@ -20,13 +25,17 @@
       </a>
     </div>
   </li>
-  <li class="nav-item">
-    <div class="btn-group dropright w-100">
-      <a class="btn btn-primary  w-100" href="/admin/utilisateurs/" style="color:white">
-        <i class="fas fa-2x fa-user-alt icon-white"></i><span>Utilisateurs</span>
-      </a>
-    </div>
-  </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/utilisateurs/')): ?>
+    <li class="nav-item">
+      <div class="btn-group dropright w-100">
+        <a class="btn btn-primary  w-100" href="/admin/utilisateurs/" style="color:white">
+          <i class="fas fa-2x fa-user-alt icon-white"></i><span>Utilisateurs</span>
+        </a>
+      </div>
+    </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/roles/')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/roles/" style="color:white">
@@ -34,6 +43,8 @@
       </a>
     </div>
   </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/log/1')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/log/1" style="color:white">
@@ -41,6 +52,8 @@
       </a>
     </div>
   </li>
+  <?php endif; ?>
+  <?php if (accessElement('/admin/acces/')): ?>
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/acces/" style="color:white">
@@ -48,4 +61,5 @@
       </a>
     </div>
   </li>
+  <?php endif; ?>
 </ul>

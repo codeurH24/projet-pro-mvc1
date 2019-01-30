@@ -58,9 +58,13 @@
               <i class="fas fa-2x fa-user-alt"></i> Mon compte
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <?php if (accessElement('/mes-creations/')): ?>
               <a class="dropdown-item" href="/mes-creations/">Tableau de bord</a>
+              <?php endif; ?>
+              <?php if (accessElement('/admin/')): ?>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/admin/">Administration</a>
+              <?php endif; ?>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/mon-compte/logout/">Se Déconnecter</a>
             </div>

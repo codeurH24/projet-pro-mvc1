@@ -1,6 +1,6 @@
 <?php
 require 'model/modelCreation.php';
-require 'model/modelAccess.php';
+require_once 'model/modelAccess.php';
 require 'model/modelRole.php';
 
 
@@ -46,7 +46,7 @@ function edit(){
 }
 function update(){
   if( !empty($_POST['url']) && !empty($_POST['id_role']) ){
-    if(updateAccess($_POST['id'], $_POST['url'], $_POST['id_role'], 0) === false){
+    if(updateAccess($_POST['id'], $_POST['url'], $_POST['id_role'], $_POST['pass_right']) === false){
       exit('Erreur SQL');
     }
     header('Location: /admin/acces/');

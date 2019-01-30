@@ -5,7 +5,7 @@ function getAccess(){
   {
       $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
 
-      $sql = '  SELECT access.*, role.nom FROM `access`
+      $sql = '  SELECT access.*, role.id as `id_role`, role.nom FROM `access`
                 INNER JOIN role ON role.id = access.role_id
       ';
 
@@ -33,6 +33,27 @@ function getAccessByID($id){
       $result = $bdd->prepare($sql);
       $result->execute([':id' => $id]);
       $access = $result->fetch(PDO::FETCH_OBJ);
+      return $access;
+  }
+  catch(Exception $e)
+  {
+      die('Erreur : '.$e->getMessage());
+  }
+}
+
+function getAccessByID_role($id){
+  try
+  {
+      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+      $sql = '  SELECT access.*, role.nom FROM `access`
+                INNER JOIN role ON role.id = access.role_id
+                WHERE role.id = :id
+      ';
+
+      $result = $bdd->prepare($sql);
+      $result->execute([':id' => $id]);
+      $access = $result->fetchAll(PDO::FETCH_OBJ);
       return $access;
   }
   catch(Exception $e)

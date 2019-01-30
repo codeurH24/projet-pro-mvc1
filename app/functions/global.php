@@ -1,6 +1,7 @@
 <?php
 
   function view($viewFile, $vars = []){
+    global $errorsForm;
     foreach ($vars as $key => $value) {
       $$key = $value;
     }
@@ -53,5 +54,79 @@ function debug($value){
     print_r($value);
     exit;
 }
+
+
+function access(){
+  require_once('model/modelAccess.php');
+  if( !isset($_SESSION['user']) ){
+    // 5 correspond au role 'aucun'
+    $accessList = getAccessByID_role(5);
+  }else{
+    $accessList = getAccessByID_role($_SESSION['user']['roleID']);
+  }
+  if( $accessList !== false and count((array)$accessList) > 0 ){
+
+    foreach ($accessList as $access) {
+      $access->url = str_replace('/', '\/', $access->url);
+      $access->url = trim($access->url);
+
+      if (preg_match('/'.$access->url.'/m', $_SERVER['REQUEST_URI'])) {
+
+          if( isset($access->pass_right) and $access->pass_right == 1){
+            return true;
+          }else{
+            return false;
+          }
+      }
+    }
+  }else{
+    return true;
+  }
+  return true;
+
+  $mysqli->close();
+}
+
+function accessElement($url){
+  require_once('model/modelAccess.php');
+  if( !isset($_SESSION['user']) ){
+    // 5 correspond au role 'aucun'
+    $accessList = getAccessByID_role(5);
+  }else{
+    $accessList = getAccessByID_role($_SESSION['user']['roleID']);
+  }
+  if( $accessList !== false and count((array)$accessList) > 0 ){
+
+    foreach ($accessList as $access) {
+      $access->url = str_replace('/', '\/', $access->url);
+      $access->url = trim($access->url);
+
+      if (preg_match('/'.$access->url.'/m', $url)) {
+
+          if( isset($access->pass_right) and $access->pass_right == 1){
+            return true;
+          }else{
+            return false;
+          }
+      }
+    }
+  }else{
+    return true;
+  }
+  return true;
+
+  $mysqli->close();
+}
+
+
+function errorsForm($nameInput){
+  global $errorsForm;
+  if (isset($errorsForm[$nameInput]) && count($errorsForm[$nameInput]) > 0):
+    foreach ($errorsForm[$nameInput] as $value):
+      ?><p class="error"><?= $value  ?></p><?php
+    endforeach;
+  endif;
+}
+
 
 ?>
