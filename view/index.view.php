@@ -1,6 +1,6 @@
 <main class="container-fluid <?= $class ?>">
   <div class="row justify-content-center ">
-    <div class="col-12 col-md-8 col-xl-4  menuItemCategorie">
+    <div class="col-12 col-md-8 col-xl-5 p-2  menuItemCategorie">
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/carte-graphique-1.php">
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-8 col-xl-4 menuItemCategorie">
+    <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/carte-mere-1.php">
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-8 col-xl-4 menuItemCategorie">
+    <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/memoire-vive-1.php">
@@ -57,14 +57,14 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-8 col-xl-4 menuItemCategorie">
+    <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/processeur-1.php">
             <img src="public/image/processeur.png" alt="carte graphique" />
           </a>
         </div>
-        <div class="col-7">
+        <div class="col">
           <a href="/composants/processeur-1.php">
             <p class="titleCat">
               <h1 class="h2">Processeur</h1>
