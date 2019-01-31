@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Dim 13 Janvier 2019 à 21:32
--- Version du serveur :  5.7.24-0ubuntu0.18.04.1
+-- Généré le :  Jeu 31 Janvier 2019 à 19:05
+-- Version du serveur :  5.7.25-0ubuntu0.18.04.2
 -- Version de PHP :  7.2.10-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -44,7 +44,9 @@ INSERT INTO `access` (`id`, `url`, `role_id`, `pass_right`) VALUES
 (3, '^/admin/utilisateurs/*', 2, 0),
 (6, '^/admin/roles/*', 2, 0),
 (7, '^/admin/log/*', 2, 0),
-(8, '^/admin/acces/*', 2, 0);
+(8, '^/admin/acces/*', 2, 0),
+(9, ' ^/admin/*', 5, 0),
+(10, '^/mes-creations/*', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -603,7 +605,12 @@ INSERT INTO `log` (`id`, `user_id`, `name_task`, `date`) VALUES
 (81, 14, 'Se connecte', '2019-01-13 19:27:14'),
 (82, 14, 'Se connecte', '2019-01-13 20:12:30'),
 (83, 14, 'Se connecte', '2019-01-13 20:32:49'),
-(84, 14, 'Se connecte', '2019-01-13 21:13:41');
+(84, 14, 'Se connecte', '2019-01-13 21:13:41'),
+(85, 14, 'Se connecte', '2019-01-24 19:06:49'),
+(86, 14, 'Se connecte', '2019-01-25 18:21:37'),
+(87, 14, 'Se connecte', '2019-01-25 20:06:02'),
+(88, 14, 'Se connecte', '2019-01-27 07:55:42'),
+(89, 14, 'Se connecte', '2019-01-27 09:29:59');
 
 -- --------------------------------------------------------
 
@@ -672,7 +679,8 @@ INSERT INTO `role` (`id`, `nom`) VALUES
 (1, 'membre'),
 (2, 'contributeur'),
 (3, 'admin'),
-(4, 'super admin');
+(4, 'super admin'),
+(5, 'aucun');
 
 -- --------------------------------------------------------
 
@@ -699,12 +707,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `pseudo`, `email`, `age`, `password`, `date_registration`, `date_last_login`, `id_adresse`, `id_role`) VALUES
-(14, 'florent', 'Corlouer', 'admin master', 'cci.corlouer@gmail.com', 33, '81dc9bdb52d04dc20036dbd8313ed055', '2018-09-30 08:10:32', '2019-01-13 21:13:41', 0, 4),
-(24, '', '', 'codeurh24', 'codeurh24@gmail.com', 0, '81dc9bdb52d04dc20036dbd8313ed055', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 0, 3),
-(26, 'Delmos', 'angalo', 'angelo', 'angelo@gmail.fr', 0, '81dc9bdb52d04dc20036dbd8313ed055', '2018-12-04 13:22:25', '2018-12-04 13:22:25', NULL, 2),
-(27, '', '', 'Alice', 'alice@gmail.com', 0, '81dc9bdb52d04dc20036dbd8313ed055', '2018-12-15 19:16:44', '2018-12-20 19:25:00', NULL, 1),
-(28, '', '', 'Bob', 'bob@gmail.com', 0, '81dc9bdb52d04dc20036dbd8313ed055', '2018-12-15 19:17:13', '2018-12-15 21:37:11', NULL, 1),
-(29, '', '', 'Charlie', 'charlie@gmail.com', 0, '81dc9bdb52d04dc20036dbd8313ed055', '2018-12-15 19:18:03', '2018-12-16 06:07:53', NULL, 2);
+(14, 'florent2', 'Corlouer', 'admin master', 'cci.corlouer@gmail.com', 33, '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 0, 4),
+(24, '', '', 'codeurh24', 'codeurh24@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 0, 3),
+(26, 'Delmos', 'angalo', 'angelo', 'angelo@gmail.fr', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', NULL, 2),
+(27, '', '', 'Alice', 'alice@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', NULL, 1),
+(29, '', '', 'Charlie', 'charlie@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', NULL, 2),
+(35, '', '', 'bob', 'bob@gmail.com', 0, '$2y$10$E3TJhzvl67Us9wUA6YNQVuL7iX1NUl5IQDZQyGO0conqdRWPISMKu', '2019-01-30 22:09:47', '2019-01-30 22:09:47', NULL, 1);
 
 --
 -- Index pour les tables exportées
@@ -810,7 +818,8 @@ ALTER TABLE `role`
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -820,12 +829,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `access`
 --
 ALTER TABLE `access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `compatibilite`
 --
@@ -865,7 +874,7 @@ ALTER TABLE `image_composant`
 -- AUTO_INCREMENT pour la table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT pour la table `marque_composant`
 --
@@ -875,7 +884,7 @@ ALTER TABLE `marque_composant`
 -- AUTO_INCREMENT pour la table `revendeur`
 --
 ALTER TABLE `revendeur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `revendeur_composant`
 --
@@ -885,12 +894,12 @@ ALTER TABLE `revendeur_composant`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- Contraintes pour les tables exportées
 --

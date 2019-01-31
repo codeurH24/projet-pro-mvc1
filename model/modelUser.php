@@ -68,13 +68,13 @@ function changePasswordUser($newPassword, $id=''){
 				SET password = :password
 				WHERE id = :id';
 			$requete = $bdd->prepare('UPDATE `user`  SET password = :password WHERE id = :id');
+
+			$newPassword = password_hash ( $newPassword , PASSWORD_BCRYPT ) ;
 			if( $id == ''){
-				$requete->execute(['id' => UID(), ':password' => md5($newPassword)]);
+				$requete->execute(['id' => UID(), ':password' => $newPassword]);
 			}else{
-				$requete->execute(['id' => $id, ':password' => md5($newPassword)]);
+				$requete->execute(['id' => $id, ':password' => $newPassword]);
 			}
-
-
 	}
 	catch(Exception $e)
 	{

@@ -65,6 +65,7 @@ function passwordRequest(){
 
 function sendEmailPasswordChange(){
 
+
   if(isset($_POST['answerChangePassword'])){
     if ($_POST['answerChangePassword'] != 'Oui') {
       header('Location: /admin/utilisateurs/');
@@ -74,16 +75,7 @@ function sendEmailPasswordChange(){
   $IDUser = $_POST['id'];
 
 
-    changePasswordUser('newpassord');
-
-    // recupere l'adresse email pour envoyer la demande à son adresse email
-
-    // $query = "SELECT * FROM `user` WHERE `user`.`id` = $IDUser ";
-    // $rows = bddQuery($mysqli, $query);
-    // $row = $rows[0];
-
-  // $mysqli->close();
-  // echo($row['email']);
+  changePasswordUser('newpassord'.secretKey, $IDUser);
 
   // prépare le e-mail et l'envoi
   $tokenPatern = $IDUser.secretKey;
@@ -136,16 +128,20 @@ function passwordChange(){
     // si le mot de passe de l'utilisateur est celui attendu c'est donc que la demande
     // de changer sont mot de passe a reellement été faite
     // f68cfec5c269121625a9723fb6a4441d = newpassord
-    if( $user->password != 'f68cfec5c269121625a9723fb6a4441d'){
+    if(! password_verify( 'newpassord'.secretKey, $user->password ) ){
       exit('Problème, la demande de changement de mot de passe n\'est plus valide');
     }
+
+    // if(password_verify( '1234', '$2y$10$2ILd56T6PgzVRPADflHpX.mhrX6vz.kmaSCwhNeKoOP/awEXubOlW' ) ){
+    //   exit($_POST['newpassword1']);
+    // }
 
     if( isset($_POST['newpassword1']) && isset($_POST['newpassword2']) && isset($_GET['id-user'])){
 
       if( $_POST['newpassword1'] == $_POST['newpassword2'] ){
 
         // changement de sont mot de passe
-        changePasswordUser($_POST['newpassword1'], $_GET['id-user']);
+        changePasswordUser($_POST['newpassword1'].secretKey, $_GET['id-user']);
         header("Location: http://$_SERVER[HTTP_HOST]/change-mot-de-passse-succes.php");
         exit("Location: http://$_SERVER[HTTP_HOST]/change-mot-de-passse/success.php");
       }

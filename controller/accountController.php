@@ -9,6 +9,7 @@ function login(){
 }
 function submitLogin(){
   $user = getUser($_POST['mail']);
+
   if ($user !== false && password_verify ( $_POST['password'].secretKey, $user->password ) ){
     $_SESSION['user'] = [
       'id' =>  $user->id,
@@ -98,8 +99,9 @@ function updatePassword(){
     $_SESSION['formErrors']['password1'][] = 'Les mots de passe ne sont pas identiques';
     $_SESSION['formErrors']['password2'][] = 'Les mots de passe ne sont pas identiques';
   }
-  if (empty($_SESSION['formErrors']) && $currentPassword == md5($_POST['currentPassword'])) {
-    changePasswordUser($_POST['password1']);
+  
+  if (empty($_SESSION['formErrors']) && password_verify ( $_POST['currentPassword'].secretKey , $currentPassword ) ) {
+    changePasswordUser($_POST['password1'].secretKey);
     header('Location: /mon-compte/logout/');
   }else{
     header('Location: /mon-compte/changer-mon-mot-de-passe/');
