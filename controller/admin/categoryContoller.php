@@ -3,14 +3,11 @@ require 'model/modelCategory.php';
 require 'model/modelCreation.php';
 function index(){
   view('admin/category/indexCategory.view.php',[
-    'title' => 'PC-CONFIG',
     'categories' => getCategories()
   ]);
 }
 function create(){
-  view('admin/category/createCategory.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/category/createCategory.view.php');
 }
 function store(){
 
@@ -25,7 +22,6 @@ function delete(){
 }
 function edit(){
   view('admin/category/updateCategory.view.php',[
-    'title' => 'PC-CONFIG',
     'category' => getCategory($_GET['id'])
   ]);
 }

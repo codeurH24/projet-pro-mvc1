@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12 mt-3">
       <div class="text-right">
-        <a href="/admin/composant/creer-composant.php" class="btn btn-secondary">Retour</a>
+        <a href="/admin/composant/" class="btn btn-secondary">Retour</a>
       </div>
     </div>
   </div>

@@ -3,14 +3,11 @@ require 'model/modelCreation.php';
 require 'model/modelReseller.php';
 function index(){
   view('admin/reseller/indexReseller.view.php',[
-    'title' => 'PC-CONFIG',
     'resellers' => getResellers()
   ]);
 }
 function create(){
-  view('admin/reseller/createReseller.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/reseller/createReseller.view.php');
 }
 function store(){
   createReseller($_POST['name']);
@@ -18,8 +15,7 @@ function store(){
 }
 
 function edit(){
-  view('admin/reseller/updateReseller.view.php',[
-    'title' => 'PC-CONFIG',
+  view('admin/reseller/updateReseller.view.php',[    
     'reseller' => getReseller($_GET['id'])
   ]);
 }

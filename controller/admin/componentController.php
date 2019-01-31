@@ -5,14 +5,11 @@ require 'model/modelImageComposant.php';
 require 'model/modelCategory.php';
 function index(){
   view('admin/component/indexComponent.view.php',[
-    'title' => 'PC-CONFIG',
     'components' => getComponents()
   ]);
 }
 function create(){
-  view('admin/component/createComponent.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/component/createComponent.view.php');
 }
 function store(){
   createComponent($_POST['model'], $_POST['marque'], $_POST['score'], $_POST['categorie']);
@@ -26,8 +23,7 @@ function delete(){
 }
 
 function edit(){
-  view('admin/component/editComponent.view.php',[
-    'title' => 'PC-CONFIG',
+  view('admin/component/editComponent.view.php',[    
     'component' => getComponent($_GET['id']),
     'imageComponent' => getImageComposant($_GET['id']),
     'categories' => getCategories()

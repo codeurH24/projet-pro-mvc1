@@ -6,21 +6,16 @@ require 'model/modelRole.php';
 
 function index(){
   view('admin/access/indexAccess.view.php',[
-    'title' => 'PC-CONFIG',
     'access' => getAccess()
-
   ]);
 }
 
 function show(){
-  view('admin/access/showAccess.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/access/showAccess.view.php');
 }
 
 function create(){
   view('admin/access/createAccess.view.php',[
-    'title' => 'PC-CONFIG',
     'roles' => getRoles()
   ]);
 }
@@ -39,7 +34,6 @@ function store(){
 
 function edit(){
   view('admin/access/updateAccess.view.php',[
-    'title' => 'PC-CONFIG',
     'access' => getAccessByID($_GET['id']),
     'roles' => getRoles()
   ]);
@@ -65,7 +59,6 @@ function delete(){
 
 function deleteRequest(){
   view('admin/access/deleteAccess.view.php',[
-    'title' => 'PC-CONFIG',
     'access' => getAccessByID($_GET['id'])
   ]);
 }

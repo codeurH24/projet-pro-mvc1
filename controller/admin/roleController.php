@@ -4,21 +4,16 @@ require 'model/modelRole.php';
 
 function index(){
   view('admin/role/indexRole.view.php',[
-    'title' => 'PC-CONFIG',
     'roles' => getRoles()
   ]);
 }
 
 function show(){
-  view('admin/role/showRole.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/role/showRole.view.php');
 }
 
 function create(){
-  view('admin/role/createRole.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/role/createRole.view.php');
 }
 
 function store(){
@@ -32,7 +27,6 @@ function store(){
 
 function edit(){
   view('admin/role/updateRole.view.php',[
-    'title' => 'PC-CONFIG',
     'role' => getRoleByID($_GET['id'])
   ]);
 }
@@ -45,7 +39,6 @@ function update(){
 
 function deleteRequest(){
   view('admin/role/deleteRole.view.php',[
-    'title' => 'PC-CONFIG',
     'role' => getRoleByID($_GET['id'])
   ]);
 }

@@ -12,14 +12,12 @@ function index(){
     $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
     view('admin/log/indexLog.view.php',[
-      'title' => 'PC-CONFIG',
       'logs' => getLogs($limit),
       'page' => '/admin/log/',
       'numberSplits' => $numberSplits
     ]);
   }else{
     view('admin/log/indexLog.view.php',[
-      'title' => 'PC-CONFIG',
       'logs' => getLogs(),
       'page' => '/admin/log/'
     ]);

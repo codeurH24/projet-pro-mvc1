@@ -6,14 +6,12 @@ require 'model/modelRole.php';
 function index(){
 
   view('admin/user/indexUser.view.php',[
-    'title' => 'PC-CONFIG',
     'users' => getUsers(),
     'roles' => getRoles()
   ]);
 }
 function create(){
   view('admin/user/createUser.view.php',[
-    'title' => 'PC-CONFIG',
     'roles' => getRoles()
   ]);
 }
@@ -35,7 +33,6 @@ function store(){
 function edit(){
 
   view('admin/user/updateUser.view.php',[
-    'title' => 'PC-CONFIG',
     'roles' => getRoles(),
     'user' =>  getUserByID($_GET['id'])
   ]);
@@ -58,9 +55,7 @@ function update(){
 }
 
 function passwordRequest(){
-  view('admin/user/password-request.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('admin/user/password-request.view.php');
 }
 
 function sendEmailPasswordChange(){
@@ -162,7 +157,7 @@ function passwordChangeSuccess(){
 
 function deleteRequest(){
   view('admin/user/deleteUser.view.php',[
-    'title' => 'PC-CONFIG',
+
     'user' => getUserByID($_GET['id'])
   ]);
 }
@@ -178,7 +173,7 @@ function delete(){
 function show(){
   $user = getUserByID($_GET['id']);
   view('admin/user/showUser.view.php',[
-    'title' => 'PC-CONFIG',
+
     'roleName' => getRoleByID($user->id_role)->nom,
     'user' =>  $user
   ]);

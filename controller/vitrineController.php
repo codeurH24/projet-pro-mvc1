@@ -11,7 +11,6 @@ function livelyMemory(){
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
   view('vitrine/components.view.php',[
-    'title' => 'Projet MVC',
     'components' => getComponentsLimit($categorie, $limit),
     'numberSplits' => $numberSplits,
     'page' => 'composants/memoire-vive-',
@@ -28,7 +27,6 @@ function mainBoard(){
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
   view('vitrine/components.view.php',[
-    'title' => 'Projet MVC',
     'components' => getComponentsLimit('carte mère', $limit),
     'numberSplits' => $numberSplits,
     'page' => 'composants/carte-mere-',
@@ -44,7 +42,6 @@ function processor(){
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
   view('vitrine/components.view.php',[
-    'title' => 'Projet MVC',
     'components' => getComponentsLimit('processeur', $limit),
     'numberSplits' => $numberSplits,
     'page' => 'composants/processeur-',
@@ -60,7 +57,6 @@ function graphicCard(){
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
   view('vitrine/components.view.php',[
-    'title' => 'Projet MVC',
     'components' => getComponentsLimit('carte graphique', $limit),
     'numberSplits' => $numberSplits,
     'page' => 'composants/carte-graphique-',

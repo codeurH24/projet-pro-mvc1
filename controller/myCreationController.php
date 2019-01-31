@@ -3,9 +3,7 @@ require 'model/modelCreation.php';
 require 'model/modelCreationConception.php';
 
 function createMyCreation(){
-  view('account/myCreation/createMyCreation.view.php',[
-    'title' => 'Projet MVC'
-  ]);
+  view('account/myCreation/createMyCreation.view.php');
 }
 function storeMyCreation(){
   createCreation($_POST['name'], 0, $_POST['description'], UID(), dbDate());
@@ -16,7 +14,6 @@ function showMyCreation(){
   $creation = getCreationByID($_GET['id']);
 
   view('account/myCreation/showMyCreation.view.php',[
-    'title' => 'Projet MVC',
     'componentsList' => getComponentOfCreationUser($_GET['id']),
     'titreCreation' => $creation->name
   ]);
@@ -26,7 +23,6 @@ function showMyCreation(){
 function editMyCreation(){
 
   view('account/myCreation/updateCreation.view.php',[
-    'title' => 'Projet MVC',
     'creation' => getCreationByID($_GET['id'])
   ]);
 }

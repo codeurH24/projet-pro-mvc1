@@ -5,13 +5,11 @@ require 'model/modelReseller.php';
 require 'model/modelComponent.php';
   function index(){
     view('admin/resellerLink/indexResellerLink.view.php',[
-      'title' => 'PC-CONFIG',
       'resellerLinks' => getResellerLinks()
     ]);
   }
   function create(){
     view('admin/resellerLink/createResellerLink.view.php',[
-      'title' => 'PC-CONFIG',
       'resellers' => getResellers(),
       'components' => getComponents()
     ]);
@@ -25,8 +23,7 @@ require 'model/modelComponent.php';
   function edit(){
     $resellerLink = getResellerLink($_GET['id']);
 
-    view('admin/resellerLink/updateResellerLink.view.php',[
-      'title' => 'PC-CONFIG',
+    view('admin/resellerLink/updateResellerLink.view.php',[      
       'resellerLink' => $resellerLink,
       'resellers' => getResellers(),
       'components' => getComponents()

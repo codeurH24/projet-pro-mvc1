@@ -3,7 +3,7 @@ require 'model/modelUser.php';
 require 'model/modelCreation.php';
 function login(){
   view('account/login.view.php',[
-    'title' => 'PC-CONFIG',
+
     'class' => 'pageBackgroundLogin'
   ]);
 }
@@ -25,7 +25,6 @@ function submitLogin(){
 }
 function registration(){
   view('account/registration.view.php',[
-    'title' => 'PC-CONFIG',
     'class' => 'pageBackgroundRegistration'
   ]);
 }
@@ -65,18 +64,13 @@ function logout(){
   header('Location: /');
 }
 function myAccount(){
-$componentList = getComponentOfCreationUser();
-
-
+  $componentList = getComponentOfCreationUser();
   view('account/myAccount.view.php',[
-    'title' => 'PC-CONFIG',
     'creationList' => getCreationUser()
   ]);
 }
 function changePassword(){
-  view('account/changePassword/indexChangePassword.view.php',[
-    'title' => 'PC-CONFIG'
-  ]);
+  view('account/changePassword/indexChangePassword.view.php');
 }
 function updatePassword(){
 
@@ -99,7 +93,7 @@ function updatePassword(){
     $_SESSION['formErrors']['password1'][] = 'Les mots de passe ne sont pas identiques';
     $_SESSION['formErrors']['password2'][] = 'Les mots de passe ne sont pas identiques';
   }
-  
+
   if (empty($_SESSION['formErrors']) && password_verify ( $_POST['currentPassword'].secretKey , $currentPassword ) ) {
     changePasswordUser($_POST['password1'].secretKey);
     header('Location: /mon-compte/logout/');

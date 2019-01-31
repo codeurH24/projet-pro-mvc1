@@ -34,8 +34,7 @@ function index(){
     $listOfComponent = [];
   }
 
-  view('admin/tagComponent/indexTagComponent.view.php',[
-    'title' => 'PC-CONFIG',
+  view('admin/tagComponent/indexTagComponent.view.php',[    
     'listOfComponent' => $listOfComponent
   ]);
 }
