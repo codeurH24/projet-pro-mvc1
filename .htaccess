@@ -1,4 +1,6 @@
 DirectoryIndex index.php
+Options -Indexes
+#https://craym.eu/tutoriels/referencement/variables_url_rewriting.html
 
 RewriteEngine On
 RewriteBase /
