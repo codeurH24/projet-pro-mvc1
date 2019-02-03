@@ -6,15 +6,36 @@ function createMyCreation(){
   view('account/myCreation/createMyCreation.view.php');
 }
 function storeMyCreation(){
-  createCreation($_POST['name'], 0, $_POST['description'], UID(), dbDate());
+
+  $Creation = new Creation();
+  $Creation->setName($_POST['name']);
+  $Creation->setEnable(0);
+  $Creation->setDescription($_POST['description']);
+  $Creation->setIdUser(UID());
+  $Creation->setDateCreation(dbDate());
+  $isSuccess = $Creation->createCreation();
+
+
   header('Location: /mes-creations/');
 }
 
 function showMyCreation(){
-  $creation = getCreationByID($_GET['id']);
+
+  // recupere le nom de la config detaillé en cour en cours de visionnage
+  $Creation = new Creation();
+  $creation = $Creation->getCreation([
+    ['id', '=', $_GET['id']]
+  ])->get();
+
+  // recupere les composants qui appartiennent à la config detaillé en cours de visionnage
+  $CreationConception = new CreationConception();
+  $components = $CreationConception->getCreationConception([
+    ['creation.id_user', '=', UID()]
+  ])->gets();
+
 
   view('account/myCreation/showMyCreation.view.php',[
-    'componentsList' => getComponentOfCreationUser($_GET['id']),
+    'componentsList' => $components,
     'titreCreation' => $creation->name
   ]);
 }
@@ -28,19 +49,35 @@ function editMyCreation(){
 }
 
 function updateMyCreation(){
-  updateCreation($_POST['id'], $_POST['name'], $_POST['description']);
+
+  // met à jour la config
+  $Creation = new Creation();
+  $Creation->setName($_POST['name']);
+  $Creation->setDescription($_POST['description']);
+  $isSuccess = $Creation->updateCreation([
+    ['id', '=', $_POST['id']]
+  ]);
+
   header('Location: /mes-creations/modifier-une-creation-'.$_POST['id'].'.php');
 }
 
 function deleteMyCreation(){
-    deleteCreation($_GET['id']);
+    $Creation = new Creation();
+    $isSuccess = $Creation->deleteCreation([
+      ['id', '=', $_GET['id']]
+    ]);
+
     header('Location: /mes-creations/');
 }
 
 
 function deleteItemCreation(){
   if (isset($_POST['deleteItemCreation'])) {
-    creationConceptionDelete($_POST['idItem']);
+
+    $CreationConception = new CreationConception();
+    $isSuccess = $CreationConception->deleteCreationConception([
+      ['id', '=', $_POST['idItem']]
+    ]);
     header('Location: /mes-creations/detail/'.$_POST['idCreation'].'.php');
     exit('deleteItemCreation(): Item de la création supprimer');
   }
@@ -50,20 +87,41 @@ function enableMyCreation(){
 
   // recupere l'id pour verifier
   // qu'on n'active pas la meme creation
-  $creationEnable = whoIsEnableInMyCreation();
-  if ($_GET['id'] == $creationEnable) {
+  // $creationEnable = whoIsEnableInMyCreation();
+
+  $Creation = new Creation();
+  $ID_creationEnable = $Creation->getCreation([
+    ['enable', '=', 1]
+  ])->get()->id;
+
+
+  if ($_GET['id'] == $ID_creationEnable) {
     header('Location: /mes-creations/');
     exit;
   }
-  // ici l'id demander n'est pas le meme que celui deja activé
+  // ici l'id demandé n'est pas le meme que celui deja activé
   // alors on désactive la creation deja activé
-  enableCreation($creationEnable,0);
+  // enableCreation($creationEnable,0);
+
+
+  // Desactive toutes les configs
+  $Creation = new Creation();
+  $Creation->setEnable(0);
+  $isSuccess = $Creation->updateCreation();
 
   // et ont active la creation demander
   // par inversement de l'etat
   $etat = enableCreation($_GET['id']);
   $etat = !$etat;
-  enableCreation($_GET['id'],(int)$etat);
+
+  // active la config souhaité
+  $Creation = new Creation();
+  $Creation->setEnable((int)$etat);
+  $isSuccess = $Creation->updateCreation([
+    ['id', '=', $_GET['id']]
+  ]);
+
+  // enableCreation($_GET['id'],(int)$etat);
   header('Location: /mes-creations/');
 }
 

@@ -1,6 +1,7 @@
 <?php
 
   function view($viewFile, $vars = []){
+    // genenrate CSRF token
     global $errorsForm;
     foreach ($vars as $key => $value) {
       $$key = $value;
@@ -51,6 +52,8 @@
 
 function debug($value){
     echo '<pre>';
+    var_dump($value);
+    echo '\n<br >';
     print_r($value);
     exit;
 }
@@ -119,8 +122,28 @@ function accessElement($url){
 }
 
 
-function errorsForm($nameInput){
+function errorsForm($nameInput = NULL, $value = NULL){
   global $errorsForm;
+
+
+
+  // returne entierement le tableau d'erreurs si aucun argument n'est renseigner
+  if (is_null($nameInput)) {
+    if (is_null($errorsForm)) {
+      return [];
+    }else{
+      return $errorsForm;
+    }
+  }
+
+  // si $nameInput est renseigner et $value aussi alors c'est
+  // que la function n'est plus un getter mais un setter du tableau d'erreurs
+  if (!is_null($value)) {
+    $errorsForm[$nameInput][] = $value;
+    return true;
+  }
+
+  // dans tout les autre cas c'est que l'on souhaite juste afficher les erreurs d'un imput
   if (isset($errorsForm[$nameInput]) && count($errorsForm[$nameInput]) > 0):
     foreach ($errorsForm[$nameInput] as $value):
       ?><p class="error"><?= $value  ?></p><?php

@@ -1,7 +1,9 @@
 <?php session_start();
 require('config.php');
 require('app/functions/global.php');
+require('app/functions/regex.php');
 require('app/class/Route.php');
+require('model/modelDatabase.php');
 
 
 // si le role de l'utilisateur n'est pas autorisé a passer avec l'url en cours

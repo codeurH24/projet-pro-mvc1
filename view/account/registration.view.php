@@ -1,6 +1,12 @@
 <main class="container-fluid <?= $class ?>">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-xl-6">
+      <?php if (isset($_SESSION['message']['success'])): ?>
+        <div class="alert alert-success" role="alert">
+          <?= $_SESSION['message']['success'] ?>
+          <?php unset($_SESSION['message']) ?>
+        </div>
+      <?php endif; ?>
       <form method="post" action="/mon-compte/create-inscription/">
         <fieldset>
           <legend>Inscription</legend>

@@ -1,16 +1,26 @@
 <?php
 require 'model/modelUser.php';
 require 'model/modelCreation.php';
+require 'model/modelCreationConception.php';
+
 function login(){
   view('account/login.view.php',[
-
     'class' => 'pageBackgroundLogin'
   ]);
 }
 function submitLogin(){
-  $user = getUser($_POST['mail']);
 
-  if ($user !== false && password_verify ( $_POST['password'].secretKey, $user->password ) ){
+  $User = new User();
+  $user = $User->getUser([
+    ['email', 'LIKE', $_POST['email']]
+  ])->get();
+
+
+  require 'resquest/form/rule/account/loginRules.php';
+
+
+
+  if (  $user !== false && password_verify ( $_POST['password'].secretKey, $user->password ) ){
     $_SESSION['user'] = [
       'id' =>  $user->id,
       'pseudo' => $user->pseudo,
@@ -19,8 +29,10 @@ function submitLogin(){
     header('Location: /');
     exit('User trouvé');
   }else{
-    header('Location: /mon-compte/connexion/');
-    exit('Aucun user');
+    view('account/login.view.php',[
+      'class' => 'pageBackgroundLogin'
+    ]);
+    exit;
   }
 }
 function registration(){
@@ -31,26 +43,19 @@ function registration(){
 
 function createRegistration(){
 
-  require 'resquest/form/rule/account/registrationRules.php';
+  $User = new User();
 
-  if(count($errorsForm) > 0){
-    view('account/registration.view.php',[
-      'class' => 'pageBackgroundRegistration'
-    ]);
-    exit;
+  $User->setPseudo($_POST['pseudo']);
+  $User->setEmail($_POST['email']);
+  $User->setPassword(password_hash($_POST['password1'].secretKey, PASSWORD_BCRYPT));
+  $User->setDateRegistration(dbDate());
+  $User->setDateLastLogin(dbDate());
+  $User->setIdRole(1);
+
+  $isSuccess = $User->createUser();
+  if ($isSuccess) {
+    $_SESSION['message']['success'] = 'L\'utilisateur a bien été crée';
   }
-
-  createUser(
-    '',
-    '',
-    $_POST['pseudo'],
-    $_POST['email'],
-    0,
-    password_hash($_POST['password1'].secretKey, PASSWORD_BCRYPT),
-    dbDate(),
-    dbDate(),
-    1
-  );
 
   header('Location: /mon-compte/inscription/');
 }
@@ -61,12 +66,25 @@ function createRegistration(){
 function logout(){
   $_SESSION['user'] = [];
   unset($_SESSION['user']);
+  if (ini_get("session.use_cookies")) {
+      $params = session_get_cookie_params();
+      setcookie(session_name(), '', time() - 42000,
+          $params["path"], $params["domain"],
+          $params["secure"], $params["httponly"]
+      );
+  }
+  session_destroy();
   header('Location: /');
 }
 function myAccount(){
-  $componentList = getComponentOfCreationUser();
+
+  $Creation = new Creation();
+  $creationList = $Creation->getCreation([
+    ['id_user', '=', UID()]
+  ])->gets();
+
   view('account/myAccount.view.php',[
-    'creationList' => getCreationUser()
+    'creationList' => $creationList
   ]);
 }
 function changePassword(){
@@ -74,31 +92,28 @@ function changePassword(){
 }
 function updatePassword(){
 
-  $currentPassword = getPasswordUser();
-  $_SESSION['formErrors'] = [];
+  $User = new User();
+  $user = $User->getUser([
+    ['id', '=', UID()]
+  ])->get();
 
-  if (empty($_POST['currentPassword'])) {
-    $_SESSION['formErrors']['currentPassword'][] = 'Mot de passe vide, champ obligatoire';
-  }
-
-  if( empty($_POST['password1']) ){
-    $_SESSION['formErrors']['password1'][] = 'Mot de passe vide, champ obligatoire';
-  }
-
-  if( empty($_POST['password2']) ){
-    $_SESSION['formErrors']['password2'][] = 'Mot de passe vide, champ obligatoire';
-  }
-
-  if( $_POST['password1'] != $_POST['password2']){
-    $_SESSION['formErrors']['password1'][] = 'Les mots de passe ne sont pas identiques';
-    $_SESSION['formErrors']['password2'][] = 'Les mots de passe ne sont pas identiques';
-  }
+  $currentPassword = $user->password;
+  require 'resquest/form/rule/account/changePassword/changePasswordRules.php';
 
   if (empty($_SESSION['formErrors']) && password_verify ( $_POST['currentPassword'].secretKey , $currentPassword ) ) {
-    changePasswordUser($_POST['password1'].secretKey);
+
+    $User = new User();
+    $newPassword = password_hash ( $_POST['password1'].secretKey , PASSWORD_BCRYPT ) ;
+    $User->setPassword($newPassword);
+    $isSucess = $User->updateUser([
+      ['id', '=', UID()]
+    ]);
+
     header('Location: /mon-compte/logout/');
+    exit;
   }else{
     header('Location: /mon-compte/changer-mon-mot-de-passe/');
+    exit;
   }
 
 }
