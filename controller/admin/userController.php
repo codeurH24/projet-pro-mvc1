@@ -54,6 +54,15 @@ function update(){
   }
 }
 
+function AJAX_updateRole(){
+
+  $User = new User();
+  $User->setIdRole($_POST['idRole']);
+  $User->updateUser([
+    ['id', '=', $_POST['idUser']]
+  ]);
+}
+
 function passwordRequest(){
   view('admin/user/password-request.view.php');
 }
@@ -157,14 +166,12 @@ function passwordChangeSuccess(){
 
 function deleteRequest(){
   view('admin/user/deleteUser.view.php',[
-
     'user' => getUserByID($_GET['id'])
   ]);
 }
 
 function delete(){
   if( isset($_POST['id']) ){
-
     deleteUser($_POST['id']);
   }
   header('Location: /admin/utilisateurs/');

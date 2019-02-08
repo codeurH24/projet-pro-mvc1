@@ -1,0 +1,12 @@
+#legalNotice, a{
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+}
+#legalNotice h2, #legalNotice h3{
+  color: wheat;
+}
+
+#legalNotice p{
+  padding-left: 1rem;
+}

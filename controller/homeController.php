@@ -5,4 +5,8 @@ function index(){
     'class' => 'pageBackground'
   ]);
 }
+
+function legalNotice(){
+  view('legalNotice.view.php');
+}
  ?>

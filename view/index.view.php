@@ -51,7 +51,7 @@
               <h1 class="h2">Memoire vive</h1>
             </p>
             <p class="descriptionCat">
-              Mémorise les logiciels et le systeme d'exploitation en cour d'utilisation. Un manque de mémoire vive impact lourdement les performances du processeur.
+              Mémorise les logiciels et le systeme d'exploitation en cours d'utilisation. Un manque de mémoire vive impact lourdement les performances du processeur.
             </p>
           </a>
         </div>

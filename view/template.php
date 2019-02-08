@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/public/css/master.css" />
   <link rel="stylesheet" href="/public/css/componentItemPage.css" />
   <link rel="stylesheet" href="/public/css/debug.css" />
+  <link rel="stylesheet" href="/public/css/legalNotice.css" />
 
 
   <title><?= $title ?? 'PC CONFIG' ?></title>
@@ -24,7 +25,7 @@
       <p>Configurer votre PC comme un Pro</p>
     </div>
   </header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-nav-master sticky-top">
+  <nav class="navbar navbar-dark bg-nav-master sticky-top">
     <a class="navbar-brand home" href="/"><i class="fas fa-2x fa-screwdriver mr-1"></i> PC CONFIG</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -182,7 +183,9 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <div class="footer-copyright text-center py-3">
+      <a href="/mentions-legales.php">Mentions Légales</a> -
+      © 2019 Copyright:
       <a href="https://mdbootstrap.com/bootstrap-tutorial/"> PC-CONFIG.FR</a>
     </div>
     <!-- Copyright -->
@@ -231,11 +234,28 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="/public/js/jquery-3.3.1.min.js"></script>
+  <script src="/public/js/popper.min.js"></script>
+  <script src="/public/js/bootstrap.min.js"></script>
   <script>
   $('#myModal').modal('show');
+  $('select[name=idRole]').change(function(){
+    var userID = $(this).attr('data-user-id');
+    $.ajax({
+      type: 'POST',
+      url: '/admin/utilisateurs/ajaxupdaterole/',
+      data: {
+        idRole: this.value,
+        idUser: userID
+      }
+    })
+    .done(function(data) {
+      alert('Le role a été modifier avec succès');
+    })
+    .fail(function() {
+      alert('Une erreur c\'est produite');
+    });
+  });
   </script>
 </body>
 </html>

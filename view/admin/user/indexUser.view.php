@@ -36,7 +36,7 @@
           <p><?= $user->email ?></p>
         </div>
         <div class="col" style="height:21px;z-index:10">
-          <select name="role" disabled="">
+          <select name="idRole" data-user-id="<?= $user->id ?>" disabled>
             <?php foreach ($roles as $role): ?>
               <?php if ($user->id_role == $role->id): ?>
                 <option value="<?= $role->id ?>" selected><?= $role->nom ?></option>
@@ -64,4 +64,11 @@
     </div>
   </div>
 </div>
+<script>
+  var select = document.getElementsByTagName("select");
+  for(var i = 0, max = select.length; i < max; i++)
+  {
+      select[i].disabled = false;
+  }
+</script>
 <?php require 'view/admin/footerAdmin.php' ?>

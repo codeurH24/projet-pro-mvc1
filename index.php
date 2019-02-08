@@ -21,14 +21,17 @@ require('model/modelDatabase.php');
 
 $Route = new Route();
 
+      $Route->get('^/$')
+      ->controller('homeController.php', 'index')
+
+      ->get('^/mentions-legales.php$')
+      ->controller('homeController.php', 'legalNotice')
 
       /*
       Partie front appeler vitrine qui permet aux utilisateurs
       de choisir des composants
        */
 
-      $Route->get('^/$')
-      ->controller('homeController.php', 'index')
 
       ->get('^/composants/memoire-vive-([0-9]*)\.php$', ['pagination'])
       ->controller('vitrineController.php', 'livelyMemory')
@@ -233,6 +236,9 @@ $Route = new Route();
 
    ->get('^/admin/utilisateurs/update/$')
    ->controller('admin/userController.php', 'update')
+
+   ->get('^/admin/utilisateurs/ajaxupdaterole/$')
+   ->controller('admin/userController.php', 'AJAX_updateRole')
 
    ->get('^/admin/utilisateurs/demande-de-nouveau-mot-de-passe-([0-9]+)\.php$', ['id'])
    ->controller('admin/userController.php', 'passwordRequest')

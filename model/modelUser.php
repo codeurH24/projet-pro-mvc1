@@ -204,7 +204,7 @@ function deleteUser($id){
 
 			$requete = $bdd->prepare($sql);
 			$isSuccess = $requete->execute([
-				':id' => $ids
+				':id' => $id
 			]);
 
 			return $isSuccess;
@@ -300,6 +300,38 @@ class User extends Database{
 			// ne prend en compte que les attributs non null modifié par les setters
 			$sqlSet = $this->getSqlSet();
 			$requete = $bd->prepare('UPDATE `user` SET '.$sqlSet.' '.$sqlWhere);
+
+			// ne prend en compte que les attributs non null modifié par les setters
+			$attributs = $this->getNominativeMarker();
+
+			if( isset($sqlBindWhere) && count($sqlBindWhere) > 0){
+				$attributs = array_merge($attributs, $sqlBindWhere);
+			}
+
+			$isSuccess = $requete->execute($attributs);
+			return $isSuccess;
+		}
+		catch(Exception $e)
+		{
+				die('Erreur : '.$e->getMessage());
+		}
+	}
+	public function deleteUser($where = NULL){
+		try
+		{
+			// connection à la database
+			$bd = $this->db;
+
+			$sqlWhere = '';
+			if(! is_null($where) ) {
+				$sqlWhere = $this->generateWhere($where);
+				$sqlBindWhere = $this->generateBindWhere($where);
+			}
+
+			// genere la chaine de colonne valeur au format Set
+			// ne prend en compte que les attributs non null modifié par les setters
+			$sqlSet = $this->getSqlSet();
+			$requete = $bd->prepare('DELETE FROM `user` '.$sqlWhere);
 
 			// ne prend en compte que les attributs non null modifié par les setters
 			$attributs = $this->getNominativeMarker();
