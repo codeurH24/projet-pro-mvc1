@@ -20,7 +20,10 @@ function storeMyCreation(){
 }
 
 function showMyCreation(){
-
+  if( getCreationByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   // recupere le nom de la config detaillé en cour en cours de visionnage
   $Creation = new Creation();
   $creation = $Creation->getCreation([
@@ -42,14 +45,20 @@ function showMyCreation(){
 
 
 function editMyCreation(){
-
+  if( getCreationByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('account/myCreation/updateCreation.view.php',[
     'creation' => getCreationByID($_GET['id'])
   ]);
 }
 
 function updateMyCreation(){
-
+  if( getCreationByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   // met à jour la config
   $Creation = new Creation();
   $Creation->setName($_POST['name']);
@@ -62,12 +71,16 @@ function updateMyCreation(){
 }
 
 function deleteMyCreation(){
-    $Creation = new Creation();
-    $isSuccess = $Creation->deleteCreation([
-      ['id', '=', $_GET['id']]
-    ]);
+  if( getCreationByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
+  $Creation = new Creation();
+  $isSuccess = $Creation->deleteCreation([
+    ['id', '=', $_GET['id']]
+  ]);
 
-    header('Location: /mes-creations/');
+  header('Location: /mes-creations/');
 }
 
 

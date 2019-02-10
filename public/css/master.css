@@ -17,6 +17,8 @@ header p{
   margin-bottom: 0;
   font-size: 1.5rem;
 }
+
+
 a:hover {
     text-decoration: none;
 }
@@ -664,4 +666,23 @@ nav input[name=searchInput]{
       justify-content: space-between;
       padding: 1.5rem 1rem;
   } */
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.panel-body {background-color:black !important;}
+
+/* creer pour la page 404 et tout autre page d'erreur du meme genre */
+.textError{
+  color: red;
+  font-size: 3rem;
+  display: block;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align: center;
+  background-color: #0004;
 }

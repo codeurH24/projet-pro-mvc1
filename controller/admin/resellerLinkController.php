@@ -22,8 +22,12 @@ require 'model/modelComponent.php';
 
   function edit(){
     $resellerLink = getResellerLink($_GET['id']);
+    if( $resellerLink === false){
+      view('errors/404.view.php');
+      exit;
+    }
 
-    view('admin/resellerLink/updateResellerLink.view.php',[      
+    view('admin/resellerLink/updateResellerLink.view.php',[
       'resellerLink' => $resellerLink,
       'resellers' => getResellers(),
       'components' => getComponents()
@@ -31,10 +35,20 @@ require 'model/modelComponent.php';
   }
 
   function update(){
+    $resellerLink = getResellerLink($_POST['id']);
+    if( $resellerLink === false){
+      view('errors/404.view.php');
+      exit;
+    }
     updateResellerLink($_POST['id'], $_POST['prix'], $_POST['lien'], $_POST['revendeur'], $_POST['composant']);
     header('Location: /admin/composant/lien-du-revendeur/modifier-lien-de-revente-'.$_POST['id'].'.php');
   }
   function delete(){
+    $resellerLink = getResellerLink($_GET['id']);
+    if( $resellerLink === false){
+      view('errors/404.view.php');
+      exit;
+    }
     deleteResellerLink($_GET['id']);
     header('Location: /admin/composant/lien-du-revendeur/');
   }

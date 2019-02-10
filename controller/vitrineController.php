@@ -10,6 +10,10 @@ function livelyMemory(){
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
+  if((bool)getComponentsLimit($categorie, $limit) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('vitrine/components.view.php',[
     'components' => getComponentsLimit($categorie, $limit),
     'numberSplits' => $numberSplits,
@@ -26,6 +30,11 @@ function mainBoard(){
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
+  if((bool)getComponentsLimit('carte mère', $limit) === false){
+    view('errors/404.view.php');
+    exit;
+  }
+
   view('vitrine/components.view.php',[
     'components' => getComponentsLimit('carte mère', $limit),
     'numberSplits' => $numberSplits,
@@ -40,6 +49,11 @@ function processor(){
   $numberSplits = intval(ceil ( ($numberOfProcessors / $numbersPerPage) ));
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
+
+  if((bool)getComponentsLimit('processeur', $limit) === false){
+    view('errors/404.view.php');
+    exit;
+  }
 
   view('vitrine/components.view.php',[
     'components' => getComponentsLimit('processeur', $limit),
@@ -56,6 +70,10 @@ function graphicCard(){
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
+  if((bool)getComponentsLimit('carte graphique', $limit) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('vitrine/components.view.php',[
     'components' => getComponentsLimit('carte graphique', $limit),
     'numberSplits' => $numberSplits,

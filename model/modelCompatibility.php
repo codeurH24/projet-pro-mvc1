@@ -25,6 +25,33 @@ function getCompatibilities(){
       die('Erreur : '.$e->getMessage());
   }
 }
+function getCompatibilitie($id){
+
+  try
+  {
+    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+    $sql = 'SELECT
+              compatibilite.id,
+              composant1.id AS id1,
+              composant1.model as model1,
+              composant2.id AS id2,
+              composant2.model as model2
+            FROM `compatibilite`
+            INNER JOIN composant AS composant1 ON composant1.id = compatibilite.id_composant1
+            INNER JOIN composant AS composant2 ON composant2.id = compatibilite.id_composant2
+            WHERE compatibilite.id = :id';
+
+    $requete = $bdd->prepare($sql);
+    $requete->execute([':id' => $id]);
+    $compatibilities = $requete->fetchAll(PDO::FETCH_OBJ);
+    return $compatibilities;
+  }
+  catch(Exception $e)
+  {
+      die('Erreur : '.$e->getMessage());
+  }
+}
 function createCompatibility($auteur, $id_composant1, $id_composant2){
   try
   {

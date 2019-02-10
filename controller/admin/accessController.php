@@ -33,12 +33,20 @@ function store(){
 
 
 function edit(){
+  if(getAccessByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/access/updateAccess.view.php',[
     'access' => getAccessByID($_GET['id']),
     'roles' => getRoles()
   ]);
 }
 function update(){
+  if(getAccessByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   if( !empty($_POST['url']) && !empty($_POST['id_role']) ){
     if(updateAccess($_POST['id'], $_POST['url'], $_POST['id_role'], $_POST['pass_right']) === false){
       exit('Erreur SQL');
@@ -51,6 +59,10 @@ function update(){
 
 
 function delete(){
+  if(getAccessByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   if (isset($_POST['deleteAccess']) && isset($_POST['id'])) {
     deleteAccess($_POST['id']);
   }
@@ -58,6 +70,10 @@ function delete(){
 }
 
 function deleteRequest(){
+  if(getAccessByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/access/deleteAccess.view.php',[
     'access' => getAccessByID($_GET['id'])
   ]);

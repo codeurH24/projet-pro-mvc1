@@ -18,12 +18,20 @@ function store(){
 }
 
 function delete(){
+  if(getComponent($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   deleteComponent($_GET['id']);
   header('Location: /admin/composant/');
 }
 
 function edit(){
-  view('admin/component/editComponent.view.php',[    
+  if(getComponent($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
+  view('admin/component/editComponent.view.php',[
     'component' => getComponent($_GET['id']),
     'imageComponent' => getImageComposant($_GET['id']),
     'categories' => getCategories()
@@ -31,6 +39,10 @@ function edit(){
 }
 
 function update(){
+  if(getComponent($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   updateComponent($_POST['id'], $_POST['model'], $_POST['marque'], $_POST['pointPuissance'], $_POST['categorie']);
   header('Location: /admin/composant/modifier-composant-'.$_POST['id'].'.php');
 }

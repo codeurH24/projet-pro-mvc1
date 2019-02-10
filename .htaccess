@@ -2,6 +2,11 @@ DirectoryIndex index.php
 Options -Indexes
 #https://craym.eu/tutoriels/referencement/variables_url_rewriting.html
 
+<Files "^securimage/securimage_show.php$">
+    Order allow,deny
+    Deny from all
+</Files>
+
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f

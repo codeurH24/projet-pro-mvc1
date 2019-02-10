@@ -32,12 +32,13 @@ main form input[type=text],
 main form input[type=email],
 main form input[type=number],
 main form input[type=password]{
-  text-shadow: 0 0 0px black;
+  text-shadow: 0 0 0px #0000009e;
   background-color: #FFF0;
   border-bottom: 1px solid white;
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0 0;
+  padding-left: 1rem;
   display: block;
   margin: auto;
   width: 90%;
@@ -77,4 +78,10 @@ main form select.form-control{
   border-bottom: 1px solid white;
   width: 90%;
   margin: auto;
+}
+
+
+input::placeholder {
+  color: #BBB!important;
+  padding-left: 1rem;
 }

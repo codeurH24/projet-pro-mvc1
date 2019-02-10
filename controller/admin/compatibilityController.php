@@ -21,16 +21,28 @@ function store(){
 }
 
 function edit(){
+  if((bool)getCompatibilitie($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/compatibility/updateCompatibility.view.php',[
     'components' => getComponents()
   ]);
 }
 function update(){
+  if((bool)getCompatibilitie($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   updateCompatibility($_POST['id'], $_SESSION['user']['pseudo'], $_POST['composant1'], $_POST['composant2']);
   header('Location: /admin/composant/compatibilite/');
 }
 
 function delete(){
+  if((bool)getCompatibilitie($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   deleteCompatibility($_GET['id']);
   header('Location: /admin/composant/compatibilite/');
 }

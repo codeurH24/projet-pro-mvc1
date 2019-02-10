@@ -31,13 +31,20 @@ function store(){
 }
 
 function edit(){
-
+  if(getUserByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/user/updateUser.view.php',[
     'roles' => getRoles(),
     'user' =>  getUserByID($_GET['id'])
   ]);
 }
 function update(){
+  if(getUserByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   $success = updateUser(
     $_POST['id'],
     $_POST['lastname'],
@@ -64,11 +71,14 @@ function AJAX_updateRole(){
 }
 
 function passwordRequest(){
+  if(getUserByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/user/password-request.view.php');
 }
 
 function sendEmailPasswordChange(){
-
 
   if(isset($_POST['answerChangePassword'])){
     if ($_POST['answerChangePassword'] != 'Oui') {
@@ -93,14 +103,14 @@ function sendEmailPasswordChange(){
   Vous avez fait une demande pour ré-initialiser votre mot de passe. \n Je vous invite à present a en choisir un nouveau en suivant ce lien: \n
   http://$_SERVER[HTTP_HOST]/change-mot-de-passse/$IDUser/token-$tokenMD5.php";
 
-  // $data = array('password' => '1234', 'id' => 123);
-  $data = array(
+
+  $data = [
     'password' => '1234',
     'to' => 'tefuddiddek-1134@yopmail.com',
     'subject' => 'Demande de nouveau mot de passe',
     'message' => $message,
     'headers' => $headers,
-  );
+  ];
   $envoiEmail = redirect_post('http://sendmail.codeurh24.com/', $data);
 
   header('Location: /admin/utilisateurs/');
@@ -165,12 +175,20 @@ function passwordChangeSuccess(){
 }
 
 function deleteRequest(){
+  if(getUserByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/user/deleteUser.view.php',[
     'user' => getUserByID($_GET['id'])
   ]);
 }
 
 function delete(){
+  if(getUserByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   if( isset($_POST['id']) ){
     deleteUser($_POST['id']);
   }
@@ -178,6 +196,10 @@ function delete(){
 }
 
 function show(){
+  if(getUserByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   $user = getUserByID($_GET['id']);
   view('admin/user/showUser.view.php',[
 

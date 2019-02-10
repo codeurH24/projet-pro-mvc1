@@ -9,6 +9,7 @@ function index(){
 }
 
 function show(){
+
   view('admin/role/showRole.view.php');
 }
 
@@ -26,11 +27,19 @@ function store(){
 }
 
 function edit(){
+  if(getRoleByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/role/updateRole.view.php',[
     'role' => getRoleByID($_GET['id'])
   ]);
 }
 function update(){
+  if(getRoleByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   if(isset($_POST['id']) && isset($_POST['name'])){
     updateRole($_POST['id'], $_POST['name']);
   }
@@ -38,12 +47,20 @@ function update(){
 }
 
 function deleteRequest(){
+  if(getRoleByID($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   view('admin/role/deleteRole.view.php',[
     'role' => getRoleByID($_GET['id'])
   ]);
 }
 
 function delete(){
+  if(getRoleByID($_POST['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
   if(isset($_POST['id'])){
     deleteRole($_POST['id']);
   }

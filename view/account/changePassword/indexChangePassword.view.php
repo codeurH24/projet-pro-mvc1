@@ -3,7 +3,7 @@
   <div class="col-12 col-md-8 col-xl-8">
     <form method="post" action="/mon-compte/changer-mon-mot-de-passe/update/">
       <fieldset>
-        <legend>Changer le mot de passe</legend>
+        <legend>Changer mon mot de passe</legend>
         <div class="error">
         </div>
         <div class="form-group">

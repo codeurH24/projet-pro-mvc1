@@ -83,7 +83,7 @@
             <a class="dropdown-item" href="/composants/carte-graphique-1.php">Cartes Graphiques</a>
           </div>
         </li>
-        <?php if( isset($_SESSION['user']) && ($idCreation = whoIsEnableInMyCreation()) != false ) { ?>
+        <?php if( isset($_SESSION['user']) && function_exists('whoIsEnableInMyCreation') && ($idCreation = whoIsEnableInMyCreation()) != false ) { ?>
         <li class="nav-item">
           <a class="nav-link" href="/mes-creations/detail/<?= $idCreation ?>.php"><i class="fas fa-2x fa-puzzle-piece"></i>Ma création</a>
         </li>
@@ -109,22 +109,22 @@
         <div class="col">
           <ul class="list-unstyled">
             <li>
-              <a href="#">
+              <a href="/contact/">
                 <i class="fas fa-envelope"></i> Nous contacter
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/FAQ/">
                 <i class="fas fa-question-circle"></i> FAQ
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/mentions-legales.php">
                 <i class="fas fa-gavel"></i> Mention Légales
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/plan/">
                 <i class="far fa-map"></i> Plan du site
               </a>
             </li>
@@ -184,7 +184,6 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-      <a href="/mentions-legales.php">Mentions Légales</a> -
       © 2019 Copyright:
       <a href="https://mdbootstrap.com/bootstrap-tutorial/"> PC-CONFIG.FR</a>
     </div>

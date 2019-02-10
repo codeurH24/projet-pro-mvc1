@@ -9,7 +9,6 @@ require('model/modelDatabase.php');
 // si le role de l'utilisateur n'est pas autorisé a passer avec l'url en cours
 // alors ont le redirige
   if ( access() === false ) {
-
     ob_start();
     header('Location: http://'.$_SERVER['HTTP_HOST']);
     exit();
@@ -73,12 +72,52 @@ $Route = new Route();
        ->get('^/mes-creations/$')
        ->controller('accountController.php', 'myAccount')
 
+       // supprimer le compte utilisateur (par l'utilisateur)
+       ->get('^/mon-compte/supprimer-mon-compte/$')
+       ->controller('accountController.php', 'confirmDeleteAccount')
+
+       // suppression du compte utilisateur
+       ->get('^/mon-compte/supprimer-mon-compte/delete/$')
+       ->controller('accountController.php', 'deleteAccount')
+
+       // suppression du compte utilisateur (confirmation de déconnection de l'utilisateur)
+       ->get('^/mon-compte/supprimer-mon-compte/logout/$')
+       ->controller('accountController.php', 'deleteAccountLogout')
+
        // changer le mot de passe utilisateur (par l'utilisateur)
        ->get('^/mon-compte/changer-mon-mot-de-passe/$')
        ->controller('accountController.php', 'changePassword')
 
        ->get('^/mon-compte/changer-mon-mot-de-passe/update/$')
        ->controller('accountController.php', 'updatePassword')
+
+       // changer mon email (form de modification)
+       ->get('^/mon-compte/changer-mon-adresse-e-mail/$')
+       ->controller('accountController.php', 'editEmail')
+
+       // changer mon email (envoi de l'email de confirmation)
+       ->get('^/mon-compte/changer-mon-adresse-e-mail/send/$')
+       ->controller('accountController.php', 'confirmEmail')
+
+       // changer mon email (informe l'utilisateur, qu'il doit confirmer ou annuler)
+       ->get('^/change-email/envoi-email-succes/$')
+       ->controller('accountController.php', 'sendEmailSuccess')
+
+       // changer mon email (déconnect l'utilisateur pour qu'il se connect avec ça nouvelle adresse email)
+       ->get('/mon-compte/changer-mon-adresse-e-mail/logout/$')
+       ->controller('accountController.php', 'logoutUpdateEmail')
+
+       // changer mon email (informe l'utilisateur que son email est bien valider sur le site)
+       ->get('^/change-email/emailValidateSuccessfully$')
+       ->controller('accountController.php', 'emailValidateSuccessfully')
+
+       // changer mon email (annulation de l'action de modification)
+       ->get('/mon-compte/changer-mon-adresse-e-mail/cancelUpdateEmail/$')
+       ->controller('accountController.php', 'cancelUpdateEmail')
+
+       // changer mon email (page de validation de l'email et mise a jour par le nouvel email)
+       ->get('^/change-email/([0-9]+)/((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)/token-(.*)\.php$', ['id','emailBase64', 'token'])
+       ->controller('accountController.php', 'updateEmail')
 
        // Mes Creations
        ->get('^/mes-creations/activer-une-creation-([0-9]+)\.php$', ['id'])
@@ -285,7 +324,7 @@ $Route = new Route();
    ->get('^/admin/roles/supprimer-role-([0-9]+)\.php$', ['id'])
    ->controller('admin/roleController.php', 'deleteRequest')
 
-   ->get('^/admin/roles/delete/$', ['id'])
+   ->get('^/admin/roles/delete/$')
    ->controller('admin/roleController.php', 'delete')
 
 // admin log
@@ -322,11 +361,24 @@ $Route = new Route();
   ->controller('admin/accessController.php', 'delete')
 
 
+// partie footer
+->get('^/contact/$')
+->controller('footerController.php', 'contact')
+
+->get('^/contact/submitFormContact/$')
+->controller('footerController.php', 'submitFormContact')
+
+->get('^/contact/submitFormSuccessContact/$')
+->controller('footerController.php', 'submitFormSuccessContact')
+
+->get('^/FAQ/$')
+->controller('footerController.php', 'FAQ')
+
+->get('^/plan/$')
+->controller('footerController.php', 'plan');
 
 
-
-
-
+view('errors/404.view.php');
 
 
 
