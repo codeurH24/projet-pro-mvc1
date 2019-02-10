@@ -1,7 +1,7 @@
 <?php session_start();
 require('config.php');
-require('app/functions/global.php');
 require('app/functions/regex.php');
+require('app/functions/global.php');
 require('app/class/Route.php');
 require('model/modelDatabase.php');
 

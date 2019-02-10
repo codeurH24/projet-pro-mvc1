@@ -10,6 +10,7 @@
       <form method="post" action="/mon-compte/create-inscription/">
         <fieldset>
           <legend>Inscription</legend>
+          <?= errorsForm('form') ?>
           <div class="form-group">
             <label for="pseudo">Pseudonyme</label>
             <input name="pseudo" type="text" class="form-control" id="pseudo" value="<?= $_POST['pseudo'] ?? '' ?>" />

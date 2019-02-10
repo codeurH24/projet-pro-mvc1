@@ -152,4 +152,17 @@ function errorsForm($nameInput = NULL, $value = NULL){
 }
 
 
+function checkPassword($string){
+  //  permet de tester la présence de lettre (minuscule ou majuscule).
+  $letters = regexLetters($string);
+  //  permet de tester la présence de chiffres.
+  $digits = regexDigits($string);
+
+  if (!$digits || !$letters) {
+    return false;
+  }else{
+    return true;
+  }
+}
+
 ?>

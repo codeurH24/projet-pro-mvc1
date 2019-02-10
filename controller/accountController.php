@@ -43,6 +43,29 @@ function registration(){
 
 function createRegistration(){
 
+  require 'resquest/form/rule/account/registrationRules.php';
+
+  // vérifie que l'addresse email n'est pas déjà utilisé par un compte déjà existant
+  if(getUser($_POST['email']) !== false){
+    errorsForm('email', 'Adresse e-mail déjà utilisé');
+  }
+  // vérifie que le pseudonyme n'est pas déjà utilisé par un compte déjà existant
+  $User = new User();
+  $user = $User->getUser([
+    ['pseudo', 'LIKE', $_POST['pseudo']]
+  ])->get();
+  if($user !== false){
+    errorsForm('pseudo', 'Pseudonyme déjà pris');
+  }
+  // si il y a aucune erreurs alors '0' alors 'faux' alors on 'entre pas' dans la condition.
+  if (count(errorsForm())) {
+    view('account/registration.view.php',[
+      'class' => 'pageBackgroundRegistration'
+    ]);
+    exit;
+  }
+
+  // si tout vas bien jusque ici ont peux enregistrer le nouvel utilisateur
   $User = new User();
 
   $User->setPseudo($_POST['pseudo']);
