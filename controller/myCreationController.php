@@ -7,6 +7,14 @@ function createMyCreation(){
 }
 function storeMyCreation(){
 
+  require 'resquest/form/rule/account/myCreation/createRules.php';
+
+  // si il y a aucune erreurs alors '0' alors 'faux' alors on 'entre pas' dans la condition.
+  if (count(errorsForm())) {
+    view('account/myCreation/createMyCreation.view.php');
+    exit;
+  }
+
   $Creation = new Creation();
   $Creation->setName($_POST['name']);
   $Creation->setEnable(0);

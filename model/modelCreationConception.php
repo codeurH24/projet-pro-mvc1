@@ -2,9 +2,9 @@
 function creationConceptionDelete($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
       $sql = 'DELETE FROM `creation_conception` WHERE `creation_conception`.`id` = '.$id;
-      $result = $bdd->query($sql);
+      $result = $db->query($sql);
       return true;
   }
   catch(Exception $e)

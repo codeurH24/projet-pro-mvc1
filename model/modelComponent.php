@@ -5,11 +5,11 @@ function getComponentsLike($word)
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
 			$sql = 'SELECT * FROM `composant` WHERE `model` LIKE \'%'.$_POST['keyWord'].'%\' ';
 
-      $result = $bdd->query($sql);
+      $result = $db->query($sql);
       $components = $result->fetchAll(PDO::FETCH_OBJ);
       return $components;
 	}
@@ -25,7 +25,7 @@ function getComponents($componentName='')
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 			if ($componentName != '') {
 				$sql =
 				'SELECT * FROM `composant`
@@ -36,7 +36,7 @@ function getComponents($componentName='')
 				$sql = 'SELECT * FROM composant';
 			}
 
-      $result = $bdd->query($sql);
+      $result = $db->query($sql);
       $components = $result->fetchAll(PDO::FETCH_OBJ);
       return $components;
 	}
@@ -50,10 +50,10 @@ function getComponent($id)
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
 			$sql = 'SELECT * FROM `composant` WHERE id = '.$id;
-      $result = $bdd->query($sql);
+      $result = $db->query($sql);
       $component = $result->fetch(PDO::FETCH_OBJ);
       return $component;
 	}
@@ -68,7 +68,7 @@ function getComponentsLimit($componentName, $limit)
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
       $sql =
       'SELECT * FROM `composant`
@@ -77,7 +77,7 @@ function getComponentsLimit($componentName, $limit)
       WHERE categorie.nom LIKE \''.$componentName.'\'
 			LIMIT '.$limit.' ;';
 
-      $result = $bdd->query($sql);
+      $result = $db->query($sql);
       $components = $result->fetchAll(PDO::FETCH_OBJ);
       return $components;
 	}
@@ -90,14 +90,14 @@ function getComponentsLimit($componentName, $limit)
 
 
 function countComponents($componentName){
-	$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	$db = dbConnect();
 
 	$sql =
 	'SELECT COUNT(*) AS `count` FROM `composant`
 	INNER JOIN categorie ON categorie.id = composant.id_cat
 	WHERE categorie.nom LIKE \''.$componentName.'\'';
 
-	$result = $bdd->query($sql);
+	$result = $db->query($sql);
 	$countComponents = $result->fetchAll(PDO::FETCH_OBJ)[0];
 	return $countComponents->count;
 }
@@ -105,7 +105,7 @@ function countComponents($componentName){
 function createComponent($model, $marque, $score, $categorie){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql =
 		'INSERT INTO composant
@@ -113,7 +113,7 @@ function createComponent($model, $marque, $score, $categorie){
 		VALUES
 		(:model, :marque, :point_puissance, :auteur, :id_cat, :date_at)';
 
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([
 			':model' => $model,
 			':point_puissance' => $score,
@@ -122,7 +122,7 @@ function createComponent($model, $marque, $score, $categorie){
 			':id_cat' => $categorie	,
 			':date_at' => dbDate()
 		]);
-		$lastID = $bdd->lastInsertId();
+		$lastID = $db->lastInsertId();
 
 		if( !empty($_FILES["imageComposantCreate"]) ) {
 			$target_dir = "./public/image/composants/";
@@ -134,7 +134,7 @@ function createComponent($model, $marque, $score, $categorie){
 								(`image`, `id_composant`)
 								VALUES
 								(:nameImage, :lastID)';
-				$requete = $bdd->prepare($sql);
+				$requete = $db->prepare($sql);
 				$requete->execute([
 					':nameImage' => $nameImage,
 					':lastID' => $lastID
@@ -157,9 +157,9 @@ function createComponent($model, $marque, $score, $categorie){
 function deleteComponent($id){
     try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+        $db = dbConnect();
         $sql = 'DELETE FROM composant WHERE id = '.$id;
-        $result = $bdd->query($sql);
+        $result = $db->query($sql);
     }
     catch(Exception $e)
     {
@@ -172,7 +172,7 @@ function deleteComponent($id){
 function updateComponent($id, $model, $marque, $score, $categorie){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql =
 		'	UPDATE composant
@@ -186,7 +186,7 @@ function updateComponent($id, $model, $marque, $score, $categorie){
 			WHERE
 			id = :id';
 
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([
 			':id' => $id,
 			':model' => $model,
@@ -204,7 +204,7 @@ function updateComponent($id, $model, $marque, $score, $categorie){
 			if( $resultUpload ){
 				$nameImage = basename($_FILES["image"]["name"]);
 				$sql = 'UPDATE `image_composant` SET `image` = :nameImage WHERE id_composant = :id';
-				$requete = $bdd->prepare($sql);
+				$requete = $db->prepare($sql);
 				$requete->execute([
 					':nameImage' => $nameImage,
 					':id' => $id

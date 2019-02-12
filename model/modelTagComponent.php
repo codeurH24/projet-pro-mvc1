@@ -2,9 +2,9 @@
 function createTagsComponent($sql){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       return $result->execute();
   }
   catch(Exception $e)

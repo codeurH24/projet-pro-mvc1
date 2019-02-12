@@ -3,14 +3,14 @@
 function getLogs($limit=''){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       if ($limit != '') {
         $sql = 'SELECT * FROM log ORDER BY `date` DESC LIMIT '.$limit;
       }else{
         $sql = 'SELECT * FROM log ORDER BY `date` DESC';
       }
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute();
       $logs = $result->fetchAll(PDO::FETCH_OBJ);
       return $logs;
@@ -24,10 +24,10 @@ function getLogs($limit=''){
 function countLogs(){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'SELECT COUNT(*) AS `rowCount` FROM log';
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute();
       $countLogs = $result->fetch(PDO::FETCH_OBJ);
       return $countLogs->rowCount;

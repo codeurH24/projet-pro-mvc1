@@ -3,7 +3,7 @@ function getCompatibilities(){
 
   try
   {
-    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+    $db = dbConnect();
 
     $sql = 'SELECT
               compatibilite.id,
@@ -15,7 +15,7 @@ function getCompatibilities(){
             INNER JOIN composant AS composant1 ON composant1.id = compatibilite.id_composant1
             INNER JOIN composant AS composant2 ON composant2.id = compatibilite.id_composant2';
 
-    $requete = $bdd->prepare($sql);
+    $requete = $db->prepare($sql);
     $requete->execute();
     $compatibilities = $requete->fetchAll(PDO::FETCH_OBJ);
     return $compatibilities;
@@ -29,7 +29,7 @@ function getCompatibilitie($id){
 
   try
   {
-    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+    $db = dbConnect();
 
     $sql = 'SELECT
               compatibilite.id,
@@ -42,7 +42,7 @@ function getCompatibilitie($id){
             INNER JOIN composant AS composant2 ON composant2.id = compatibilite.id_composant2
             WHERE compatibilite.id = :id';
 
-    $requete = $bdd->prepare($sql);
+    $requete = $db->prepare($sql);
     $requete->execute([':id' => $id]);
     $compatibilities = $requete->fetchAll(PDO::FETCH_OBJ);
     return $compatibilities;
@@ -55,14 +55,14 @@ function getCompatibilitie($id){
 function createCompatibility($auteur, $id_composant1, $id_composant2){
   try
   {
-    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+    $db = dbConnect();
 
     $sql = 'INSERT INTO `compatibilite`
             (degrer, auteur, id_composant1, id_composant2, date_at)
             VALUES
             (:degrer, :auteur, :id_composant1, :id_composant2, :date_at)';
 
-    $requete = $bdd->prepare($sql);
+    $requete = $db->prepare($sql);
     $requete->execute([
       ':degrer' => 0,
       ':auteur' => $auteur,
@@ -79,7 +79,7 @@ function createCompatibility($auteur, $id_composant1, $id_composant2){
 function updateCompatibility($id, $auteur, $id_composant1, $id_composant2){
   try
   {
-    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+    $db = dbConnect();
 
     $sql = 'UPDATE `compatibilite`
             SET
@@ -91,7 +91,7 @@ function updateCompatibility($id, $auteur, $id_composant1, $id_composant2){
             WHERE id = :id';
 
 
-    $requete = $bdd->prepare($sql);
+    $requete = $db->prepare($sql);
     $requete->execute([
       ':id' => $id,
       ':auteur' => $auteur,
@@ -109,11 +109,11 @@ function updateCompatibility($id, $auteur, $id_composant1, $id_composant2){
 function deleteCompatibility($id){
   try
   {
-    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+    $db = dbConnect();
 
     $sql = 'DELETE FROM `compatibilite` WHERE id = :id';
 
-    $requete = $bdd->prepare($sql);
+    $requete = $db->prepare($sql);
     $requete->execute([':id' => $id]);
   }
   catch(Exception $e)

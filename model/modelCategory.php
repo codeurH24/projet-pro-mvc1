@@ -2,11 +2,11 @@
 function createCategory($name){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'INSERT INTO categorie (`nom`) VALUES (:name)';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute([':name' => $name]);
   }
   catch(Exception $e)
@@ -18,11 +18,11 @@ function createCategory($name){
 function getCategories(){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'SELECT * FROM categorie ORDER BY `nom` DESC';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute();
       $categories = $result->fetchAll(PDO::FETCH_OBJ);
       return $categories;
@@ -35,11 +35,11 @@ function getCategories(){
 function getCategory($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'SELECT * FROM categorie WHERE id = :id';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute(['id' => $id]);
       $category = $result->fetch(PDO::FETCH_OBJ);
       return $category;
@@ -52,10 +52,10 @@ function getCategory($id){
 function deleteCategory($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'DELETE FROM categorie WHERE id = :id';
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute(['id' => $id]);
   }
   catch(Exception $e)
@@ -66,10 +66,10 @@ function deleteCategory($id){
 function updateCategory($id, $nom){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'UPDATE categorie SET nom = :nom WHERE id = :id';
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute(['id' => $id, 'nom' => $nom]);
   }
   catch(Exception $e)

@@ -5,8 +5,7 @@ class Database  implements Countable {
   private $resultCount;
 
   function __construct() {
-    $this->db = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
-
+    $this->db = new PDO('mysql:host='.dbHost.';dbname='.dbName.';charset=utf8', dbUser, dbPass );
   }
 
   protected function getSqlSet() {

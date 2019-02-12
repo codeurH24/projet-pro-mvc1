@@ -4,9 +4,9 @@ function getRoles()
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
-			$requete = $bdd->prepare('SELECT * FROM role');
+			$requete = $db->prepare('SELECT * FROM role');
 			$requete->execute();
       $users = $requete->fetchAll(PDO::FETCH_OBJ);
       return $users;
@@ -22,8 +22,8 @@ function getRoles()
 function getRoleByID($id){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
-			$requete = $bdd->prepare('SELECT * FROM role WHERE id = :id');
+			$db = dbConnect();
+			$requete = $db->prepare('SELECT * FROM role WHERE id = :id');
 			$requete->execute([':id' => $id]);
 			$user = $requete->fetch(PDO::FETCH_OBJ);
 			return $user;
@@ -38,8 +38,8 @@ function getRoleByID($id){
 function createRole($name){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
-			$requete = $bdd->prepare('INSERT INTO role (`nom`) VALUES (:name)');
+			$db = dbConnect();
+			$requete = $db->prepare('INSERT INTO role (`nom`) VALUES (:name)');
 			$isSuccess = $requete->execute([':name' => $name]);
 			return $isSuccess;
 
@@ -53,8 +53,8 @@ function createRole($name){
 function deleteRole($id){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
-			$requete = $bdd->prepare('DELETE FROM role WHERE id = :id');
+			$db = dbConnect();
+			$requete = $db->prepare('DELETE FROM role WHERE id = :id');
 			$isSuccess = $requete->execute([':id' => $id]);
 			return $isSuccess;
 	}
@@ -67,8 +67,8 @@ function deleteRole($id){
 function updateRole($id, $name){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
-			$requete = $bdd->prepare('UPDATE role SET nom = :name WHERE id = :id');
+			$db = dbConnect();
+			$requete = $db->prepare('UPDATE role SET nom = :name WHERE id = :id');
 			$isSuccess = $requete->execute([':id' => $id,':name' => $name]);
 			return $isSuccess;
 	}

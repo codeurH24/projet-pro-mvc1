@@ -58,6 +58,9 @@ function debug($value){
     exit;
 }
 
+function dbConnect(){
+  return new PDO('mysql:host='.dbHost.';dbname='.dbName.';charset=utf8', dbUser, dbPass );
+}
 
 function access(){
   require_once('model/modelAccess.php');

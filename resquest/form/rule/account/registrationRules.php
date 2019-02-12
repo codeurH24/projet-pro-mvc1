@@ -48,6 +48,9 @@ if(empty($_POST['pseudo'])){
   $errorsForm['pseudo'][] = 'Pseudo requis';
 }
 if(!empty($_POST['pseudo'])){
+
+  $_POST['pseudo'] = strip_tags($_POST['pseudo']);
+
   if (!preg_match('/^([a-zA-Z0-9-_ ]+)$/', $_POST['pseudo'])) {
     $errorsForm['pseudo'][] = 'Seul les caractères alphabétique est numerique ainsi que les espaces blanc et [- _] sont autorisés';
   }
@@ -70,6 +73,9 @@ if(empty($_POST['email'])){
 }
 
 if(!empty($_POST['email']) ){
+  
+  $_POST['email'] = strip_tags($_POST['email']);
+
   if (!preg_match(regexEmail, $_POST['email'])) {
     $errorsForm['email'][] = 'Votre email n\'est pas une adresse valide';
   }

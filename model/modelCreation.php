@@ -4,11 +4,11 @@
 function createCreation($name, $enable, $description, $id_user, $date_creation){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql = 'INSERT INTO creation (name, enable, description, id_user, date_creation)
 		VALUES (:name, :enable, :description, :id_user, :date_creation);';
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([
 			':name' => $name,
 			':enable' => $enable,
@@ -29,9 +29,9 @@ function getCreationUser()
 	try
 	{
 		if(UID()){
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 			$sql = 'SELECT * FROM `creation` WHERE `id_user` = '.UID().' ORDER BY `creation`.`enable` DESC';
-			$result = $bdd->query($sql);
+			$result = $db->query($sql);
 			$creationList = $result->fetchAll(PDO::FETCH_OBJ);
 			return $creationList;
 		}else{
@@ -49,9 +49,9 @@ function getCreationByID($id)
 {
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 		$sql = 'SELECT * FROM `creation` WHERE `id` = '.$id;
-		$result = $bdd->query($sql);
+		$result = $db->query($sql);
 		$creation = $result->fetchAll(PDO::FETCH_OBJ);
 		return ( count($creation) > 0) ?  $creation[0] : false;
 	}
@@ -66,7 +66,7 @@ function getComponentOfCreationUser($idCreation=''){
 
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		if ( $idCreation != '' ){
 			$sql =
@@ -81,7 +81,7 @@ function getComponentOfCreationUser($idCreation=''){
 			RIGHT JOIN composant ON composant.id = creation_conception.id_composant
 			WHERE creation.id_user = '.UID();
 		}
-		$result = $bdd->query($sql);
+		$result = $db->query($sql);
 		$componentList = $result->fetchAll(PDO::FETCH_OBJ);
 		return $componentList;
 
@@ -97,14 +97,14 @@ function getComponentOfCreationUser($idCreation=''){
 function updateCreation($id, $name, $description){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql =
 		' UPDATE creation
 		SET name = :name, description= :description
 		WHERE id = :id';
 
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([':id' => $id, ':name' => $name, ':description' => $description]);
 	}
 	catch(Exception $e)
@@ -118,10 +118,10 @@ function deleteCreation($id){
 
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql = 'DELETE FROM creation WHERE id = '.$id;
-		$result = $bdd->query($sql);
+		$result = $db->query($sql);
 
 	}
 	catch(Exception $e)
@@ -149,14 +149,14 @@ function setEnableCreation($id, $enable){
 	try
 	{
 
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql =
 		' UPDATE creation
 		SET enable = :enable
 		WHERE id = :id';
 
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([':id' => $id, ':enable' => $enable]);
 	}
 	catch(Exception $e)
@@ -168,13 +168,13 @@ function setEnableCreation($id, $enable){
 function getEnableCreation($id){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 
 		$sql =
 		' SELECT enable FROM creation
 		WHERE id = :id';
 
-		$requete = $bdd->prepare($sql);
+		$requete = $db->prepare($sql);
 		$requete->execute([':id' => $id]);
 		$creation = $requete->fetchAll(PDO::FETCH_OBJ);
 		return ( count($creation) > 0) ?  (bool)$creation[0]->enable : false;
@@ -189,9 +189,9 @@ function getEnableCreation($id){
 function whoIsEnableInMyCreation(){
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+		$db = dbConnect();
 		$sql = 'SELECT * FROM creation WHERE enable = \'1\' AND id_user = '.UID();
-		$result = $bdd->query($sql);
+		$result = $db->query($sql);
 		$creation= $result->fetch(PDO::FETCH_OBJ);
 		if( $creation !== false ){
 			return $creation->id;

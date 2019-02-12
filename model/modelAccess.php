@@ -3,13 +3,14 @@
 function getAccess(){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+
+      $db = dbConnect();
 
       $sql = '  SELECT access.*, role.id as `id_role`, role.nom FROM `access`
                 INNER JOIN role ON role.id = access.role_id
       ';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute();
       $access = $result->fetchAll(PDO::FETCH_OBJ);
       return $access;
@@ -23,14 +24,14 @@ function getAccess(){
 function getAccessByID($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = '  SELECT access.*, role.nom FROM `access`
                 INNER JOIN role ON role.id = access.role_id
                 WHERE access.id = :id
       ';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute([':id' => $id]);
       $access = $result->fetch(PDO::FETCH_OBJ);
       return $access;
@@ -44,14 +45,14 @@ function getAccessByID($id){
 function getAccessByID_role($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = '  SELECT access.*, role.nom FROM `access`
                 INNER JOIN role ON role.id = access.role_id
                 WHERE role.id = :id
       ';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       $result->execute([':id' => $id]);
       $access = $result->fetchAll(PDO::FETCH_OBJ);
       return $access;
@@ -66,7 +67,7 @@ function getAccessByID_role($id){
 function createAccess($url, $id_role, $pass_right){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'INSERT INTO `access`
               (`url`,`role_id`,`pass_right`)
@@ -74,7 +75,7 @@ function createAccess($url, $id_role, $pass_right){
               (:url, :role_id, :pass_right)
       ';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       return $result->execute([':url' => $url, ':role_id' => $id_role, ':pass_right' => $pass_right]);
   }
   catch(Exception $e)
@@ -86,7 +87,7 @@ function createAccess($url, $id_role, $pass_right){
 function updateAccess($id, $url, $id_role, $pass_right){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'UPDATE `access`
               SET
@@ -95,7 +96,7 @@ function updateAccess($id, $url, $id_role, $pass_right){
               id = :id
       ';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       return $result->execute([':id' => $id,':url' => $url, ':role_id' => $id_role, ':pass_right' => $pass_right]);
   }
   catch(Exception $e)
@@ -107,11 +108,11 @@ function updateAccess($id, $url, $id_role, $pass_right){
 function deleteAccess($id){
   try
   {
-      $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+      $db = dbConnect();
 
       $sql = 'DELETE FROM `access` WHERE id = :id';
 
-      $result = $bdd->prepare($sql);
+      $result = $db->prepare($sql);
       return $result->execute([':id' => $id]);
   }
   catch(Exception $e)

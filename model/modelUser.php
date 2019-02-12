@@ -1,9 +1,9 @@
 <?php
 // require '/app/class/db.php';
 function getUsers(){
-	$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	$db = dbConnect();
 
-	$requete = $bdd->prepare('SELECT * FROM `user`');
+	$requete = $db->prepare('SELECT * FROM `user`');
 
 	$requete->execute();
 	$users = $requete->fetchAll(PDO::FETCH_OBJ);
@@ -14,9 +14,9 @@ function getUserByID($id)
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
-			$requete = $bdd->prepare('SELECT * FROM `user` WHERE id = :id');
+			$requete = $db->prepare('SELECT * FROM `user` WHERE id = :id');
 
 			$requete->bindValue(':id', $id);
 			$requete->execute();
@@ -34,12 +34,12 @@ function getUser($userEmail, $userPassword='')
 {
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+	    $db = dbConnect();
 
 			if(empty($userPassword)){
-				$requete = $bdd->prepare('SELECT * FROM `user` WHERE email LIKE :userEmail');
+				$requete = $db->prepare('SELECT * FROM `user` WHERE email LIKE :userEmail');
 			}else{
-				$requete = $bdd->prepare('SELECT * FROM `user` WHERE email LIKE :userEmail AND password LIKE :userPassword');
+				$requete = $db->prepare('SELECT * FROM `user` WHERE email LIKE :userEmail AND password LIKE :userPassword');
 			}
 
 			$requete->bindValue(':userEmail', $userEmail);
@@ -62,12 +62,12 @@ function getUser($userEmail, $userPassword='')
 function changePasswordUser($newPassword, $id=''){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 			$sql =
 			'	UPDATE user
 				SET password = :password
 				WHERE id = :id';
-			$requete = $bdd->prepare('UPDATE `user`  SET password = :password WHERE id = :id');
+			$requete = $db->prepare('UPDATE `user`  SET password = :password WHERE id = :id');
 
 			$newPassword = password_hash ( $newPassword , PASSWORD_BCRYPT ) ;
 			if( $id == ''){
@@ -84,9 +84,9 @@ function changePasswordUser($newPassword, $id=''){
 function getPasswordUser(){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 			$sql = 'SELECT password FROM user WHERE id = :id';
-			$requete = $bdd->prepare($sql);
+			$requete = $db->prepare($sql);
 			$requete->execute(['id' => UID()]);
 			$password = $requete->fetchAll(PDO::FETCH_OBJ);
       return ( count($password) > 0) ?  $password[0]->password : false;
@@ -101,9 +101,9 @@ function getPasswordUser(){
 function countAllUser(){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 			$sql = 'SELECT COUNT(id) AS `count` FROM user';
-			$requete = $bdd->query($sql);
+			$requete = $db->query($sql);
 			$AllUser = $requete->fetch(PDO::FETCH_OBJ);
 			return $AllUser->count;
 	}
@@ -116,7 +116,7 @@ function countAllUser(){
 function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_registration, $date_last_login, $id_role){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 			$sql = 'INSERT INTO user
 			(
 				`nom`,
@@ -139,7 +139,7 @@ function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_regis
 				:date_last_login,
 				:id_role
 			)';
-			$requete = $bdd->prepare($sql);
+			$requete = $db->prepare($sql);
 			$isSuccess = $requete->execute([
 				':nom' => $nom,
 				':prenom' => $prenom,
@@ -163,7 +163,7 @@ function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_regis
 function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 
 			$sql = 'UPDATE `user`
 			SET
@@ -176,7 +176,7 @@ function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
 			WHERE
 			id = :id';
 
-			$requete = $bdd->prepare($sql);
+			$requete = $db->prepare($sql);
 			$isSuccess = $requete->execute([
 				':id' => $id,
 				':nom' => $nom,
@@ -198,11 +198,11 @@ function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
 function deleteUser($id){
 	try
 	{
-			$bdd = new PDO('mysql:host=localhost;dbname=pc-config;charset=utf8', 'codeurh24', base64_decode('QGxhbWFudTEyMzQ=') );
+			$db = dbConnect();
 
 			$sql = 'DELETE FROM `user` WHERE id = :id';
 
-			$requete = $bdd->prepare($sql);
+			$requete = $db->prepare($sql);
 			$isSuccess = $requete->execute([
 				':id' => $id
 			]);
