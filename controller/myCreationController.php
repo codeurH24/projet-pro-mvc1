@@ -41,7 +41,7 @@ function showMyCreation(){
   // recupere les composants qui appartiennent à la config detaillé en cours de visionnage
   $CreationConception = new CreationConception();
   $components = $CreationConception->getCreationConception([
-    ['creation.id_user', '=', UID()]
+    ['creation_conception.id_creation', '=', $_GET['id']]
   ])->gets();
 
 

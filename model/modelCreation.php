@@ -192,6 +192,9 @@ function whoIsEnableInMyCreation(){
 		$db = dbConnect();
 		$sql = 'SELECT * FROM creation WHERE enable = \'1\' AND id_user = '.UID();
 		$result = $db->query($sql);
+		if($result === false){
+			return false;
+		}
 		$creation= $result->fetch(PDO::FETCH_OBJ);
 		if( $creation !== false ){
 			return $creation->id;
@@ -228,12 +231,12 @@ class Creation extends Database {
 			}
 
 			$bd = $this->db;
-
 			$requete = $bd->prepare('SELECT * FROM `creation` '.$sqlWhere.' ORDER BY `creation`.`enable` DESC');
 
 			$attributs = $this->getNominativeMarker();
 
 			if( isset($sqlBindWhere) && count($sqlBindWhere) > 0){
+				// debug($sqlBindWhere);
 				$attributs = array_merge($attributs, $sqlBindWhere);
 			}
 

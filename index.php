@@ -6,6 +6,11 @@ require('app/class/Route.php');
 require('model/modelDatabase.php');
 
 
+// enregistre les urls de navigation sur le site
+// historique limité au 10 derniers enregistrements
+historyURL();
+
+
 // si le role de l'utilisateur n'est pas autorisé a passer avec l'url en cours
 // alors ont le redirige
   if ( access() === false ) {
@@ -31,18 +36,22 @@ $Route = new Route();
       de choisir des composants
        */
 
-
+       // page  mémoires vives
       ->get('^/composants/memoire-vive-([0-9]*)\.php$', ['pagination'])
       ->controller('vitrineController.php', 'livelyMemory')
-
+      //page processeurs
       ->get('^/composants/processeur-([0-9]*)\.php$', ['pagination'])
       ->controller('vitrineController.php', 'processor')
-
+      // page carte graphique
       ->get('^/composants/carte-graphique-([0-9]*)\.php$', ['pagination'])
       ->controller('vitrineController.php', 'graphicCard')
-
+      // page des cartes meres
       ->get('^/composants/carte-mere-([0-9]*)\.php$', ['pagination'])
       ->controller('vitrineController.php', 'mainBoard')
+
+      // Ajout composant a la creation
+      ->get('^/composants/ajout-a-la-creation/$')
+      ->controller('vitrineController.php', 'addComponent')
 
       /*
       Partie front appeler account (compte) qui permet aux utilisateurs
@@ -189,6 +198,9 @@ $Route = new Route();
    ->get('^/admin/composant/update/$')
    ->controller('admin/componentController.php', 'update')
 
+   ->get('^/admin/composant/montrer-composant-([0-9]+)\.php$', ['id'])
+   ->controller('admin/componentController.php', 'show')
+
    /*
    revendeur
     */
@@ -257,6 +269,26 @@ $Route = new Route();
     */
    ->get('^/admin/tagComponent/$')
    ->controller('admin/tagComponentController.php', 'index')
+   /**
+    * taguer un composant
+    */
+   ->get('^/admin/tagComponent/creer-un-tag-([0-9]+)\.php$', ['id'])
+   ->controller('admin/tagComponentController.php', 'create')
+
+   ->get('^/admin/tagComponent/store/$')
+   ->controller('admin/tagComponentController.php', 'store')
+
+   ->get('^/admin/tagComponent/modifier-un-tag-([0-9]+)\.php$', ['id'])
+   ->controller('admin/tagComponentController.php', 'edit')
+
+   ->get('^/admin/tagComponent/update/$')
+   ->controller('admin/tagComponentController.php', 'update')
+
+   ->get('^/admin/tagComponent/supprimer-tag-([0-9]+)\.php$', ['id'])
+   ->controller('admin/tagComponentController.php', 'deleteRequest')
+
+   ->get('^/admin/tagComponent/delete/$')
+   ->controller('admin/tagComponentController.php', 'delete')
 
 /*
   admin utilisateur

@@ -3,6 +3,8 @@ require 'model/modelComponent.php';
 require 'model/modelCreation.php';
 require 'model/modelImageComposant.php';
 require 'model/modelCategory.php';
+require 'model/modelTagComponent.php';
+
 function index(){
   view('admin/component/indexComponent.view.php',[
     'components' => getComponents()
@@ -17,14 +19,32 @@ function store(){
   exit('store component');
 }
 
-function delete(){
+
+function show(){
   if(getComponent($_GET['id']) === false){
     view('errors/404.view.php');
     exit;
   }
-  deleteComponent($_GET['id']);
-  header('Location: /admin/composant/');
+
+  $Tag = new Tag();
+  $tags = $Tag->select([
+    ['id_composant', '=', $_GET['id']]
+  ])->gets();
+
+
+
+
+  view('admin/component/show/showComponent.view.php',[
+    'tags' => $tags,
+    'component' => getComponent($_GET['id']),
+    'imageComponent' => getImageComposant($_GET['id']),
+    'categories' => getCategories()
+  ]);
 }
+
+
+
+
 
 function edit(){
   if(getComponent($_GET['id']) === false){
@@ -47,4 +67,12 @@ function update(){
   header('Location: /admin/composant/modifier-composant-'.$_POST['id'].'.php');
 }
 
+function delete(){
+  if(getComponent($_GET['id']) === false){
+    view('errors/404.view.php');
+    exit;
+  }
+  deleteComponent($_GET['id']);
+  header('Location: /admin/composant/');
+}
 ?>

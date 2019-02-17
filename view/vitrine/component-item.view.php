@@ -31,12 +31,14 @@
                   </div>
                 </div>
                 <div class="col-2 col-sm-4 tools">
-                  <form method="post">
-                    <button type="submit" name="button" title="Ajouter à la config">
-                      <i class="fas fa-arrow-circle-up"></i>
-                      <p>Vous devez vous connecter pour utiliser cette fonctionnalité</p>
-                    </button>
-                  </form>
+                  <?php if (isset($_SESSION['user'])): ?>
+                    <form method="post" action="/composants/ajout-a-la-creation/">
+                      <input type="hidden" name="id" value="<?= $value->id_composant ?>" />
+                      <button type="submit" name="button" title="Ajouter à la config">
+                        <i class="fas fa-arrow-circle-up"></i>
+                      </button>
+                    </form>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 <?php require 'view/admin/headerAdmin.php' ?>
 <div class="col-8 mb-3">
-  <div class="text-right">
+  <div class="text-right mb-3">
+    <a href="/admin/composant/" class="btn btn-secondary">Retour</a>
     <a href="/admin/composant/lien-du-revendeur/creer-lien-de-revente.php" class="btn btn-secondary">Nouveau lien</a>
   </div>
 </div>

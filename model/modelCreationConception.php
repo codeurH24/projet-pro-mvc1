@@ -31,19 +31,19 @@ class CreationConception extends Database{
   public function getCreationConception($where = NULL){
     try
     {
-
+        // exit('function qui montre la creation');
         $sqlWhere = '';
         if(! is_null($where) ) {
           $sqlWhere = $this->generateWhere($where);
           $sqlBindWhere = $this->generateBindWhere($where);
         }
-        // print_r($sqlBindWhere);
+        // print_r($sqlWhere);
         // exit();
 
         $bd = $this->db;
-        $requete = $bd->prepare(' SELECT creation.id, creation_conception.id AS `creationConceptionId`,composant.model, composant.id_cat FROM `creation_conception`
-                                  RIGHT JOIN creation ON creation.id = creation_conception.id_creation
-                                  RIGHT JOIN composant ON composant.id = creation_conception.id_composant
+        $requete = $bd->prepare(' SELECT creation_conception.*, composant.model, composant.id_cat, categorie.nom FROM `creation_conception`
+                                  LEFT JOIN composant ON composant.id = creation_conception.id_composant
+                                  LEFT JOIN categorie ON categorie.id = composant.id_cat
                                 '.$sqlWhere);
         // $sql =
         // ' SELECT creation.id, creation_conception.id AS `creationConceptionId`,composant.model, composant.id_cat FROM `creation_conception`
@@ -58,6 +58,9 @@ class CreationConception extends Database{
          }
 
         $requete->execute($attributs);
+        // echo '<pre>';
+        // $requete->debugDumpParams();
+        // exit;
 
         $this->setResultQuery($requete);
 
@@ -70,6 +73,38 @@ class CreationConception extends Database{
     }
 
   }
+
+  public function createCreationConception(){
+		try
+		{
+			// connection à la database
+			$bd = $this->db;
+
+			// genere la chaine de colonne valeur au format Set
+			// ne prend en compte que les attributs non null modifié par les setters
+			$sqlSet = $this->getSqlSet();
+      // echo($sqlSet.'<br />');
+			$requete = $bd->prepare('INSERT INTO `creation_conception` SET '.$sqlSet);
+
+			// ne prend en compte que les attributs non null modifié par les setters
+			$attributs = $this->getNominativeMarker();
+      // print_r($attributs);
+      // exit();
+
+			$isSuccess = $requete->execute($attributs);
+      if($isSuccess === false){
+        echo '<pre>';
+        $requete->debugDumpParams();
+        exit;
+      }
+
+			return $isSuccess;
+		}
+		catch(Exception $e)
+		{
+				die('Erreur : '.$e->getMessage());
+		}
+	}
 
   function deleteCreationConception($where = NULL)
   {

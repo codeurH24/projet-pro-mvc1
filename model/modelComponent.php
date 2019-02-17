@@ -21,19 +21,34 @@ function getComponentsLike($word)
 }
 
 
-function getComponents($componentName='')
+function getComponents($componentName='', $tags=[])
 {
 	try
 	{
 	    $db = dbConnect();
-			if ($componentName != '') {
-				$sql =
-				'SELECT * FROM `composant`
-				INNER JOIN image_composant ON image_composant.id_composant = composant.id
-				INNER JOIN categorie ON categorie.id = composant.id_cat
-				WHERE categorie.nom LIKE \''.$componentName.'\';';
+
+			if(count($tags)){
+				$strTags = "'".implode("','", $tags)."'";
+				if ($componentName != '') {
+					$sql =
+					'SELECT * FROM `composant`
+					INNER JOIN image_composant ON image_composant.id_composant = composant.id
+					INNER JOIN categorie ON categorie.id = composant.id_cat
+					LEFT JOIN compatibility_tag ON compatibility_tag.id_composant = composant.id
+					WHERE categorie.nom LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')';
+				}else{
+					$sql = 'SELECT * FROM composant';
+				}
 			}else{
-				$sql = 'SELECT * FROM composant';
+				if ($componentName != '') {
+					$sql =
+					'SELECT * FROM `composant`
+					INNER JOIN image_composant ON image_composant.id_composant = composant.id
+					INNER JOIN categorie ON categorie.id = composant.id_cat
+					WHERE categorie.nom LIKE \''.$componentName.'\';';
+				}else{
+					$sql = 'SELECT * FROM composant';
+				}
 			}
 
       $result = $db->query($sql);
@@ -64,18 +79,30 @@ function getComponent($id)
 
 }
 
-function getComponentsLimit($componentName, $limit)
+function getComponentsLimit($componentName, $limit, $tags=[])
 {
 	try
 	{
 	    $db = dbConnect();
+			if(count($tags)){
+				$strTags = "'".implode("','", $tags)."'";
+				$sql =
+				'	SELECT * FROM `composant`
+					INNER JOIN image_composant ON image_composant.id_composant = composant.id
+					INNER JOIN categorie ON categorie.id = composant.id_cat
+					LEFT JOIN compatibility_tag ON compatibility_tag.id_composant = composant.id
+					WHERE categorie.nom LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')
+					LIMIT '.$limit.' ;';
+			}else{
+				$sql =
+				'SELECT * FROM `composant`
+				INNER JOIN image_composant ON image_composant.id_composant = composant.id
+				INNER JOIN categorie ON categorie.id = composant.id_cat
+				WHERE categorie.nom LIKE \''.$componentName.'\'
+				LIMIT '.$limit.' ;';
+			}
 
-      $sql =
-      'SELECT * FROM `composant`
-			INNER JOIN image_composant ON image_composant.id_composant = composant.id
-      INNER JOIN categorie ON categorie.id = composant.id_cat
-      WHERE categorie.nom LIKE \''.$componentName.'\'
-			LIMIT '.$limit.' ;';
+
 
       $result = $db->query($sql);
       $components = $result->fetchAll(PDO::FETCH_OBJ);

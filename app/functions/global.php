@@ -167,5 +167,17 @@ function checkPassword($string){
     return true;
   }
 }
+function historyURL(){
+    if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != '/favicon.ico'){
+      $_SESSION['historyURL'][] = $_SERVER['HTTP_REFERER'];
+    }
+    if( count($_SESSION['historyURL']) > 10){
+      $_SESSION['historyURL'] = array_splice($_SESSION['historyURL'], 1, count($_SESSION['historyURL']));
+    }
+}
+function back(){
+  // return array_slice($_SESSION['historyURL'],0, 1)[0];
+  return $_SERVER['HTTP_REFERER'];
+}
 
 ?>

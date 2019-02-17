@@ -236,6 +236,17 @@
   <script src="/public/js/jquery-3.3.1.min.js"></script>
   <script src="/public/js/popper.min.js"></script>
   <script src="/public/js/bootstrap.min.js"></script>
+  <script src="/public/js/notify.min.js"></script>
+  <?php
+  if (isset($_SESSION['notification'])){
+  ?>
+    <script>
+      window.notifier= '<?= addslashes($_SESSION['notification']) ?>';
+    </script>
+    <script src="/public/js/notification.js"></script>
+    <?php $_SESSION['notification'] = []; unset($_SESSION['notification']);
+  }
+  ?>
   <script>
   $('#myModal').modal('show');
   $('select[name=idRole]').change(function(){

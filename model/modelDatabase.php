@@ -78,14 +78,15 @@ class Database  implements Countable {
         // if( array_key_exists ( $colName , $attributs )){
           if (isset($tableName)) {
             $colNameValue = $tableName.ucfirst($colName);
-            $sqlWhere .= "`$tableName`.`$colName` $operator :$colNameValue , ";
+            $sqlWhere .= "`$tableName`.`$colName` $operator :$colNameValue and ";
           }else{
-            $sqlWhere .= "`$colName` $operator :$colName , ";
+            $sqlWhere .= "`$colName` $operator :$colName and ";
           }
         // }
       }
-      $sqlWhere = trim($sqlWhere,' ,');
-
+      // echo substr($sqlWhere, 0,strlen($sqlWhere)-4);
+      // echo($sqlWhere);
+      $sqlWhere = substr($sqlWhere, 0,strlen($sqlWhere)-4);
       return  $sqlWhere;
     }
     return false;
