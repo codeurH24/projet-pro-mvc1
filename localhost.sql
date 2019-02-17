@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 31 Janvier 2019 à 19:05
+-- Généré le :  Dim 17 Février 2019 à 20:57
 -- Version du serveur :  5.7.25-0ubuntu0.18.04.2
--- Version de PHP :  7.2.10-0ubuntu0.18.04.1
+-- Version de PHP :  7.2.15-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -157,7 +157,30 @@ INSERT INTO `compatibility_tag` (`id`, `id_composant`, `tag`) VALUES
 (44, 125, '2 barrettes'),
 (45, 90, '3 barrettes'),
 (46, 108, '3 barrettes'),
-(47, 116, '3 barrettes');
+(47, 116, '3 barrettes'),
+(49, 49, 'ddr4'),
+(50, 57, 'ddr4'),
+(51, 50, 'ddr4'),
+(52, 53, 'ddr4'),
+(53, 54, 'ddr4'),
+(54, 56, 'ddr4'),
+(55, 64, 'ddr4'),
+(56, 65, 'ddr4'),
+(57, 66, 'ddr4'),
+(58, 67, 'ddr4'),
+(59, 68, 'ddr4'),
+(60, 69, 'ddr4'),
+(61, 70, 'ddr4'),
+(62, 71, 'ddr4'),
+(63, 72, 'ddr4'),
+(64, 73, 'ddr4'),
+(65, 74, 'ddr4'),
+(66, 128, '2066'),
+(67, 129, '2066'),
+(68, 128, 'ddr4'),
+(69, 128, '8 fentes RAM'),
+(70, 49, '2 fentes RAM'),
+(71, 60, 'ddr3');
 
 -- --------------------------------------------------------
 
@@ -180,7 +203,6 @@ CREATE TABLE `composant` (
 --
 
 INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `id_cat`, `date_at`) VALUES
-(16, 'CPU INTEL CELERON G4900 - DOUBLE COEUR DE 3.1GHZ - 8EME GNRATION - COFFEE LAKE', 'intel', 3290, 'admin master', 8, '2019-01-13 19:13:00'),
 (17, 'CPU INTEL CELERON G4920 - DOUBLE COEUR DE 3.2GHZ - 8EME GNRATION - COFFEE LAKE', 'Intel', 3521, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (18, 'CPU INTEL PENTIUM G5400 - DOUBLE COEUR DE 3.7GHZ - 8EME GNRATION - COFFEE LAKE-S', 'Intel', 5231, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (19, 'CPU AMD RYZEN 3 1200 WRAITH STEALTH EDITION - 4C/4T - 3.1  3.4GHZ', 'AMD', 6758, 'Florent Corlouer', 8, '2018-10-27 13:10:15'),
@@ -290,7 +312,9 @@ INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `
 (124, 'G.Skill Aegis Series 8 Go (2 x 4 Go) DDR3L 1600 MHz CL11', 'G.Skill', NULL, 'Florent Corlouer', 4, '2018-11-27 11:08:40'),
 (125, 'G.Skill Ares Orange Series 8 Go (2 x 4 Go) DDR3 1600 MHz CL9', 'G.Skill', NULL, 'Florent Corlouer', 4, '2018-11-27 11:09:11'),
 (126, 'G.Skill NS Series 4 Go (kit 2x 2 Go) DDR3-SDRAM PC3-10600', 'G.Skill ', NULL, 'Florent Corlouer', 4, '2018-11-27 11:11:09'),
-(127, 'G.Skill RipJaws X Series 8 Go (2x 4Go) DDR3 2133 MHz CL9', 'G.Skill ', NULL, 'Florent Corlouer', 4, '2018-11-27 11:12:06');
+(127, 'G.Skill RipJaws X Series 8 Go (2x 4Go) DDR3 2133 MHz CL9', 'G.Skill ', NULL, 'Florent Corlouer', 4, '2018-11-27 11:12:06'),
+(128, 'ASRock Fatal1ty X299 Gaming K6', 'asrock', 0, 'admin master', 9, '2019-02-16 13:27:42'),
+(129, 'Intel Core i7-7800X (3.5 GHz)', 'intel', 14598, 'admin master', 8, '2019-02-16 13:31:05');
 
 -- --------------------------------------------------------
 
@@ -312,11 +336,10 @@ CREATE TABLE `creation` (
 --
 
 INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_user`, `date_creation`) VALUES
-(7, 'PC familiale', 0, 'Besoin d\'un pc pour toute la famille', 14, '2018-10-28 03:01:43'),
-(9, 'Ordinateur pour le voisin', 0, 'Mon voisin  besoin d\'un ordinateur pour surfer sur internet', 14, '2018-10-28 03:04:07'),
-(32, 'PC Gamer', 1, '', 14, '2018-11-03 14:23:31'),
+(9, 'Ordinateur pour le voisin', 1, 'Mon voisin  a besoin d\'un ordinateur pour surfer sur internet', 14, '2018-10-28 03:04:07'),
+(32, 'PC Gamer', 0, 'Ma super config ultra puissante pour jouer en 8K', 14, '2018-11-03 14:23:31'),
 (34, 'config X', 0, 'test X', 24, '2018-11-04 09:35:28'),
-(41, 'Config No Name', 1, 'Config No Name', 24, '2018-11-04 09:52:30'),
+(41, 'Config No Name', 0, 'Config No Name', 24, '2018-11-04 09:52:30'),
 (42, 'PC familial', 0, 'Besoin d\'un pc pour toute la famille', 14, '2018-12-15 21:37:54'),
 (44, 'config de test', 0, 'pour tester', 14, '2019-01-13 10:41:53');
 
@@ -344,36 +367,12 @@ INSERT INTO `creation_conception` (`id`, `id_composant`, `id_creation`, `id_user
 (5, 16, 6, 14, '2018-10-10 00:00:00'),
 (21, 19, 41, 24, '2018-11-04 09:52:30'),
 (22, 49, 41, 24, '2018-11-04 09:52:42'),
-(27, 16, 32, 14, '2018-11-26 10:25:49'),
-(29, 56, 32, 14, '2018-11-26 10:30:23'),
-(30, 125, 32, 14, '2018-11-27 11:14:31'),
-(33, 19, 7, 14, '2018-12-01 16:38:00');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `creation_conception2`
---
-
-CREATE TABLE `creation_conception2` (
-  `id` int(11) NOT NULL,
-  `id_composant` int(11) NOT NULL,
-  `id_creation` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `date_create` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Contenu de la table `creation_conception2`
---
-
-INSERT INTO `creation_conception2` (`id`, `id_composant`, `id_creation`, `id_user`, `date_create`) VALUES
-(21, 19, 41, 24, '2018-11-04 09:52:30'),
-(22, 49, 41, 24, '2018-11-04 09:52:42'),
-(27, 16, 32, 14, '2018-11-26 10:25:49'),
-(29, 56, 32, 14, '2018-11-26 10:30:23'),
-(30, 125, 32, 14, '2018-11-27 11:14:31'),
-(33, 19, 7, 14, '2018-12-01 16:38:00');
+(33, 19, 7, 14, '2018-12-01 16:38:00'),
+(43, 57, 32, 14, '2019-02-16 12:48:28'),
+(44, 64, 32, 14, '2019-02-16 13:15:25'),
+(45, 19, 32, 14, '2019-02-16 13:15:33'),
+(66, 64, 9, 14, '2019-02-17 19:15:33'),
+(67, 64, 9, 14, '2019-02-17 19:15:36');
 
 -- --------------------------------------------------------
 
@@ -392,7 +391,6 @@ CREATE TABLE `image_composant` (
 --
 
 INSERT INTO `image_composant` (`id`, `image`, `id_composant`) VALUES
-(11, 'G4920x300.jpg', 16),
 (12, 'G4920x300.jpg', 17),
 (13, 'G5400x300.jpg', 18),
 (14, 'RYZEN31200x300.jpg', 19),
@@ -502,7 +500,9 @@ INSERT INTO `image_composant` (`id`, `image`, `id_composant`) VALUES
 (119, 'LD0001426778_2_0001426847.jpg', 124),
 (120, 'LD0001024210_2.jpg', 125),
 (121, 'LD0000920429_2.jpg', 126),
-(122, 'LD0000913130.jpg', 127);
+(122, 'LD0000913130.jpg', 127),
+(123, 'LD0004572488_2.jpg', 128),
+(124, 'LD0004430669_2_0004430679.jpg', 129);
 
 -- --------------------------------------------------------
 
@@ -610,7 +610,8 @@ INSERT INTO `log` (`id`, `user_id`, `name_task`, `date`) VALUES
 (86, 14, 'Se connecte', '2019-01-25 18:21:37'),
 (87, 14, 'Se connecte', '2019-01-25 20:06:02'),
 (88, 14, 'Se connecte', '2019-01-27 07:55:42'),
-(89, 14, 'Se connecte', '2019-01-27 09:29:59');
+(89, 14, 'Se connecte', '2019-01-27 09:29:59'),
+(90, 37, 'Se connecte', '2019-01-31 20:40:56');
 
 -- --------------------------------------------------------
 
@@ -680,7 +681,8 @@ INSERT INTO `role` (`id`, `nom`) VALUES
 (2, 'contributeur'),
 (3, 'admin'),
 (4, 'super admin'),
-(5, 'aucun');
+(5, 'aucun'),
+(6, 'test');
 
 -- --------------------------------------------------------
 
@@ -694,11 +696,10 @@ CREATE TABLE `user` (
   `prenom` varchar(255) DEFAULT NULL,
   `pseudo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `age` tinyint(4) NOT NULL,
+  `age` tinyint(4) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
   `date_registration` datetime NOT NULL,
   `date_last_login` datetime NOT NULL,
-  `id_adresse` int(11) DEFAULT NULL,
   `id_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -706,13 +707,18 @@ CREATE TABLE `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `nom`, `prenom`, `pseudo`, `email`, `age`, `password`, `date_registration`, `date_last_login`, `id_adresse`, `id_role`) VALUES
-(14, 'florent2', 'Corlouer', 'admin master', 'cci.corlouer@gmail.com', 33, '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 0, 4),
-(24, '', '', 'codeurh24', 'codeurh24@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 0, 3),
-(26, 'Delmos', 'angalo', 'angelo', 'angelo@gmail.fr', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', NULL, 2),
-(27, '', '', 'Alice', 'alice@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', NULL, 1),
-(29, '', '', 'Charlie', 'charlie@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', NULL, 2),
-(35, '', '', 'bob', 'bob@gmail.com', 0, '$2y$10$E3TJhzvl67Us9wUA6YNQVuL7iX1NUl5IQDZQyGO0conqdRWPISMKu', '2019-01-30 22:09:47', '2019-01-30 22:09:47', NULL, 1);
+INSERT INTO `user` (`id`, `nom`, `prenom`, `pseudo`, `email`, `age`, `password`, `date_registration`, `date_last_login`, `id_role`) VALUES
+(14, 'florent2', 'Corlouer', 'admin master', 'cci.corlouer@gmail.com', 33, '$2y$10$6R.SHUzOOuTtpMLUJ1xPOeKXAa2G0jECCLczzjuX4W1QEORZdq9yK', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 4),
+(24, '', '', 'codeurh24', 'codeurh24@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 3),
+(26, 'Delmos', 'angalo', 'angelo', 'angelo@gmail.fr', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', 2),
+(27, '', '', 'Alice', 'alice@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', 1),
+(29, '', '', 'Charlie', 'charlie@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', 2),
+(35, '', '', 'bob', 'bob@gmail.com', 0, '$2y$10$1nzvdsRmbMCrYlv7zbFEpO6pg6bEeZyB7AE/dNaPk9.FtOtSFSsTS', '2019-01-30 22:09:47', '2019-01-30 22:09:47', 1),
+(37, NULL, NULL, 'visiteur', 'visiteur@gmail.com', 33, 'd3000fa849c1dcf8ccc6e27003cd4d8c', '2019-01-01 00:00:00', '2019-01-31 20:40:56', 4),
+(57, NULL, NULL, 'dream3d', 'dream3d@gmail.fr', 0, '$2y$10$H6CCd63lANc4BqjyrX4RJu1okFEm4ISS.OuV83oB9HCvL8TCkjP2i', '2019-02-03 11:51:40', '2019-02-03 11:51:40', 1),
+(59, '', '', 'rogerRabbit', 'rogerRabbit@gmail.com', 0, '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2019-02-03 14:20:13', '2019-02-03 14:20:13', 1),
+(62, NULL, NULL, 'julien76', 'julien76@laposte.fr', 0, '$2y$10$X7IuaKz/P7vj8OGh2nZFKO0nTf2QeAT0I.Ymnr3umyazy01nm5loa', '2019-02-09 01:02:29', '2019-02-09 01:02:29', 1),
+(69, NULL, NULL, 'bob2', 'bob2@gmail.com', 0, '$2y$10$nEQ6hm9KgLIUA.898pYa9eGrKW88sqrxzyGdTXUbiQWRtj1UE3ZMu', '2019-02-10 20:29:49', '2019-02-10 20:29:49', 1);
 
 --
 -- Index pour les tables exportées
@@ -761,15 +767,6 @@ ALTER TABLE `creation`
 -- Index pour la table `creation_conception`
 --
 ALTER TABLE `creation_conception`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `creation titre` (`id_creation`),
-  ADD KEY `creation user` (`id_user`),
-  ADD KEY `creation composant` (`id_composant`);
-
---
--- Index pour la table `creation_conception2`
---
-ALTER TABLE `creation_conception2`
   ADD PRIMARY KEY (`id`),
   ADD KEY `creation titre` (`id_creation`),
   ADD KEY `creation user` (`id_user`),
@@ -844,12 +841,12 @@ ALTER TABLE `compatibilite`
 -- AUTO_INCREMENT pour la table `compatibility_tag`
 --
 ALTER TABLE `compatibility_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT pour la table `composant`
 --
 ALTER TABLE `composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT pour la table `creation`
 --
@@ -859,22 +856,17 @@ ALTER TABLE `creation`
 -- AUTO_INCREMENT pour la table `creation_conception`
 --
 ALTER TABLE `creation_conception`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT pour la table `creation_conception2`
---
-ALTER TABLE `creation_conception2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT pour la table `image_composant`
 --
 ALTER TABLE `image_composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT pour la table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT pour la table `marque_composant`
 --
@@ -894,12 +886,12 @@ ALTER TABLE `revendeur_composant`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- Contraintes pour les tables exportées
 --
@@ -916,14 +908,6 @@ ALTER TABLE `compatibilite`
 --
 ALTER TABLE `composant`
   ADD CONSTRAINT `composant_categorie` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id`);
-
---
--- Contraintes pour la table `creation_conception2`
---
-ALTER TABLE `creation_conception2`
-  ADD CONSTRAINT `creation?composant` FOREIGN KEY (`id_composant`) REFERENCES `composant` (`id`),
-  ADD CONSTRAINT `creation?titre` FOREIGN KEY (`id_creation`) REFERENCES `creation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `creation?user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `image_composant`
