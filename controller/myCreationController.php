@@ -35,11 +35,12 @@ function storeMyCreation(){
 }
 
 function showMyCreation(){
+  
   if( getCreationByID($_GET['id']) === false){
     view('errors/404.view.php');
     exit;
   }
-  // recupere le nom de la config detaillé en cours de visionnage
+  // recupere le nom de la config detaillé en cours de consultation
   $Creation = new Creation();
   $creation = $Creation->getCreation([
     ['creation.id', '=', $_GET['id']],
@@ -52,7 +53,7 @@ function showMyCreation(){
     exit;
   }
 
-  // recupere les composants qui appartiennent à la config detaillé en cours de visionnage
+  // recupere les composants qui appartiennent à la config detaillé en cours de consultation
   $CreationConception = new CreationConception();
   $components = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $_GET['id']]

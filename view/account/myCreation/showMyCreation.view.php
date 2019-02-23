@@ -20,7 +20,7 @@ foreach ($componentsList as $key => $value): ?>
             <button class="buttonNone" type="submit" name="deleteItemCreation"><i class="fas fa-2x fa-trash icon-white"></i></button>
           </div>
           <div class="col-10">
-            <a href="/admin/composant/montrer-composant-<?= $value->id_composant ?>.php">
+            <a href="/admin/composant/montrer-composant-<?= $value->id_component ?>.php">
             <?= $value->model ?? '<p class="error">Composant inexistant sur site</p>' ?>
             </a>
           </div>

@@ -17,7 +17,7 @@ function createTagsComponent($sql){
 class Tag extends Database{
 
 	protected $id;
-	protected $id_composant;
+	protected $id_component;
 	protected $tag;
 
 
@@ -177,19 +177,19 @@ class Tag extends Database{
      */
     public function getIdComposant()
     {
-        return $this->id_composant;
+        return $this->id_component;
     }
 
     /**
      * Set the value of Id Composant
      *
-     * @param mixed id_composant
+     * @param mixed id_component
      *
      * @return self
      */
-    public function setIdComposant($id_composant)
+    public function setIdComposant($id_component)
     {
-        $this->id_composant = $id_composant;
+        $this->id_component = $id_component;
 
         return $this;
     }

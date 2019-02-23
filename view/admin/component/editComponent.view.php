@@ -27,19 +27,19 @@
         <select multiple="" name="categorie" class="form-control" id="categorieComposantCreate">
           <?php foreach ($categories as $value): ?>
             <?php if ($value->id == $component->id_cat){ ?>
-              <option value="<?= $value->id ?>" selected><?= $value->nom ?></option>
+              <option value="<?= $value->id ?>" selected><?= $value->name ?></option>
             <?php }else{ ?>
-              <option value="<?= $value->id ?>"><?= $value->nom ?></option>
+              <option value="<?= $value->id ?>"><?= $value->name ?></option>
             <?php } ?>
           <?php endforeach; ?>
         </select>
       </div>
       <div class="form-group">
-        <label for="imageComposantUpdate">Image</label>
-        <input type="file" name="image" id="imageComposantUpdate" class="form-control-file" aria-describedby="fileHelp">
+        <label for="pictureComposantUpdate">Image</label>
+        <input type="file" name="picture" id="pictureComposantUpdate" class="form-control-file" aria-describedby="fileHelp">
       </div>
       <div class="form-group">
-        <img src="/public/image/composants/<?= $imageComponent->image ?>" alt="image de composant" style="max-width:200px">
+        <img src="/public/picture/composants/<?= $pictureComponent->picture ?>" alt="image de composant" style="max-width:200px">
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Modifier</button>

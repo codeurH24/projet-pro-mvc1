@@ -21,17 +21,14 @@
       <div class="form-group">
         <label for="categorieComposantCreate">Categorie</label>
         <select multiple="" name="categorie" class="form-control" id="categorieComposantCreate">
-          <option value="7">alimentation</option>
-          <option value="2">carte graphique</option>
-          <option value="9">carte mère</option>
-          <option value="6">disque dur</option>
-          <option value="4">mémoire vive</option>
-          <option value="8">processeur</option>
+          <?php foreach ($categories as $value): ?>
+              <option value="<?= $value->id ?>"><?= $value->name ?></option>
+          <?php endforeach; ?>
         </select>
       </div>
       <div class="form-group">
-        <label for="imageComposantCreate">Image</label>
-        <input type="file" name="imageComposantCreate" id="imageComposantCreate" class="form-control-file" aria-describedby="fileHelp">
+        <label for="pictureComponentCreate">Image</label>
+        <input type="file" name="pictureComponentCreate" id="pictureComponentCreate" class="form-control-file" aria-describedby="fileHelp">
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Enregister</button>

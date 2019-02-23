@@ -70,15 +70,15 @@ function getComponentOfCreationUser($idCreation=''){
 
 		if ( $idCreation != '' ){
 			$sql =
-			' SELECT creation.id, creation_conception.id AS `creationConceptionId`,composant.model, composant.id_cat FROM `creation_conception`
+			' SELECT creation.id, creation_conception.id AS `creationConceptionId`,component.model, component.id_cat FROM `creation_conception`
 			RIGHT JOIN creation ON creation.id = creation_conception.id_creation
-			RIGHT JOIN composant ON composant.id = creation_conception.id_composant
+			RIGHT JOIN component ON component.id = creation_conception.id_component
 			WHERE creation.id_user = '.UID().' AND creation.id = '.$idCreation;
 		}else{
 			$sql =
-			' SELECT creation.id, composant.id AS `id_composant`,composant.model, composant.id_cat FROM `creation_conception`
+			' SELECT creation.id, component.id AS `id_component`,component.model, component.id_cat FROM `creation_conception`
 			RIGHT JOIN creation ON creation.id = creation_conception.id_creation
-			RIGHT JOIN composant ON composant.id = creation_conception.id_composant
+			RIGHT JOIN component ON component.id = creation_conception.id_component
 			WHERE creation.id_user = '.UID();
 		}
 		$result = $db->query($sql);
@@ -232,7 +232,7 @@ class Creation extends Database {
 			}
 
 			$bd = $this->db;
-			$requete = $bd->prepare('SELECT creation.*, os.image FROM `creation`
+			$requete = $bd->prepare('SELECT creation.*, os.picture FROM `creation`
 																LEFT JOIN os ON os.id = creation.id_os
 																 '.$sqlWhere.'
 																ORDER BY `creation`.`enable` DESC

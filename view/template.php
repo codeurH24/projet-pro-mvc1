@@ -93,7 +93,7 @@
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" name="searchInput" placeholder="Rechercher">
         <button type="button" name="button">
-          <img src="/public/image/search.png" alt="search" />
+          <img src="/public/picture/search.png" alt="search" />
         </button>
       </form>
     </div>

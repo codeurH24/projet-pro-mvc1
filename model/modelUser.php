@@ -113,27 +113,21 @@ function countAllUser(){
 	}
 }
 
-function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_registration, $date_last_login, $id_role){
+function createUser($pseudo, $email,$password, $date_registration, $date_last_login, $id_role){
 	try
 	{
 			$db = dbConnect();
 			$sql = 'INSERT INTO user
 			(
-				`nom`,
-				`prenom`,
 				`pseudo`,
 				`email`,
-				`age`,
 				`password`,
 				`date_registration`,
 				`date_last_login`,
 				`id_role`
 			) VALUES (
-				:nom,
-				:prenom,
 				:pseudo,
 				:email,
-				:age,
 				:password,
 				:date_registration,
 				:date_last_login,
@@ -141,11 +135,8 @@ function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_regis
 			)';
 			$requete = $db->prepare($sql);
 			$isSuccess = $requete->execute([
-				':nom' => $nom,
-				':prenom' => $prenom,
 				':pseudo' => $pseudo,
 				':email' => $email,
-				':age' => $age,
 				':password' => $password,
 				':date_registration' => $date_registration,
 				':date_last_login' => $date_last_login,
@@ -160,18 +151,15 @@ function createUser($nom, $prenom, $pseudo, $email, $age, $password, $date_regis
 }
 
 
-function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
+function updateUser($id, $pseudo, $email, $id_role){
 	try
 	{
 			$db = dbConnect();
 
 			$sql = 'UPDATE `user`
 			SET
-			`nom` = :nom,
-			`prenom` = :prenom,
 			`pseudo` = :pseudo,
 			`email` = :email,
-			`age` = :age,
 			`id_role` = :id_role
 			WHERE
 			id = :id';
@@ -179,11 +167,8 @@ function updateUser($id, $nom, $prenom, $pseudo, $email, $age, $id_role){
 			$requete = $db->prepare($sql);
 			$isSuccess = $requete->execute([
 				':id' => $id,
-				':nom' => $nom,
-				':prenom' => $prenom,
 				':pseudo' => $pseudo,
 				':email' => $email,
-				':age' => $age,
 				':id_role' => $id_role
 			]);
 
@@ -218,11 +203,8 @@ function deleteUser($id){
 
 class User extends Database{
 	protected $id;
-	protected $nom;
-	protected $prenom;
 	protected $pseudo;
 	protected $email;
-	protected $age;
 	protected $password;
 	protected $date_registration;
 	protected $date_last_login;
@@ -380,54 +362,6 @@ class User extends Database{
   }
 
   /**
-   * Get the value of Nom
-   *
-   * @return mixed
-   */
-  public function getNom()
-  {
-      return $this->nom;
-  }
-
-  /**
-   * Set the value of Nom
-   *
-   * @param mixed nom
-   *
-   * @return self
-   */
-  public function setNom($nom)
-  {
-      $this->nom = $nom;
-
-      return $this;
-  }
-
-  /**
-   * Get the value of Prenom
-   *
-   * @return mixed
-   */
-  public function getPrenom()
-  {
-      return $this->prenom;
-  }
-
-  /**
-   * Set the value of Prenom
-   *
-   * @param mixed prenom
-   *
-   * @return self
-   */
-  public function setPrenom($prenom)
-  {
-      $this->prenom = $prenom;
-
-      return $this;
-  }
-
-  /**
    * Get the value of Pseudo
    *
    * @return mixed
@@ -473,16 +407,6 @@ class User extends Database{
       $this->email = $email;
 
       return $this;
-  }
-
-  /**
-   * Get the value of Age
-   *
-   * @return mixed
-   */
-  public function getAge()
-  {
-      return $this->age;
   }
 
   /**

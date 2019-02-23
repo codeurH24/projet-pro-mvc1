@@ -23,7 +23,7 @@ class CreationConception extends Database{
 
 
   protected $id;
-  protected $id_composant;
+  protected $id_component;
   protected $id_creation;
   protected $id_user;
   protected $date_create;
@@ -41,14 +41,14 @@ class CreationConception extends Database{
         // exit();
 
         $bd = $this->db;
-        $requete = $bd->prepare(' SELECT creation_conception.*, composant.model, composant.id_cat, categorie.nom FROM `creation_conception`
-                                  LEFT JOIN composant ON composant.id = creation_conception.id_composant
-                                  LEFT JOIN categorie ON categorie.id = composant.id_cat
+        $requete = $bd->prepare(' SELECT creation_conception.*, component.model, component.id_cat, category.name FROM `creation_conception`
+                                  LEFT JOIN component ON component.id = creation_conception.id_component
+                                  LEFT JOIN category ON category.id = component.id_cat
                                 '.$sqlWhere);
         // $sql =
-        // ' SELECT creation.id, creation_conception.id AS `creationConceptionId`,composant.model, composant.id_cat FROM `creation_conception`
+        // ' SELECT creation.id, creation_conception.id AS `creationConceptionId`,component.model, component.id_cat FROM `creation_conception`
         //   RIGHT JOIN creation ON creation.id = creation_conception.id_creation
-        //   RIGHT JOIN composant ON composant.id = creation_conception.id_composant
+        //   RIGHT JOIN component ON component.id = creation_conception.id_component
         //   WHERE creation.id_user = '.UID().' AND creation.id = '.$idCreation;
 
         $attributs = $this->getNominativeMarker();
@@ -163,25 +163,25 @@ class CreationConception extends Database{
     }
 
     /**
-     * Get the value of Id Composant
+     * Get the value of Id component
      *
      * @return mixed
      */
-    public function getIdComposant()
+    public function getIdComponent()
     {
-        return $this->id_composant;
+        return $this->id_component;
     }
 
     /**
-     * Set the value of Id Composant
+     * Set the value of Id Component
      *
-     * @param mixed id_composant
+     * @param mixed id_component
      *
      * @return self
      */
-    public function setIdComposant($id_composant)
+    public function setIdComponent($id_component)
     {
-        $this->id_composant = $id_composant;
+        $this->id_component = $id_component;
 
         return $this;
     }

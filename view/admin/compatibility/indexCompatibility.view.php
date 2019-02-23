@@ -10,10 +10,10 @@
       <span class="align-middle">ID</span>
     </div>
     <div class="col">
-      <span class="align-middle">ID composant1</span>
+      <span class="align-middle">ID component1</span>
     </div>
     <div class="col">
-      <span class="align-middle">ID composant2</span>
+      <span class="align-middle">ID component2</span>
     </div>
   </div>
   <?php foreach ($compatibilities as $value): ?>

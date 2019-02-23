@@ -17,11 +17,8 @@ function create(){
 }
 function store(){
     createUser(
-      $_POST['lastname'],
-      $_POST['firstname'],
       $_POST['pseudo'],
       $_POST['email'],
-      $_POST['age'],
       $_POST['password1'],
       dbDate(),
       dbDate(),
@@ -47,11 +44,8 @@ function update(){
   }
   $success = updateUser(
     $_POST['id'],
-    $_POST['lastname'],
-    $_POST['firstname'],
     $_POST['pseudo'],
     $_POST['email'],
-    $_POST['age'],
     $_POST['id_role']
   );
   if($success){

@@ -108,7 +108,6 @@ function myAccount(){
   ])->gets();
 
 
-
   view('account/myAccount.view.php',[
     'creationList' => $creationList
   ]);

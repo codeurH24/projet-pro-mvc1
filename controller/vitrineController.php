@@ -4,13 +4,13 @@ require 'model/modelCreation.php';
 require 'model/modelCreationConception.php';
 require 'model/modelTagComponent.php';
 function livelyMemory(){
-  $categorie = 'mémoire vive';
+  $category = 'mémoire vive';
   $whereIN = [];
 
   if(UID() !== false){
     $whereIN = infoConfig();
 
-    // filte l'affichage.
+    // filtre l'affichage.
     // Les barrettes seront affichées selont le type de ram déjà present dans la config
     $cfgTypeRAM = infoConfig_typeOfRAM();
     if ($cfgTypeRAM !== false) {
@@ -27,17 +27,17 @@ function livelyMemory(){
   }
 
   $numbersPerPage = 5;
-  $numberOfProcessors =  count(getComponents($categorie, $whereIN));
+  $numberOfProcessors =  count(getComponents($category, $whereIN));
   $numberSplits = intval(ceil ( ($numberOfProcessors / $numbersPerPage) ));
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
-  if((bool)getComponentsLimit($categorie, $limit) === false){
+  if((bool)getComponentsLimit($category, $limit) === false){
     view('errors/404.view.php');
     exit;
   }
   view('vitrine/components.view.php',[
-    'components' => getComponentsLimit($categorie, $limit, $whereIN),
+    'components' => getComponentsLimit($category, $limit, $whereIN),
     'numberSplits' => $numberSplits,
     'page' => 'composants/memoire-vive-',
     'class' => 'pageBackgroundDDR'
@@ -45,7 +45,7 @@ function livelyMemory(){
 }
 
 function mainBoard(){
-  $categorie = 'carte mère';
+  $category = 'carte mère';
   $whereIN = [];
 
   // ont regarde la config seulement si l'utilisateur est connecté
@@ -90,18 +90,18 @@ function mainBoard(){
 
 
   $numbersPerPage = 5;
-  $numberOfProcessors =  countComponents($categorie);
+  $numberOfProcessors =  countComponents($category);
   $numberSplits = intval(ceil ( ($numberOfProcessors / $numbersPerPage) ));
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
-  if((bool)getComponentsLimit($categorie, $limit, $whereIN) === false){
+  if((bool)getComponentsLimit($category, $limit, $whereIN) === false){
     view('errors/404.view.php');
     exit;
   }
 
   view('vitrine/components.view.php',[
-    'components' => getComponentsLimit($categorie, $limit, $whereIN),
+    'components' => getComponentsLimit($category, $limit, $whereIN),
     'numberSplits' => $numberSplits,
     'page' => 'composants/carte-mere-',
     'class' => 'pageBackgroundMotherboard'
@@ -110,7 +110,7 @@ function mainBoard(){
 
 function processor(){
   // INFO SURL LA CONFIG ACTUEL
-  $categorie = 'processeur';
+  $category = 'processeur';
 
   $whereIN = [];
   if(UID() !== false) {
@@ -126,7 +126,7 @@ function processor(){
   // AFFICHAGE DES COMPOSANTS SUR LA PAGE
 
   $numbersPerPage = 5;
-  $numberOfProcessors =  count(getComponents($categorie, $whereIN));
+  $numberOfProcessors =  count(getComponents($category, $whereIN));
   $numberSplits = intval(ceil ( ($numberOfProcessors / $numbersPerPage) ));
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
@@ -137,7 +137,7 @@ function processor(){
   }
 
   view('vitrine/components.view.php',[
-    'components' => getComponentsLimit($categorie, $limit, $whereIN),
+    'components' => getComponentsLimit($category, $limit, $whereIN),
     'numberSplits' => $numberSplits,
     'page' => 'composants/processeur-',
     'class' => 'pageBackgroundProcessor'
@@ -145,22 +145,22 @@ function processor(){
 }
 
 function graphicCard(){
-  $categorie = 'carte graphique';
+  $category = 'carte graphique';
   $whereIN = [];
 
 
   $numbersPerPage = 5;
-  $numberOfProcessors =  countComponents($categorie);
+  $numberOfProcessors =  countComponents($category);
   $numberSplits = intval(ceil ( ($numberOfProcessors / $numbersPerPage) ));
 
   $limit = (($_GET['pagination']*$numbersPerPage)-$numbersPerPage).','.$numbersPerPage;
 
-  if((bool)getComponentsLimit($categorie, $limit) === false){
+  if((bool)getComponentsLimit($category, $limit) === false){
     view('errors/404.view.php');
     exit;
   }
   view('vitrine/components.view.php',[
-    'components' => getComponentsLimit($categorie, $limit),
+    'components' => getComponentsLimit($category, $limit),
     'numberSplits' => $numberSplits,
     'page' => 'composants/carte-graphique-',
     'class' => 'pageBackgroundGraphicCard'
@@ -236,7 +236,7 @@ function addComponent(){
   }
 
   $CreationConception = new CreationConception();
-  $CreationConception->setIdComposant($_POST['id']);
+  $CreationConception->setIdComponent($_POST['id']);
   $CreationConception->setIdCreation($id);
   $CreationConception->setIdUser(UID());
   $CreationConception->setDateCreate(dbDate());

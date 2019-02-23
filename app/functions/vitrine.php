@@ -4,7 +4,7 @@ function numberOfSlotsRAM($idMainBoard){
   $component = getComponent($idMainBoard);
   $Tag = new Tag();
   $tags = $Tag->select([
-    ['id_composant', '=', $component->id]
+    ['id_component', '=', $component->id]
   ])->gets();
   foreach ($tags as $tag) {
     $whereIN[]= $tag->tag; // on recupere les tags de la carte mere
@@ -168,11 +168,11 @@ function infoConfig_typeOfRAM(){
   ])->get();
   if ($componentRAM !== false) {
     // on peut recuprer son id pour le réutiliser pour obtenir ses tags
-    $idRAM = $componentRAM->id_composant;
+    $idRAM = $componentRAM->id_component;
 
     $Tag = new Tag();
     $tags = $Tag->select([
-      ['id_composant', '=', $idRAM]
+      ['id_component', '=', $idRAM]
     ])->gets();
     foreach ($tags as $tag) {
       $whereIN[]= $tag->tag; // on recupere les tags de la RAM
@@ -220,11 +220,11 @@ function infoConfig(){
   // si on a récupéré une carte mère dans la config actuelle
   if($componentMainBoard !== false){
     // on peut recuprer son id pour le réutiliser pour obtenir ses tags
-    $idMainBoard = $componentMainBoard->id_composant;
+    $idMainBoard = $componentMainBoard->id_component;
 
     $Tag = new Tag();
     $tags = $Tag->select([
-      ['id_composant', '=', $idMainBoard]
+      ['id_component', '=', $idMainBoard]
     ])->gets();
     foreach ($tags as $tag) {
       $whereIN[]= $tag->tag; // on recupere les tags de la carte mere
@@ -254,7 +254,7 @@ function getTagsProcesseur(){
 
   $Tag = new Tag();
   $componentsArray = $Tag->select([
-    ['id_composant', '=', $componentProcesseur->id_composant]
+    ['id_component', '=', $componentProcesseur->id_component]
   ])->gets();
 
   foreach ($componentsArray as $componentStruct) {
@@ -266,7 +266,7 @@ function getTagsProcesseur(){
 function getTags($idComponent){
   $Tag = new Tag();
   $componentsArray = $Tag->select([
-    ['id_composant', '=', $idComponent]
+    ['id_component', '=', $idComponent]
   ])->gets();
 
   foreach ($componentsArray as $componentStruct) {

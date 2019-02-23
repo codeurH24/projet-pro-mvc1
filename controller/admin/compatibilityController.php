@@ -4,8 +4,6 @@ require 'model/modelComponent.php';
 require 'model/modelCompatibility.php';
 
 function index(){
-// print_r(getCompatibilities());
-//   exit;
   view('admin/compatibility/indexCompatibility.view.php',[
     'compatibilities' => getCompatibilities()
   ]);
@@ -16,7 +14,7 @@ function create(){
   ]);
 }
 function store(){
-  createCompatibility($_SESSION['user']['pseudo'], $_POST['composant1'], $_POST['composant2']);
+  createCompatibility($_SESSION['user']['pseudo'], $_POST['component1'], $_POST['component2']);
   header('Location: /admin/composant/compatibilite/');
 }
 
@@ -34,7 +32,7 @@ function update(){
     view('errors/404.view.php');
     exit;
   }
-  updateCompatibility($_POST['id'], $_SESSION['user']['pseudo'], $_POST['composant1'], $_POST['composant2']);
+  updateCompatibility($_POST['id'], $_SESSION['user']['pseudo'], $_POST['component1'], $_POST['component2']);
   header('Location: /admin/composant/compatibilite/');
 }
 

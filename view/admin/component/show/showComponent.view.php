@@ -9,7 +9,7 @@
       <tbody>
       <tr>
         <td for="idUserUpdate"></td>
-        <td><img src="/public/image/composants/<?= $imageComponent->image ?>" alt="image de composant" style="max-width:200px"></td>
+        <td><img src="/public/picture/composants/<?= $pictureComponent->picture ?>" alt="image de composant" style="max-width:200px"></td>
       </tr>
       <tr>
         <td for="idUserUpdate">id</td>
@@ -29,7 +29,7 @@
           <?php
           foreach ($categories as $value){
             if ($value->id == $component->id_cat){
-                echo $value->nom;
+                echo $value->name;
             }
           }
           ?>

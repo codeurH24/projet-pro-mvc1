@@ -56,7 +56,7 @@ header .card-title a,
   background-repeat: no-repeat;background-position: 100% 17px;
   filter:hue(30);
   background-size:200% 100%;
-  background-image: url(/public/image/laser.png);
+  background-image: url(/public/picture/laser.png);
 }
 .card-title,h5 {
     margin: 0vw;
@@ -555,13 +555,13 @@ nav input[name=searchInput]{
 }
 
 .pageBackground{
-  background-image: url(/public/image/white-wallpaper-6.png);
+  background-image: url(/public/picture/white-wallpaper-6.png);
   background-size: cover;
   background-attachment: fixed;
 }
 
 .pageBackgroundRegistration{
-  background-image: url(/public/image/Technology-Photo-HD-1.png);
+  background-image: url(/public/picture/Technology-Photo-HD-1.png);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -569,13 +569,13 @@ nav input[name=searchInput]{
 
 .pageBackgroundLogin{
   background-color: #FFF;
-  background-image: url(/public/image/login2.png);
+  background-image: url(/public/picture/login2.png);
   background-size: cover;
   background-attachment: fixed;
 }
 .pageBackgroundComponents{
   background-color: #FFF;
-  background-image: url(/public/image/background-components.png);
+  background-image: url(/public/picture/background-components.png);
   background-image: url(http://www.wallpaperdx.com/images/full-hd-3d-blurred-computers-cpu-macro-processor-wallpaper.jpg);
   background-size: cover;
   background-attachment: fixed;

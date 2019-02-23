@@ -1,7 +1,7 @@
 <?php require 'view/admin/headerAdmin.php' ?>
 <div class="col-12 col-md-8 col-xl-6">
   <div class="text-right mb-3">
-    <a href="/admin/composant/montrer-composant-<?= $tag->id_composant ?>.php" class="btn btn-secondary">Retour</a>
+    <a href="/admin/composant/montrer-composant-<?= $tag->id_component ?>.php" class="btn btn-secondary">Retour</a>
   </div>
   <form method="post" action="/admin/tagComponent/delete/">
     <fieldset>

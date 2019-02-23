@@ -26,7 +26,7 @@
       <label for="composantUpdateRevendeurLnkComposant">Composant</label>
       <select multiple="" class="form-control" name="composant" id="composantUpdateRevendeurLnkComposant">
         <?php foreach ($components as $key => $value): ?>
-          <?php if ($resellerLink->id_composant == $value->id ): ?>
+          <?php if ($resellerLink->id_component == $value->id ): ?>
             <option value="<?= $value->id  ?>" selected><?= $value->model ?></option>
           <?php else: ?>
             <option value="<?= $value->id  ?>"><?= $value->model ?></option>

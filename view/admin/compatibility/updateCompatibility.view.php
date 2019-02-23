@@ -10,16 +10,16 @@
         <input type="hidden" class="form-control" name="id" id="compatibleID" value="<?= $_GET['id'] ?>" />
       </div>
       <div class="form-group">
-        <label for="composant1">Composant 1</label>
-        <select multiple="" class="form-control" name="composant1" id="composant1">
+        <label for="component1">Composant 1</label>
+        <select multiple="" class="form-control" name="component1" id="component1">
           <?php foreach ($components as $key => $value): ?>
             <option value="<?= $value->id ?>"><?= $value->model ?></option>
           <?php endforeach; ?>
         </select>
       </div>
       <div class="form-group">
-        <label for="composant2">Composant 2</label>
-        <select multiple="" class="form-control" name="composant2" id="composant2">
+        <label for="component2">Composant 2</label>
+        <select multiple="" class="form-control" name="component2" id="component2">
           <?php foreach ($components as $key => $value): ?>
             <option value="<?= $value->id ?>"><?= $value->model ?></option>
           <?php endforeach; ?>

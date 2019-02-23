@@ -35,7 +35,7 @@
           $sqlTagCreate = "";
           foreach($listOfComponent as $key => $component){
           $id = $component->id;
-          $sqlTagCreate .= "INSERT INTO `compatibility_tag` (`id_composant`, `tag`) VALUES ('$id', '%%tag%%');";
+          $sqlTagCreate .= "INSERT INTO `compatibility_tag` (`id_component`, `tag`) VALUES ('$id', '%%tag%%');";
           ?><tr><td class="entete"><?= $component->id ?> <?= $component->model ?></td></tr><?php
           }
           $_SESSION['sqlTagComponentCreate'] = $sqlTagCreate;

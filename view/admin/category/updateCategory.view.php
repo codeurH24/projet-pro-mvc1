@@ -12,7 +12,7 @@
       </div>
       <div class="form-group">
         <label for="nomCategoryUpdate">Nom</label>
-        <input name="name" type="text" class="form-control" id="nomCategoryUpdate" value="<?= $category->nom ?>">
+        <input name="name" type="text" class="form-control" id="nomCategoryUpdate" value="<?= $category->name ?>">
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Modifier</button>

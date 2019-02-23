@@ -14,7 +14,7 @@
       <span class="align-middle">id_revendeur</span>
     </div>
     <div class="col">
-      <span class="align-middle">id_composant</span>
+      <span class="align-middle">id_component</span>
     </div>
     <div class="col-1">
       <span class="align-middle">lien</span>
@@ -32,7 +32,7 @@
       <p><?= $value->id_revendeur ?></p>
     </div>
     <div class="col" style="height:21px;">
-      <p><?= $value->id_composant ?></p>
+      <p><?= $value->id_component ?></p>
     </div>
     <div class="col-1" style="height:21px;">
       <p><a href="<?= $value->lien ?>">Lien</a></p>

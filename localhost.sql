@@ -80,9 +80,9 @@ INSERT INTO `categorie` (`id`, `nom`) VALUES
 CREATE TABLE `compatibilite` (
   `id` int(11) NOT NULL,
   `degrer` int(11) NOT NULL,
-  `auteur` varchar(255) NOT NULL,
-  `id_composant1` int(11) NOT NULL,
-  `id_composant2` int(11) NOT NULL,
+  `autor` varchar(255) NOT NULL,
+  `id_component1` int(11) NOT NULL,
+  `id_component2` int(11) NOT NULL,
   `date_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -90,7 +90,7 @@ CREATE TABLE `compatibilite` (
 -- Contenu de la table `compatibilite`
 --
 
-INSERT INTO `compatibilite` (`id`, `degrer`, `auteur`, `id_composant1`, `id_composant2`, `date_at`) VALUES
+INSERT INTO `compatibilite` (`id`, `degrer`, `autor`, `id_component1`, `id_component2`, `date_at`) VALUES
 (1, 100, 'codeurh24', 54, 38, '2018-11-04 16:14:53'),
 (2, 100, 'codeurh24', 38, 53, '2018-11-04 16:35:14'),
 (3, 100, 'admin master', 37, 88, '2018-12-16 21:10:18');
@@ -103,7 +103,7 @@ INSERT INTO `compatibilite` (`id`, `degrer`, `auteur`, `id_composant1`, `id_comp
 
 CREATE TABLE `compatibility_tag` (
   `id` int(11) NOT NULL,
-  `id_composant` int(11) NOT NULL,
+  `id_component` int(11) NOT NULL,
   `tag` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -111,7 +111,7 @@ CREATE TABLE `compatibility_tag` (
 -- Contenu de la table `compatibility_tag`
 --
 
-INSERT INTO `compatibility_tag` (`id`, `id_composant`, `tag`) VALUES
+INSERT INTO `compatibility_tag` (`id`, `id_component`, `tag`) VALUES
 (2, 16, '1151'),
 (3, 17, '1151'),
 (4, 18, '1151'),
@@ -198,7 +198,7 @@ CREATE TABLE `composant` (
   `model` varchar(255) NOT NULL,
   `marque` varchar(255) NOT NULL,
   `point_puissance` int(11) DEFAULT '0',
-  `auteur` varchar(255) NOT NULL,
+  `autor` varchar(255) NOT NULL,
   `id_cat` int(11) NOT NULL,
   `date_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -207,7 +207,7 @@ CREATE TABLE `composant` (
 -- Contenu de la table `composant`
 --
 
-INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `id_cat`, `date_at`) VALUES
+INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `autor`, `id_cat`, `date_at`) VALUES
 (17, 'CPU INTEL CELERON G4920 - DOUBLE COEUR DE 3.2GHZ - 8EME GENERATION - COFFEE LAKE', 'Intel', 3521, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (18, 'CPU INTEL PENTIUM G5400 - DOUBLE COEUR DE 3.7GHZ - 8EME GENERATION - COFFEE LAKE-S', 'Intel', 5231, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (19, 'CPU AMD RYZEN 3 1200 WRAITH STEALTH EDITION - 4C/4T - 3.1  3.4GHZ', 'AMD', 6758, 'Florent Corlouer', 8, '2018-10-27 13:10:15'),
@@ -364,7 +364,7 @@ INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_os`, `id_user
 
 CREATE TABLE `creation_conception` (
   `id` int(11) NOT NULL,
-  `id_composant` int(11) NOT NULL,
+  `id_component` int(11) NOT NULL,
   `id_creation` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `date_create` datetime NOT NULL
@@ -374,7 +374,7 @@ CREATE TABLE `creation_conception` (
 -- Contenu de la table `creation_conception`
 --
 
-INSERT INTO `creation_conception` (`id`, `id_composant`, `id_creation`, `id_user`, `date_create`) VALUES
+INSERT INTO `creation_conception` (`id`, `id_component`, `id_creation`, `id_user`, `date_create`) VALUES
 (2, 28, 6, 14, '2018-10-10 00:00:00'),
 (4, 19, 6, 14, '2018-10-10 00:00:00'),
 (5, 16, 6, 14, '2018-10-10 00:00:00'),
@@ -410,14 +410,14 @@ INSERT INTO `creation_conception` (`id`, `id_composant`, `id_creation`, `id_user
 CREATE TABLE `image_composant` (
   `id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `id_composant` int(11) NOT NULL
+  `id_component` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contenu de la table `image_composant`
 --
 
-INSERT INTO `image_composant` (`id`, `image`, `id_composant`) VALUES
+INSERT INTO `image_composant` (`id`, `image`, `id_component`) VALUES
 (12, 'G4920x300.jpg', 17),
 (13, 'G5400x300.jpg', 18),
 (14, 'RYZEN31200x300.jpg', 19),
@@ -697,9 +697,9 @@ CREATE TABLE `revendeur_composant` (
   `id` int(11) NOT NULL,
   `prix` float(10,2) NOT NULL,
   `lien` varchar(255) NOT NULL,
-  `auteur` varchar(255) NOT NULL,
+  `autor` varchar(255) NOT NULL,
   `id_revendeur` int(11) NOT NULL,
-  `id_composant` int(11) NOT NULL,
+  `id_component` int(11) NOT NULL,
   `date_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -784,8 +784,8 @@ ALTER TABLE `categorie`
 --
 ALTER TABLE `compatibilite`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `composant1_compatible2` (`id_composant1`),
-  ADD KEY `composant2_compatible1` (`id_composant2`);
+  ADD KEY `component1_compatible2` (`id_component1`),
+  ADD KEY `component2_compatible1` (`id_component2`);
 
 --
 -- Index pour la table `compatibility_tag`
@@ -813,14 +813,14 @@ ALTER TABLE `creation_conception`
   ADD PRIMARY KEY (`id`),
   ADD KEY `creation titre` (`id_creation`),
   ADD KEY `creation user` (`id_user`),
-  ADD KEY `creation composant` (`id_composant`);
+  ADD KEY `creation composant` (`id_component`);
 
 --
 -- Index pour la table `image_composant`
 --
 ALTER TABLE `image_composant`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `image_composant` (`id_composant`);
+  ADD KEY `image_composant` (`id_component`);
 
 --
 -- Index pour la table `log`
@@ -845,7 +845,7 @@ ALTER TABLE `revendeur`
 --
 ALTER TABLE `revendeur_composant`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `revLnkComp` (`id_composant`),
+  ADD KEY `revLnkComp` (`id_component`),
   ADD KEY `compLnkRev` (`id_revendeur`);
 
 --
@@ -943,8 +943,8 @@ ALTER TABLE `user`
 -- Contraintes pour la table `compatibilite`
 --
 ALTER TABLE `compatibilite`
-  ADD CONSTRAINT `composant1_compatible2` FOREIGN KEY (`id_composant1`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `composant2_compatible1` FOREIGN KEY (`id_composant2`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `component1_compatible2` FOREIGN KEY (`id_component1`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `component2_compatible1` FOREIGN KEY (`id_component2`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `composant`
@@ -956,14 +956,14 @@ ALTER TABLE `composant`
 -- Contraintes pour la table `image_composant`
 --
 ALTER TABLE `image_composant`
-  ADD CONSTRAINT `image_composant` FOREIGN KEY (`id_composant`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `image_composant` FOREIGN KEY (`id_component`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `revendeur_composant`
 --
 ALTER TABLE `revendeur_composant`
   ADD CONSTRAINT `compLnkRev` FOREIGN KEY (`id_revendeur`) REFERENCES `revendeur` (`id`),
-  ADD CONSTRAINT `revLnkComp` FOREIGN KEY (`id_composant`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `revLnkComp` FOREIGN KEY (`id_component`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

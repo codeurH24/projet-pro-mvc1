@@ -19,14 +19,10 @@ function index(){
 
   if ( isset($_POST['searchForTagComposant']) and isset($_POST['keyWord']) and empty($_POST['keyWord']) ) {
 
-    // $query = "SELECT * FROM `composant` ";
-    // $listOfComponent = bddQuery($mysqli, $query);
     $listOfComponent = getComponents();
 
   }else if (isset($_POST['searchForTagComposant']) and isset($_POST['keyWord']) and !empty($_POST['keyWord']) ) {
 
-    // $query = 'SELECT * FROM `composant` WHERE `model` LIKE \'%'.$_POST['keyWord'].'%\' ';
-    // $listOfComponent = bddQuery($mysqli, $query);
     $listOfComponent = getComponentsLike($_POST['keyWord']);
     $_SESSION['sqlTagComponentCreate'] = [];
 
@@ -78,7 +74,7 @@ function update(){
     $tag = $Tag->select([
       ['id', '=', $_POST['id']]
     ])->get();
-    header("Location: /admin/composant/montrer-composant-$tag->id_composant.php");
+    header("Location: /admin/composant/montrer-composant-$tag->id_component.php");
     exit('Tag mis à jour avec succès');
   }
 }
@@ -99,7 +95,7 @@ function delete(){
   $tag = $Tag->select([
     ['id', '=', $_POST['id']]
   ])->get();
-  $idComponent = $tag->id_composant;
+  $idComponent = $tag->id_component;
 
 
   $Tag = new Tag();

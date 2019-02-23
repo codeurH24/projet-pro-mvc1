@@ -7,7 +7,7 @@ function getComponentsLike($word)
 	{
 	    $db = dbConnect();
 
-			$sql = 'SELECT * FROM `composant` WHERE `model` LIKE \'%'.$_POST['keyWord'].'%\' ';
+			$sql = 'SELECT * FROM `component` WHERE `model` LIKE \'%'.$_POST['keyWord'].'%\' ';
 
       $result = $db->query($sql);
       $components = $result->fetchAll(PDO::FETCH_OBJ);
@@ -31,23 +31,23 @@ function getComponents($componentName='', $tags=[])
 				$strTags = "'".implode("','", $tags)."'";
 				if ($componentName != '') {
 					$sql =
-					'SELECT * FROM `composant`
-					INNER JOIN image_composant ON image_composant.id_composant = composant.id
-					INNER JOIN categorie ON categorie.id = composant.id_cat
-					LEFT JOIN compatibility_tag ON compatibility_tag.id_composant = composant.id
-					WHERE categorie.nom LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')';
+					'SELECT * FROM `component`
+					INNER JOIN picture_component ON picture_component.id_component = component.id
+					INNER JOIN category ON category.id = component.id_cat
+					LEFT JOIN compatibility_tag ON compatibility_tag.id_component = component.id
+					WHERE category.name LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')';
 				}else{
-					$sql = 'SELECT * FROM composant';
+					$sql = 'SELECT * FROM component';
 				}
 			}else{
 				if ($componentName != '') {
 					$sql =
-					'SELECT * FROM `composant`
-					INNER JOIN image_composant ON image_composant.id_composant = composant.id
-					INNER JOIN categorie ON categorie.id = composant.id_cat
-					WHERE categorie.nom LIKE \''.$componentName.'\';';
+					'SELECT * FROM `component`
+					INNER JOIN picture_component ON picture_component.id_component = component.id
+					INNER JOIN category ON category.id = component.id_cat
+					WHERE category.name LIKE \''.$componentName.'\';';
 				}else{
-					$sql = 'SELECT * FROM composant';
+					$sql = 'SELECT * FROM component';
 				}
 			}
 
@@ -67,7 +67,7 @@ function getComponent($id)
 	{
 	    $db = dbConnect();
 
-			$sql = 'SELECT * FROM `composant` WHERE id = '.$id;
+			$sql = 'SELECT * FROM `component` WHERE id = '.$id;
       $result = $db->query($sql);
       $component = $result->fetch(PDO::FETCH_OBJ);
       return $component;
@@ -87,18 +87,18 @@ function getComponentsLimit($componentName, $limit, $tags=[])
 			if(count($tags)){
 				$strTags = "'".implode("','", $tags)."'";
 				$sql =
-				'	SELECT * FROM `composant`
-					INNER JOIN image_composant ON image_composant.id_composant = composant.id
-					INNER JOIN categorie ON categorie.id = composant.id_cat
-					LEFT JOIN compatibility_tag ON compatibility_tag.id_composant = composant.id
-					WHERE categorie.nom LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')
+				'	SELECT * FROM `component`
+					INNER JOIN picture_component ON picture_component.id_component = component.id
+					INNER JOIN category ON category.id = component.id_cat
+					LEFT JOIN compatibility_tag ON compatibility_tag.id_component = component.id
+					WHERE category.name LIKE \''.$componentName.'\' AND compatibility_tag.tag IN('.$strTags .')
 					LIMIT '.$limit.' ;';
 			}else{
 				$sql =
-				'SELECT * FROM `composant`
-				INNER JOIN image_composant ON image_composant.id_composant = composant.id
-				INNER JOIN categorie ON categorie.id = composant.id_cat
-				WHERE categorie.nom LIKE \''.$componentName.'\'
+				'SELECT * FROM `component`
+				INNER JOIN picture_component ON picture_component.id_component = component.id
+				INNER JOIN category ON category.id = component.id_cat
+				WHERE category.name LIKE \''.$componentName.'\'
 				LIMIT '.$limit.' ;';
 			}
 
@@ -120,52 +120,55 @@ function countComponents($componentName){
 	$db = dbConnect();
 
 	$sql =
-	'SELECT COUNT(*) AS `count` FROM `composant`
-	INNER JOIN categorie ON categorie.id = composant.id_cat
-	WHERE categorie.nom LIKE \''.$componentName.'\'';
+	'SELECT COUNT(*) AS `count` FROM `component`
+	INNER JOIN category ON category.id = component.id_cat
+	WHERE category.name LIKE \''.$componentName.'\'';
 
 	$result = $db->query($sql);
 	$countComponents = $result->fetchAll(PDO::FETCH_OBJ)[0];
 	return $countComponents->count;
 }
 
-function createComponent($model, $marque, $score, $categorie){
+function createComponent($model, $marque, $score, $category){
 	try
 	{
 		$db = dbConnect();
 
 		$sql =
-		'INSERT INTO composant
-		(`model`, `marque`, `point_puissance`, `auteur`, `id_cat`, `date_at`)
+		'INSERT INTO component
+		(`model`, `marque`, `point_puissance`, `autor`, `id_cat`, `date_at`)
 		VALUES
-		(:model, :marque, :point_puissance, :auteur, :id_cat, :date_at)';
+		(:model, :marque, :point_puissance, :autor, :id_cat, :date_at)';
 
 		$requete = $db->prepare($sql);
 		$requete->execute([
 			':model' => $model,
 			':point_puissance' => $score,
 			':marque' => $marque,
-			':auteur' => $_SESSION['user']['pseudo'],
-			':id_cat' => $categorie	,
+			':autor' => $_SESSION['user']['pseudo'],
+			':id_cat' => $category	,
 			':date_at' => dbDate()
 		]);
+
 		$lastID = $db->lastInsertId();
 
-		if( !empty($_FILES["imageComposantCreate"]) ) {
-			$target_dir = "./public/image/composants/";
-			$target_file = $target_dir . basename($_FILES["imageComposantCreate"]["name"]);
-			$resultUpload = move_uploaded_file($_FILES["imageComposantCreate"]["tmp_name"], $target_file);
+		if( !empty($_FILES["pictureComponentCreate"]['name']) ) {
+			$target_dir = "./public/picture/composants/";
+			$target_file = $target_dir . basename($_FILES["pictureComponentCreate"]["name"]);
+			$resultUpload = move_uploaded_file($_FILES["pictureComponentCreate"]["tmp_name"], $target_file);
 			if( $resultUpload ){
-				$nameImage = basename($_FILES["imageComposantCreate"]["name"]);
-				$sql = 'INSERT INTO `image_composant`
-								(`image`, `id_composant`)
+				$namePicture = basename($_FILES["pictureComponentCreate"]["name"]);
+				$sql = 'INSERT INTO `picture_component`
+								(`picture`, `id_component`)
 								VALUES
-								(:nameImage, :lastID)';
+								(:namePicture, :lastID)';
 				$requete = $db->prepare($sql);
 				$requete->execute([
-					':nameImage' => $nameImage,
+					':namePicture' => $namePicture,
 					':lastID' => $lastID
 				]);
+
+
 			}else{
 				exit('Problème d\'upload Attention au chmod sous linux');
 			}
@@ -185,7 +188,7 @@ function deleteComponent($id){
     try
     {
         $db = dbConnect();
-        $sql = 'DELETE FROM composant WHERE id = '.$id;
+        $sql = 'DELETE FROM component WHERE id = '.$id;
         $result = $db->query($sql);
     }
     catch(Exception $e)
@@ -196,18 +199,18 @@ function deleteComponent($id){
 
 
 
-function updateComponent($id, $model, $marque, $score, $categorie){
+function updateComponent($id, $model, $marque, $score, $category){
 	try
 	{
 		$db = dbConnect();
 
 		$sql =
-		'	UPDATE composant
+		'	UPDATE component
 			SET
 			`model` = :model,
 			`point_puissance` = :point_puissance,
 			`marque` = :marque,
-			`auteur` = :auteur,
+			`autor` = :autor,
 			`id_cat` = :id_cat,
 			`date_at` = :date_at
 			WHERE
@@ -219,21 +222,22 @@ function updateComponent($id, $model, $marque, $score, $categorie){
 			':model' => $model,
 			':point_puissance' => $score,
 			':marque' => $marque,
-			':auteur' => $_SESSION['user']['pseudo'],
-			':id_cat' => $categorie	,
+			':autor' => $_SESSION['user']['pseudo'],
+			':id_cat' => $category	,
 			':date_at' => dbDate()
 		]);
-		if( !empty($_FILES["image"]) ) {
-			$target_dir = "./public/image/composants/";
-			$target_file = $target_dir . basename($_FILES["image"]["name"]);
-			$resultUpload = move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+
+		if( !empty($_FILES["picture"]['name']) ) {
+			$target_dir = "./public/picture/composants/";
+			$target_file = $target_dir . basename($_FILES["picture"]["name"]);
+			$resultUpload = move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file);
 
 			if( $resultUpload ){
-				$nameImage = basename($_FILES["image"]["name"]);
-				$sql = 'UPDATE `image_composant` SET `image` = :nameImage WHERE id_composant = :id';
+				$namePicture = basename($_FILES["picture"]["name"]);
+				$sql = 'UPDATE `picture_component` SET `picture` = :namePicture WHERE id_component = :id';
 				$requete = $db->prepare($sql);
 				$requete->execute([
-					':nameImage' => $nameImage,
+					':namePicture' => $namePicture,
 					':id' => $id
 				]);
 			}else{

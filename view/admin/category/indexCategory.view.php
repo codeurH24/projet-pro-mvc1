@@ -21,7 +21,7 @@
           <p><?= $value->id ?></p>
         </div>
         <div class="col" style="height:21px;">
-          <p><?= $value->nom ?></p>
+          <p><?= $value->name ?></p>
         </div>
         <div class="col-12 admin-tools-users" style="z-index:1">
           <span class="align-middle">

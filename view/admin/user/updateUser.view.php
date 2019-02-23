@@ -11,24 +11,12 @@
             <input name="id" type="text" class="form-control" id="idUserUpdate" value="<?= $user->id ?>">
           </div>
           <div class="form-group">
-            <label for="nomUserUpdate">Nom</label>
-            <input name="lastname" type="text" class="form-control" id="nomUserUpdate" value="<?= $user->nom ?>">
-          </div>
-          <div class="form-group">
-            <label for="prenomUserUpdate">Prénom</label>
-            <input name="firstname" type="text" class="form-control" id="prenomUserUpdate" value="<?= $user->prenom ?>">
-          </div>
-          <div class="form-group">
             <label for="pseudoUserUpdate">Pseudo</label>
             <input name="pseudo" type="text" class="form-control" id="pseudoUserUpdate" value="<?= $user->pseudo ?>">
           </div>
           <div class="form-group">
             <label for="emailUserUpdate">E-mail</label>
             <input name="email" type="text" class="form-control" id="emailUserUpdate" value="<?= $user->email ?>">
-          </div>
-          <div class="form-group">
-            <label for="ageUserUpdate">Age</label>
-            <input name="age" type="text" class="form-control" id="ageUserUpdate" value="<?= $user->age ?>">
           </div>
           <div class="form-group">
             <label for="IDRoleUserUpdate">Role</label>

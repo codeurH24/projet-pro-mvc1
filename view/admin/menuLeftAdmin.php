@@ -12,7 +12,7 @@
   <li class="nav-item">
     <div class="btn-group dropright w-100">
       <a class="btn btn-primary  w-100" href="/admin/composant/" style="color:white">
-        <img src="/public/image/gpu.png" alt="carte graphique" width="40" /><span>Composants</span>
+        <img src="/public/picture/gpu.png" alt="carte graphique" width="40" /><span>Composants</span>
       </a>
     </div>
   </li>

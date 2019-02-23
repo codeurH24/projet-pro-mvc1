@@ -6,14 +6,14 @@ function getCompatibilities(){
     $db = dbConnect();
 
     $sql = 'SELECT
-              compatibilite.id,
-              composant1.id AS id1,
-              composant1.model as model1,
-              composant2.id AS id2,
-              composant2.model as model2
-            FROM `compatibilite`
-            INNER JOIN composant AS composant1 ON composant1.id = compatibilite.id_composant1
-            INNER JOIN composant AS composant2 ON composant2.id = compatibilite.id_composant2';
+              compatibility.id,
+              component1.id AS id1,
+              component1.model as model1,
+              component2.id AS id2,
+              component2.model as model2
+            FROM `compatibility`
+            INNER JOIN composant AS component1 ON component1.id = compatibility.id_component1
+            INNER JOIN composant AS component2 ON component2.id = compatibility.id_component2';
 
     $requete = $db->prepare($sql);
     $requete->execute();
@@ -32,15 +32,15 @@ function getCompatibilitie($id){
     $db = dbConnect();
 
     $sql = 'SELECT
-              compatibilite.id,
-              composant1.id AS id1,
-              composant1.model as model1,
-              composant2.id AS id2,
-              composant2.model as model2
-            FROM `compatibilite`
-            INNER JOIN composant AS composant1 ON composant1.id = compatibilite.id_composant1
-            INNER JOIN composant AS composant2 ON composant2.id = compatibilite.id_composant2
-            WHERE compatibilite.id = :id';
+              compatibility.id,
+              component1.id AS id1,
+              component1.model as model1,
+              component2.id AS id2,
+              component2.model as model2
+            FROM `compatibility`
+            INNER JOIN composant AS component1 ON component1.id = compatibility.id_component1
+            INNER JOIN composant AS component2 ON component2.id = compatibility.id_component2
+            WHERE compatibility.id = :id';
 
     $requete = $db->prepare($sql);
     $requete->execute([':id' => $id]);
@@ -52,22 +52,22 @@ function getCompatibilitie($id){
       die('Erreur : '.$e->getMessage());
   }
 }
-function createCompatibility($auteur, $id_composant1, $id_composant2){
+function createCompatibility($autor, $id_component1, $id_component2){
   try
   {
     $db = dbConnect();
 
-    $sql = 'INSERT INTO `compatibilite`
-            (degrer, auteur, id_composant1, id_composant2, date_at)
+    $sql = 'INSERT INTO `compatibility`
+            (degrer, autor, id_component1, id_component2, date_at)
             VALUES
-            (:degrer, :auteur, :id_composant1, :id_composant2, :date_at)';
+            (:degrer, :autor, :id_component1, :id_component2, :date_at)';
 
     $requete = $db->prepare($sql);
     $requete->execute([
       ':degrer' => 0,
-      ':auteur' => $auteur,
-      ':id_composant1' => $id_composant1,
-      ':id_composant2' => $id_composant2,
+      ':autor' => $autor,
+      ':id_component1' => $id_component1,
+      ':id_component2' => $id_component2,
       ':date_at' => dbDate()
     ]);
   }
@@ -76,17 +76,17 @@ function createCompatibility($auteur, $id_composant1, $id_composant2){
       die('Erreur : '.$e->getMessage());
   }
 }
-function updateCompatibility($id, $auteur, $id_composant1, $id_composant2){
+function updateCompatibility($id, $autor, $id_component1, $id_component2){
   try
   {
     $db = dbConnect();
 
-    $sql = 'UPDATE `compatibilite`
+    $sql = 'UPDATE `compatibility`
             SET
               degrer = 0,
-              auteur = :auteur,
-              id_composant1 = :id_composant1,
-              id_composant2 = :id_composant2,
+              autor = :autor,
+              id_component1 = :id_component1,
+              id_component2 = :id_component2,
               date_at = :date_at
             WHERE id = :id';
 
@@ -94,9 +94,9 @@ function updateCompatibility($id, $auteur, $id_composant1, $id_composant2){
     $requete = $db->prepare($sql);
     $requete->execute([
       ':id' => $id,
-      ':auteur' => $auteur,
-      ':id_composant1' => $id_composant1,
-      ':id_composant2' => $id_composant2,
+      ':autor' => $autor,
+      ':id_component1' => $id_component1,
+      ':id_component2' => $id_component2,
       ':date_at' => dbDate()
     ]);
   }
@@ -111,7 +111,7 @@ function deleteCompatibility($id){
   {
     $db = dbConnect();
 
-    $sql = 'DELETE FROM `compatibilite` WHERE id = :id';
+    $sql = 'DELETE FROM `compatibility` WHERE id = :id';
 
     $requete = $db->prepare($sql);
     $requete->execute([':id' => $id]);

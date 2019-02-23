@@ -4,7 +4,7 @@ function getResellers(){
   {
       $db = dbConnect();
 
-      $sql = 'SELECT * FROM revendeur';
+      $sql = 'SELECT * FROM reseller';
       $result = $db->prepare($sql);
       $result->execute();
       $resellers = $result->fetchAll(PDO::FETCH_OBJ);
@@ -21,7 +21,7 @@ function getReseller($id){
   {
       $db = dbConnect();
 
-      $sql = 'SELECT * FROM revendeur WHERE id = :id';
+      $sql = 'SELECT * FROM reseller WHERE id = :id';
       $result = $db->prepare($sql);
       $result->execute(['id' => $id]);
       $reseller = $result->fetch(PDO::FETCH_OBJ);
@@ -39,8 +39,8 @@ function createReseller($name){
       $db = dbConnect();
 
       $sql =
-      'INSERT INTO revendeur
-      (`nom`)
+      'INSERT INTO reseller
+      (`name`)
       VALUES
       (:name)';
       $result = $db->prepare($sql);
@@ -57,7 +57,7 @@ function updateReseller($id, $name){
   {
       $db = dbConnect();
 
-      $sql = 'UPDATE revendeur SET nom = :name WHERE id = :id';
+      $sql = 'UPDATE reseller SET name = :name WHERE id = :id';
       $result = $db->prepare($sql);
       $result->execute([':id' => $id, ':name' => $name]);
   }
@@ -73,7 +73,7 @@ function deleteReseller($id){
       $db = dbConnect();
 
       $sql =
-      'DELETE FROM revendeur WHERE id = :id';
+      'DELETE FROM reseller WHERE id = :id';
       $result = $db->prepare($sql);
       $result->execute([':id' => $id]);
   }

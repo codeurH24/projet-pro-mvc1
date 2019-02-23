@@ -22,7 +22,7 @@ function getResellerLink($id){
 
       // $sql = 'SELECT * FROM revendeur_composant WHERE id = :id';
       $sql = 'SELECT revendeur_composant.*, composant.model, revendeur.nom   FROM `revendeur_composant`
-              INNER JOIN composant ON composant.id = revendeur_composant.id_composant
+              INNER JOIN composant ON composant.id = revendeur_composant.id_component
               INNER JOIN revendeur ON revendeur.id = revendeur_composant.id_revendeur
               WHERE revendeur_composant.id = :id';
       $result = $db->prepare($sql);
@@ -35,22 +35,22 @@ function getResellerLink($id){
       die('Erreur : '.$e->getMessage());
   }
 }
-function createResellerLink($price, $link, $id_revendeur, $id_composant){
+function createResellerLink($price, $link, $id_revendeur, $id_component){
   try
   {
     $db = dbConnect();
 
     $sql = 'INSERT INTO revendeur_composant
-            (prix, lien, auteur, id_revendeur, id_composant, date_at)
+            (prix, lien, autor, id_revendeur, id_component, date_at)
             VALUES
-            (:prix, :lien, :auteur, :id_revendeur, :id_composant, :date_at)';
+            (:prix, :lien, :autor, :id_revendeur, :id_component, :date_at)';
     $result = $db->prepare($sql);
     $result->execute([
       ':prix' => $price,
       ':lien' => $link,
-      ':auteur' => $_SESSION['user']['pseudo'],
+      ':autor' => $_SESSION['user']['pseudo'],
       ':id_revendeur' => $id_revendeur,
-      ':id_composant' => $id_composant,
+      ':id_component' => $id_component,
       ':date_at' => dbDate()
     ]);
   }
@@ -60,7 +60,7 @@ function createResellerLink($price, $link, $id_revendeur, $id_composant){
   }
 }
 
-function updateResellerLink($id, $price, $link, $id_revendeur, $id_composant){
+function updateResellerLink($id, $price, $link, $id_revendeur, $id_component){
   try
   {
     $db = dbConnect();
@@ -69,9 +69,9 @@ function updateResellerLink($id, $price, $link, $id_revendeur, $id_composant){
             SET
             prix = :prix,
             lien = :lien,
-            auteur = :auteur,
+            autor = :autor,
             id_revendeur = :id_revendeur,
-            id_composant = :id_composant,
+            id_component = :id_component,
             date_at = :date_at
             WHERE id = :id';
     $result = $db->prepare($sql);
@@ -79,9 +79,9 @@ function updateResellerLink($id, $price, $link, $id_revendeur, $id_composant){
       ':id' => $id,
       ':prix' => $price,
       ':lien' => $link,
-      ':auteur' => $_SESSION['user']['pseudo'],
+      ':autor' => $_SESSION['user']['pseudo'],
       ':id_revendeur' => $id_revendeur,
-      ':id_composant' => $id_composant,
+      ':id_component' => $id_component,
       ':date_at' => dbDate()
     ]);
   }

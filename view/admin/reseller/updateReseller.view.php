@@ -12,7 +12,7 @@
       </div>
       <div class="form-group">
         <label for="nameRetailerUpdate">Nom</label>
-        <input name="name" type="text" class="form-control" id="nameRetailerUpdate" value="<?= $reseller->nom ?>" />
+        <input name="name" type="text" class="form-control" id="nameRetailerUpdate" value="<?= $reseller->name ?>" />
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Modifier</button>

@@ -8,7 +8,7 @@
         </div>
         <div class="col">
           <div class="text-right">
-            <a href="/admin/composant/lien-du-revendeur/creer-lien-de-revente.php" class="btn btn-secondary">Nouveau Revendeur</a>
+            <a href="/admin/revendeur/creer-revendeur.php" class="btn btn-secondary">Nouveau Revendeur</a>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
             <p><?= $value->id ?></p>
           </div>
           <div class="col" style="height:21px;">
-            <p><?= $value->nom ?></p>
+            <p><?= $value->name ?></p>
           </div>
           <div class="col-12 admin-tools-users" style="z-index:1">
             <span class="align-middle">

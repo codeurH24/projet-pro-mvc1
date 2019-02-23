@@ -14,8 +14,8 @@
   <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col-1">
-        <?php if (!empty($creation->image)): ?>
-          <img src="/public/image/OS/<?= $creation->image; ?>" alt="image systeme" style="width:100%" />
+        <?php if (!empty($creation->picture)): ?>
+          <img src="/public/picture/OS/<?= $creation->picture; ?>" alt="image systeme" style="width:100%" />
         <?php endif; ?>
       </div>
       <div class="col-8">

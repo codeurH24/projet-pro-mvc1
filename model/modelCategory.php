@@ -4,7 +4,7 @@ function createCategory($name){
   {
       $db = dbConnect();
 
-      $sql = 'INSERT INTO categorie (`nom`) VALUES (:name)';
+      $sql = 'INSERT INTO category (`name`) VALUES (:name)';
 
       $result = $db->prepare($sql);
       $result->execute([':name' => $name]);
@@ -20,7 +20,7 @@ function getCategories(){
   {
       $db = dbConnect();
 
-      $sql = 'SELECT * FROM categorie ORDER BY `nom` DESC';
+      $sql = 'SELECT * FROM category ORDER BY `name` DESC';
 
       $result = $db->prepare($sql);
       $result->execute();
@@ -37,7 +37,7 @@ function getCategory($id){
   {
       $db = dbConnect();
 
-      $sql = 'SELECT * FROM categorie WHERE id = :id';
+      $sql = 'SELECT * FROM category WHERE id = :id';
 
       $result = $db->prepare($sql);
       $result->execute(['id' => $id]);
@@ -54,7 +54,7 @@ function deleteCategory($id){
   {
       $db = dbConnect();
 
-      $sql = 'DELETE FROM categorie WHERE id = :id';
+      $sql = 'DELETE FROM category WHERE id = :id';
       $result = $db->prepare($sql);
       $result->execute(['id' => $id]);
   }
@@ -63,14 +63,14 @@ function deleteCategory($id){
       die('Erreur : '.$e->getMessage());
   }
 }
-function updateCategory($id, $nom){
+function updateCategory($id, $name){
   try
   {
       $db = dbConnect();
 
-      $sql = 'UPDATE categorie SET nom = :nom WHERE id = :id';
+      $sql = 'UPDATE category SET name = :name WHERE id = :id';
       $result = $db->prepare($sql);
-      $result->execute(['id' => $id, 'nom' => $nom]);
+      $result->execute(['id' => $id, 'name' => $name]);
   }
   catch(Exception $e)
   {
