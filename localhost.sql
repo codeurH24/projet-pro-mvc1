@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Dim 17 Février 2019 à 20:57
+-- Généré le :  Sam 23 Février 2019 à 08:40
 -- Version du serveur :  5.7.25-0ubuntu0.18.04.2
 -- Version de PHP :  7.2.15-0ubuntu0.18.04.1
 
@@ -120,8 +120,6 @@ INSERT INTO `compatibility_tag` (`id`, `id_composant`, `tag`) VALUES
 (7, 23, 'am4'),
 (8, 24, 'am4'),
 (9, 20, '1151'),
-(10, 18, '1151'),
-(11, 20, '1151'),
 (12, 22, '1151'),
 (13, 25, '1151'),
 (14, 26, 'am4'),
@@ -180,7 +178,14 @@ INSERT INTO `compatibility_tag` (`id`, `id_composant`, `tag`) VALUES
 (68, 128, 'ddr4'),
 (69, 128, '8 fentes RAM'),
 (70, 49, '2 fentes RAM'),
-(71, 60, 'ddr3');
+(71, 60, 'ddr3'),
+(73, 52, 'ddr4'),
+(74, 130, 'ddr3'),
+(75, 130, 'am3+'),
+(76, 130, '2 fentes RAM'),
+(77, 131, 'am4'),
+(79, 132, 'am4'),
+(80, 132, '4 fentes RAM');
 
 -- --------------------------------------------------------
 
@@ -203,17 +208,17 @@ CREATE TABLE `composant` (
 --
 
 INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `id_cat`, `date_at`) VALUES
-(17, 'CPU INTEL CELERON G4920 - DOUBLE COEUR DE 3.2GHZ - 8EME GNRATION - COFFEE LAKE', 'Intel', 3521, 'codeurh24', 8, '2018-10-14 08:23:00'),
-(18, 'CPU INTEL PENTIUM G5400 - DOUBLE COEUR DE 3.7GHZ - 8EME GNRATION - COFFEE LAKE-S', 'Intel', 5231, 'codeurh24', 8, '2018-10-14 08:23:00'),
+(17, 'CPU INTEL CELERON G4920 - DOUBLE COEUR DE 3.2GHZ - 8EME GENERATION - COFFEE LAKE', 'Intel', 3521, 'codeurh24', 8, '2018-10-14 08:23:00'),
+(18, 'CPU INTEL PENTIUM G5400 - DOUBLE COEUR DE 3.7GHZ - 8EME GENERATION - COFFEE LAKE-S', 'Intel', 5231, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (19, 'CPU AMD RYZEN 3 1200 WRAITH STEALTH EDITION - 4C/4T - 3.1  3.4GHZ', 'AMD', 6758, 'Florent Corlouer', 8, '2018-10-27 13:10:15'),
-(20, 'CPU INTEL PENTIUM G5500 - DOUBLE COEUR DE 3.8GHZ - 8EME GNRATION - COFFEE LAKE-S', 'Intel', 5194, 'Florent Corlouer', 8, '2018-10-27 12:42:45'),
+(20, 'CPU INTEL PENTIUM G5500 - DOUBLE COEUR DE 3.8GHZ - 8EME GENERATION - COFFEE LAKE-S', 'Intel', 5194, 'Florent Corlouer', 8, '2018-10-27 12:42:45'),
 (21, 'CPU AMD RYZEN 3 2200 WRAITH STEALTH EDITION - 4C/4T - 3.5  3.7GHZ', 'AMD', 7434, 'Florent Corlouer', 8, '2018-10-27 12:43:59'),
-(22, 'CPU INTEL PENTIUM G5600 - DOUBLE COEUR DE 3.9GHZ - 8EME GNRATION - COFFEE LAKE-S', 'Intel', 5707, 'Florent Corlouer', 8, '2018-10-27 12:45:50'),
+(22, 'CPU INTEL PENTIUM G5600 - DOUBLE COEUR DE 3.9GHZ - 8EME GENERATION - COFFEE LAKE-S', 'Intel', 5707, 'Florent Corlouer', 8, '2018-10-27 12:45:50'),
 (23, 'CPU AMD RYZEN 5 2400G WRAITH STEALTH EDITION - 4C/8T - 3.6  3.9GHZ', 'AMD', 9282, 'Florent Corlouer', 8, '2018-10-27 12:47:13'),
 (24, 'CPU AMD RYZEN 5 2600 WRAITH STEALTH EDITION - 6C/12T - 3.4  3.9GHZ', 'AMD', 13508, 'Florent Corlouer', 8, '2018-10-27 12:48:39'),
-(25, 'CPU INTEL CORE I3-7350K - DOUBLE COEUR DE 4.2GHZ - 7EME GNRATION - KABY LAKE', 'Intel', 6620, 'Florent Corlouer', 8, '2018-10-27 12:50:43'),
+(25, 'CPU INTEL CORE I3-7350K - DOUBLE COEUR DE 4.2GHZ - 7EME GENERATION - KABY LAKE', 'Intel', 6620, 'Florent Corlouer', 8, '2018-10-27 12:50:43'),
 (26, 'CPU AMD Athlon 200GE - 2C/4T - 3.2 Ghz', 'AMD', 4928, 'Florent Corlouer', 8, '2018-10-27 13:08:24'),
-(27, 'CPU Intel Core i5-7640X - Quadruple Coeur de 4.0  4.2Ghz - 8eme gnration - Kaby Lake X', 'AMD', 9585, 'Florent Corlouer', 8, '2018-10-27 13:32:09'),
+(27, 'CPU Intel Core i5-7640X - Quadruple Coeur de 4.0  4.2Ghz - 8eme GENERATION - Kaby Lake X', 'AMD', 9585, 'Florent Corlouer', 8, '2018-10-27 13:32:09'),
 (28, ' PCI-E16X , MSI , Nvidia GEFORCE GT710 - 1Go', 'MSI', 678, 'Florent Corlouer', 2, '2018-10-27 14:58:06'),
 (29, 'PCI-E16X , MSI , Nvidia GEFORCE GT710 - 2Go', 'MSI', 678, 'Florent Corlouer', 2, '2018-10-27 15:00:38'),
 (30, 'PCI-E16X , MSI , Nvidia GEFORCE GT1030 - 2Go - OC', 'MSI', 2224, 'Florent Corlouer', 2, '2018-10-27 15:20:16'),
@@ -235,16 +240,16 @@ INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `
 (46, ' PCI-E16X , Gigabyte , Nvidia GEFORCE RTX2080 - 8Go - OC - GAMING', 'Gigabyte', 15657, 'Florent Corlouer', 2, '2018-10-27 16:17:37'),
 (47, 'PCI-E16X , GIGABYTE , Nvidia GEFORCE GTX TITAN X EXTREME - 12Go', 'GIGABYTE', 13480, 'Florent Corlouer', 2, '2018-10-27 16:19:23'),
 (48, ' PCI-E16X , MSI , Nvidia GEFORCE RTX2080 TI - 11Go - OC - GAMING X TRIO', 'MSI', 17210, 'Florent Corlouer', 2, '2018-10-27 16:21:13'),
-(49, ' Carte Mre MSI B250M PRO VD - pour CPU Intel 6me et 7me Gnration', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:31:29'),
-(50, 'Carte Mre MSI H110M ECO - DDR4 - Socket 1151 - pour CPU Intel 6me Gnration', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:34:09'),
-(51, 'Carte Mre GIGABYTE H110M-M2 - pour CPU Intel 6me et 7me Gnration', 'GIGABYTE', 0, 'Florent Corlouer', 9, '2018-10-27 16:35:32'),
-(52, 'Carte Mre MSI A320M PRO-VH - Socket AM4 - pour CPU AMD', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:36:35'),
-(53, 'Carte Mre MSI H310M PRO-VH - DDR4 - Socket 1151 - pour CPU Intel 8me Gnration', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:50:32'),
-(54, ' Carte Mre ASUS H310M K - DDR4 - Socket 1151 - pour CPU Intel 8me Gnration', 'ASUS', 0, 'Florent Corlouer', 9, '2018-10-27 16:41:30'),
-(55, 'Carte Mre MSI B350M PRO VD PLUS - Socket AM4 - pour CPU AMD RYZEN', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:40:20'),
-(56, ' Carte Mre GIGABYTE B360M H - DDR4 - Socket 1151 - pour CPU Intel 8me Gnration', 'GIGABYTE', 0, 'Florent Corlouer', 9, '2018-10-27 16:55:20'),
-(57, 'Carte Mre MSI B350M GAMING PRO - Socket AM4 - pour CPU AMD RYZEN', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:56:26'),
-(58, 'Carte Mre ASUS STRIX B360 G GAMING - Socket 1151 - pour CPU Intel 8me Gnration', 'ASUS', 0, 'Florent Corlouer', 9, '2018-10-27 16:57:42'),
+(49, ' Carte Mère MSI B250M PRO VD - pour CPU Intel 6me et 7me GENERATION', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:31:29'),
+(50, 'Carte Mère MSI H110M ECO - DDR4 - Socket 1151 - pour CPU Intel 6me GENERATION', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:34:09'),
+(51, 'Carte Mère GIGABYTE H110M-M2 - pour CPU Intel 6me et 7me GENERATION', 'GIGABYTE', 0, 'Florent Corlouer', 9, '2018-10-27 16:35:32'),
+(52, 'Carte Mère MSI A320M PRO-VH - Socket AM4 - pour CPU AMD', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:36:35'),
+(53, 'Carte Mère MSI H310M PRO-VH - DDR4 - Socket 1151 - pour CPU Intel 8me GENERATION', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:50:32'),
+(54, ' Carte Mère ASUS H310M K - DDR4 - Socket 1151 - pour CPU Intel 8me GENERATION', 'ASUS', 0, 'Florent Corlouer', 9, '2018-10-27 16:41:30'),
+(55, 'Carte Mère MSI B350M PRO VD PLUS - Socket AM4 - pour CPU AMD RYZEN', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:40:20'),
+(56, ' Carte Mère GIGABYTE B360M H - DDR4 - Socket 1151 - pour CPU Intel 8me GENERATION', 'GIGABYTE', 0, 'Florent Corlouer', 9, '2018-10-27 16:55:20'),
+(57, 'Carte Mère MSI B350M GAMING PRO - Socket AM4 - pour CPU AMD RYZEN', 'MSI', 0, 'Florent Corlouer', 9, '2018-10-27 16:56:26'),
+(58, 'Carte Mère ASUS STRIX B360 G GAMING - Socket 1151 - pour CPU Intel 8me GENERATION', 'ASUS', 0, 'Florent Corlouer', 9, '2018-10-27 16:57:42'),
 (60, 'DDR3 - KINGSTON - 2 Go - 1600 MHz - ValueSelect', 'KINGSTON', NULL, 'Florent Corlouer', 4, '2018-11-27 09:36:13'),
 (61, 'DDR2 - Transcend - 2 Go - 800 MHz - PC2-6400', 'Transcend', NULL, 'Florent Corlouer', 4, '2018-11-27 09:42:16'),
 (62, 'SODIMM DDR3 L - KINGSTON - 4Go - 1600 MHz -ValueSelect - Low Voltage', 'KINGSTON', NULL, 'Florent Corlouer', 4, '2018-11-27 09:45:02'),
@@ -314,7 +319,10 @@ INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `auteur`, `
 (126, 'G.Skill NS Series 4 Go (kit 2x 2 Go) DDR3-SDRAM PC3-10600', 'G.Skill ', NULL, 'Florent Corlouer', 4, '2018-11-27 11:11:09'),
 (127, 'G.Skill RipJaws X Series 8 Go (2x 4Go) DDR3 2133 MHz CL9', 'G.Skill ', NULL, 'Florent Corlouer', 4, '2018-11-27 11:12:06'),
 (128, 'ASRock Fatal1ty X299 Gaming K6', 'asrock', 0, 'admin master', 9, '2019-02-16 13:27:42'),
-(129, 'Intel Core i7-7800X (3.5 GHz)', 'intel', 14598, 'admin master', 8, '2019-02-16 13:31:05');
+(129, 'Intel Core i7-7800X (3.5 GHz)', 'intel', 14598, 'admin master', 8, '2019-02-16 13:31:05'),
+(130, 'Asus M5A78L-M LX3', 'asus', 0, 'admin master', 9, '2019-02-18 10:49:15'),
+(131, 'AMD A10 9700 (3,5 GHz)', 'amd', 5677, 'admin master', 8, '2019-02-18 16:03:17'),
+(132, 'Asus PRIME B450M-A', 'asus', 0, 'admin master', 9, '2019-02-18 16:08:03');
 
 -- --------------------------------------------------------
 
@@ -327,6 +335,7 @@ CREATE TABLE `creation` (
   `name` varchar(255) NOT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL,
+  `id_os` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `date_creation` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -335,13 +344,17 @@ CREATE TABLE `creation` (
 -- Contenu de la table `creation`
 --
 
-INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_user`, `date_creation`) VALUES
-(9, 'Ordinateur pour le voisin', 1, 'Mon voisin  a besoin d\'un ordinateur pour surfer sur internet', 14, '2018-10-28 03:04:07'),
-(32, 'PC Gamer', 0, 'Ma super config ultra puissante pour jouer en 8K', 14, '2018-11-03 14:23:31'),
-(34, 'config X', 0, 'test X', 24, '2018-11-04 09:35:28'),
-(41, 'Config No Name', 0, 'Config No Name', 24, '2018-11-04 09:52:30'),
-(42, 'PC familial', 0, 'Besoin d\'un pc pour toute la famille', 14, '2018-12-15 21:37:54'),
-(44, 'config de test', 0, 'pour tester', 14, '2019-01-13 10:41:53');
+INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_os`, `id_user`, `date_creation`) VALUES
+(9, 'Ordinateur pour le voisin', 1, 'Mon voisin  a besoin d\'un ordinateur pour surfer sur internet', 1, 14, '2018-10-28 03:04:07'),
+(32, 'PC Gamer', 0, 'Ma super config ultra puissante pour jouer en 8K', 2, 14, '2018-11-03 14:23:31'),
+(34, 'config X', 1, 'test X', 0, 24, '2018-11-04 09:35:28'),
+(41, 'Config No Name', 0, 'Config No Name', 0, 24, '2018-11-04 09:52:30'),
+(42, 'PC familial', 0, 'Besoin d\'un pc pour toute la famille', 5, 14, '2018-12-15 21:37:54'),
+(44, 'config de test', 0, 'pour tester', 4, 14, '2019-01-13 10:41:53'),
+(48, 'No Name', 1, 'Creation crée par défaut', 1, 35, '2019-02-18 16:13:22'),
+(49, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:19:47'),
+(50, 'No Name', 1, 'Creation crée par défaut', 1, 70, '2019-02-18 16:27:54'),
+(51, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:35:33');
 
 -- --------------------------------------------------------
 
@@ -371,8 +384,22 @@ INSERT INTO `creation_conception` (`id`, `id_composant`, `id_creation`, `id_user
 (43, 57, 32, 14, '2019-02-16 12:48:28'),
 (44, 64, 32, 14, '2019-02-16 13:15:25'),
 (45, 19, 32, 14, '2019-02-16 13:15:33'),
-(66, 64, 9, 14, '2019-02-17 19:15:33'),
-(67, 64, 9, 14, '2019-02-17 19:15:36');
+(87, 49, 46, 35, '2019-02-18 14:38:14'),
+(88, 50, 9, 14, '2019-02-18 14:56:16'),
+(91, 44, 49, 70, '2019-02-18 16:19:47'),
+(93, 129, 49, 70, '2019-02-18 16:20:40'),
+(95, 66, 49, 70, '2019-02-18 16:21:37'),
+(96, 66, 49, 70, '2019-02-18 16:21:45'),
+(98, 25, 50, 70, '2019-02-18 16:29:14'),
+(99, 50, 50, 70, '2019-02-18 16:32:22'),
+(100, 49, 51, 70, '2019-02-18 16:35:33'),
+(101, 17, 51, 70, '2019-02-18 16:36:03'),
+(102, 28, 50, 70, '2019-02-18 16:46:44'),
+(103, 28, 50, 70, '2019-02-18 16:46:54'),
+(104, 28, 50, 70, '2019-02-18 16:47:03'),
+(105, 17, 9, 14, '2019-02-20 10:14:28'),
+(106, 64, 9, 14, '2019-02-20 10:14:37'),
+(107, 52, 48, 35, '2019-02-20 12:31:57');
 
 -- --------------------------------------------------------
 
@@ -502,7 +529,10 @@ INSERT INTO `image_composant` (`id`, `image`, `id_composant`) VALUES
 (121, 'LD0000920429_2.jpg', 126),
 (122, 'LD0000913130.jpg', 127),
 (123, 'LD0004572488_2.jpg', 128),
-(124, 'LD0004430669_2_0004430679.jpg', 129);
+(124, 'LD0004430669_2_0004430679.jpg', 129),
+(125, 'MN0005206978_1.jpg', 130),
+(126, 'AR201707210170_g1.jpg', 131),
+(127, 'AR201807050068_g1.jpg', 132);
 
 -- --------------------------------------------------------
 
@@ -616,13 +646,25 @@ INSERT INTO `log` (`id`, `user_id`, `name_task`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `marque_composant`
+-- Structure de la table `os`
 --
 
-CREATE TABLE `marque_composant` (
+CREATE TABLE `os` (
   `id` int(11) NOT NULL,
-  `marque` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Contenu de la table `os`
+--
+
+INSERT INTO `os` (`id`, `name`, `image`) VALUES
+(1, 'windows 10', 'windows-10.png'),
+(2, 'windows xp', 'windows-xp.png'),
+(3, 'ubuntu', 'ubuntu.png'),
+(4, 'xubuntu', 'xubuntu.png'),
+(5, 'lubuntu', 'lubuntu.png');
 
 -- --------------------------------------------------------
 
@@ -718,7 +760,8 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `pseudo`, `email`, `age`, `password`,
 (57, NULL, NULL, 'dream3d', 'dream3d@gmail.fr', 0, '$2y$10$H6CCd63lANc4BqjyrX4RJu1okFEm4ISS.OuV83oB9HCvL8TCkjP2i', '2019-02-03 11:51:40', '2019-02-03 11:51:40', 1),
 (59, '', '', 'rogerRabbit', 'rogerRabbit@gmail.com', 0, '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2019-02-03 14:20:13', '2019-02-03 14:20:13', 1),
 (62, NULL, NULL, 'julien76', 'julien76@laposte.fr', 0, '$2y$10$X7IuaKz/P7vj8OGh2nZFKO0nTf2QeAT0I.Ymnr3umyazy01nm5loa', '2019-02-09 01:02:29', '2019-02-09 01:02:29', 1),
-(69, NULL, NULL, 'bob2', 'bob2@gmail.com', 0, '$2y$10$nEQ6hm9KgLIUA.898pYa9eGrKW88sqrxzyGdTXUbiQWRtj1UE3ZMu', '2019-02-10 20:29:49', '2019-02-10 20:29:49', 1);
+(69, NULL, NULL, 'bob2', 'bob2@gmail.com', 0, '$2y$10$nEQ6hm9KgLIUA.898pYa9eGrKW88sqrxzyGdTXUbiQWRtj1UE3ZMu', '2019-02-10 20:29:49', '2019-02-10 20:29:49', 1),
+(70, NULL, NULL, 'Y_ssine', 'yassine-du-76@hotmail.fr', 0, '$2y$10$sTlonkLNAeRIuX7/oyfoLOhz4JwDVqFdhCI4GuOvHMtyM/UjGkA.a', '2019-02-18 16:18:56', '2019-02-18 16:18:56', 1);
 
 --
 -- Index pour les tables exportées
@@ -786,9 +829,9 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `marque_composant`
+-- Index pour la table `os`
 --
-ALTER TABLE `marque_composant`
+ALTER TABLE `os`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -841,37 +884,37 @@ ALTER TABLE `compatibilite`
 -- AUTO_INCREMENT pour la table `compatibility_tag`
 --
 ALTER TABLE `compatibility_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT pour la table `composant`
 --
 ALTER TABLE `composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 --
 -- AUTO_INCREMENT pour la table `creation`
 --
 ALTER TABLE `creation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT pour la table `creation_conception`
 --
 ALTER TABLE `creation_conception`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
 -- AUTO_INCREMENT pour la table `image_composant`
 --
 ALTER TABLE `image_composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 --
 -- AUTO_INCREMENT pour la table `log`
 --
 ALTER TABLE `log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
--- AUTO_INCREMENT pour la table `marque_composant`
+-- AUTO_INCREMENT pour la table `os`
 --
-ALTER TABLE `marque_composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `os`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `revendeur`
 --
@@ -891,7 +934,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- Contraintes pour les tables exportées
 --
