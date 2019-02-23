@@ -154,10 +154,10 @@ function setEnableCreation($id, $enable){
 		$sql =
 		' UPDATE creation
 		SET enable = :enable
-		WHERE id = :id';
+		WHERE id = :id AND id_user = :idUser';
 
 		$requete = $db->prepare($sql);
-		$requete->execute([':id' => $id, ':enable' => $enable]);
+		$requete->execute([':id' => $id, ':enable' => $enable, ':idUser' => UID()]);
 	}
 	catch(Exception $e)
 	{
@@ -172,10 +172,10 @@ function getEnableCreation($id){
 
 		$sql =
 		' SELECT enable FROM creation
-		WHERE id = :id';
+		WHERE id = :id AND id_user = :idUser';
 
 		$requete = $db->prepare($sql);
-		$requete->execute([':id' => $id]);
+		$requete->execute([':id' => $id, ':idUser' => UID()]);
 		$creation = $requete->fetchAll(PDO::FETCH_OBJ);
 		return ( count($creation) > 0) ?  (bool)$creation[0]->enable : false;
 	}
@@ -216,6 +216,7 @@ class Creation extends Database {
 	protected $name;
 	protected $enable;
 	protected $description;
+	protected $id_os;
 	protected $id_user;
 	protected $date_creation;
 
@@ -231,7 +232,11 @@ class Creation extends Database {
 			}
 
 			$bd = $this->db;
-			$requete = $bd->prepare('SELECT * FROM `creation` '.$sqlWhere.' ORDER BY `creation`.`enable` DESC');
+			$requete = $bd->prepare('SELECT creation.*, os.image FROM `creation`
+																LEFT JOIN os ON os.id = creation.id_os
+																 '.$sqlWhere.'
+																ORDER BY `creation`.`enable` DESC
+															');
 
 			$attributs = $this->getNominativeMarker();
 
@@ -241,7 +246,6 @@ class Creation extends Database {
 			}
 
 			$requete->execute($attributs);
-
 			$this->setResultQuery($requete);
 
 			return $this;
@@ -487,6 +491,34 @@ class Creation extends Database {
     public function setDateCreation($date_creation)
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+
+
+
+
+    /**
+     * Get the value of Id Os
+     *
+     * @return mixed
+     */
+    public function getIdOs()
+    {
+        return $this->id_os;
+    }
+
+    /**
+     * Set the value of Id Os
+     *
+     * @param mixed id_os
+     *
+     * @return self
+     */
+    public function setIdOs($id_os)
+    {
+        $this->id_os = $id_os;
 
         return $this;
     }

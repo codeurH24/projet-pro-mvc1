@@ -2,6 +2,7 @@
 require 'model/modelUser.php';
 require 'model/modelCreation.php';
 require 'model/modelCreationConception.php';
+require 'model/modelOS.php';
 
 function login(){
   view('account/login.view.php',[
@@ -26,7 +27,7 @@ function submitLogin(){
       'pseudo' => $user->pseudo,
       'roleID' => $user->id_role
     ];
-    header('Location: /');
+    header('Location: /mes-creations/');
     exit('User trouvé');
   }else{
     view('account/login.view.php',[
@@ -105,6 +106,8 @@ function myAccount(){
   $creationList = $Creation->getCreation([
     ['id_user', '=', UID()]
   ])->gets();
+
+
 
   view('account/myAccount.view.php',[
     'creationList' => $creationList

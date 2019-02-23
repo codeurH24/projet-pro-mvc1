@@ -16,6 +16,19 @@
       <label for="descriptionCreation">Description</label>
       <input name="description" type="text" class="form-control" id="descriptionCreation" aria-describedby="nomHelp" value="<?= $creation->description ?>">
     </div>
+    <div class="form-group">
+      <label for="idOs">Systeme d'exploitation</label>
+      <select name="idOs" class="form-control"  id="idOs">
+        <?php foreach ($os as $value): ?>
+          <?php if ($value->id == $creation->id_os ): ?>
+            <option value="<?= $value->id ?>" selected><?= $value->name ?></option>
+          <?php else: ?>
+            <option value="<?= $value->id ?>"><?= $value->name ?></option>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </select>
+      <?= errorsForm('idOs') ?>
+    </div>
     <button type="submit" class="btn btn-primary">Modifier une création</button>
 </form>
 <?php require 'view/account/footerMyAccount.php'; ?>

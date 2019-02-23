@@ -10,6 +10,15 @@ function livelyMemory(){
   if(UID() !== false){
     $whereIN = infoConfig();
 
+    // filte l'affichage.
+    // Les barrettes seront affichées selont le type de ram déjà present dans la config
+    $cfgTypeRAM = infoConfig_typeOfRAM();
+    if ($cfgTypeRAM !== false) {
+      $whereIN[] = $cfgTypeRAM;
+    }
+
+    // empèche l'utilisateur d'accèder a la page pour avoir le choix d'ajouter une barrette de ram alors qu'il
+    // n'as plus de place sur ça carte mère
     if (infoConfig_numberOfRAM() >= infoConfig_numberOfSlotsRAM()) {
       $_SESSION['notification'] = 'Il n\'y a plus de place sur la carte mère pour accueillir une nouvelle barrette de ram';
       header('Location: /mes-creations/detail/'.infoConfig_ID().'.php');
@@ -60,6 +69,22 @@ function mainBoard(){
             }
           }
         }
+        // si la config possède un processeur alors on n'affiche que les carte mère avec kes tags du processeur
+        if (infoConfig_hasProcessor() !== false) {
+          $whereIN = array_merge($whereIN, getTagsProcesseur());
+        }
+
+        // filtre l'affichage.
+        // si la ram dans la config est de type X
+        // alors ont affiche seuelement les carte mere qui accepte la mémoire vive de type X
+        $cfgTypeRAM = infoConfig_typeOfRAM();
+        if ($cfgTypeRAM !== false) {
+          $arr[] = $cfgTypeRAM;
+          $whereIN = array_merge($whereIN, $arr);
+        }
+
+
+
       } // hasMainboard()
   }// UID
 
@@ -86,11 +111,12 @@ function mainBoard(){
 function processor(){
   // INFO SURL LA CONFIG ACTUEL
   $categorie = 'processeur';
-  $whereIN = [];
 
+  $whereIN = [];
   if(UID() !== false) {
-      $whereIN = infoConfig();
+     $whereIN = infoConfig();
   }
+
 
 
 
@@ -163,9 +189,15 @@ function addComponent(){
   }
 
   if (isRAM()) {
-    $cfgTypeRAM = infoConfig_typeOfRAM();
-    debug(getTag('ddr3'));
-    exit('non trouvé');
+    if (infoConfig_numberOfRAM()) {
+      $cfgTypeRAM = infoConfig_typeOfRAM();
+
+      if (getTag($cfgTypeRAM) === false ) {
+        $_SESSION['notification'] = 'Vous ne pouvez pas mélanger les types de mémoires vives';
+        header('Location: /mes-creations/detail/'.infoConfig_ID().'.php');
+        exit;
+      }
+    }
   }
 
   if(isMainboard()){
@@ -190,238 +222,32 @@ function addComponent(){
 
 
   $id = whoIsEnableInMyCreation();
+  // si aucun confguration est detecté alors on creer la config NO NAME par defaut
+  if( $id === false){
+    $Creation = new Creation();
+    $Creation->setName('No Name');
+    $Creation->setEnable(1);
+    $Creation->setDescription('Creation crée par défaut');
+    $Creation->setIdOs(1);
+    $Creation->setIdUser(UID());
+    $Creation->setDateCreation(dbDate());
+    $isSuccess = $Creation->createCreation();
+    $id = whoIsEnableInMyCreation();
+  }
+
   $CreationConception = new CreationConception();
   $CreationConception->setIdComposant($_POST['id']);
   $CreationConception->setIdCreation($id);
   $CreationConception->setIdUser(UID());
   $CreationConception->setDateCreate(dbDate());
   $CreationConception->createCreationConception();
-  header('Location: '.back());
+  // $_SESSION['notification'] = '';
+  header('Location: /mes-creations/detail/'.infoConfig_ID().'.php');
+  return true;
 }
 
 
 
-
-function numberOfSlotsRAM($idMainBoard){
-  $component = getComponent($idMainBoard);
-  $Tag = new Tag();
-  $tags = $Tag->select([
-    ['id_composant', '=', $component->id]
-  ])->gets();
-  foreach ($tags as $tag) {
-    $whereIN[]= $tag->tag; // on recupere les tags de la carte mere
-  }
-  return infoConfig_numberOfSlotsRAM($whereIN);
-}
-
-function infoConfig_numberOfSlotsRAM($whereIN=[]){
-  if(count($whereIN) == 0){
-    $whereIN = infoConfig();
-  }
-
-  $numberOfSlots= 99;
-  // recupere le nombre de fentes mémoire vive pour
-  // empecher d'en ajouter plus que la carte mere le permet
-  if ($arr = preg_grep ('/^([0-9]+) fentes RAM/i', $whereIN)) {
-      $numberOfSlots = explode(' ', implode($arr))[0];
-  }
-  return $numberOfSlots;
-}
-
-function infoConfig_ID(){
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-  return $ID_creationEnable;
-}
-
-function infoConfig_numberOfRAM(){
-  // recherche des composant deja ajouter a la config
-  // en particulier les composant de RAM
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-
-  $CreationConception = new CreationConception();
-  $componentsRAM= $CreationConception->getCreationConception([
-    ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 4]// categorie 4  =  mémoire vive
-  ])->gets();
-  // retourne les resultats en comptant les lignes de resultat
-  if( $componentsRAM !== false){
-    return count($componentsRAM);
-  }else{
-    return false;
-  }
-}
-
-function infoConfig_hasProcessor(){
-  // recherche des composant deja ajouter a la config
-  // en particulier les composant de RAM
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-
-  $CreationConception = new CreationConception();
-  $componentsRAM = $CreationConception->getCreationConception([
-    ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 8]// categorie 8  =  processeur
-  ])->gets();
-  // retourne les resultats en comptant les lignes de resultat
-  if( $componentsRAM !== false){
-    return count($componentsRAM);
-  }else{
-    return false;
-  }
-}
-
-function isMainboard(){
-  // verifier que le composant qui va etre ajouté est une carte mère
-  $componentMainBoard = getComponent($_POST['id']);
-  if($componentMainBoard !== false && !empty($componentMainBoard)  && $componentMainBoard->id_cat == 9){
-    return true;
-  }else{
-    return false;
-  }
-}
-
-function isProcessor(){
-  // verifier que le composant qui va etre ajouté est un processeur
-  $componentProcesseor = getComponent($_POST['id']);
-  if($componentProcesseor !== false && !empty($componentProcesseor)  && $componentProcesseor->id_cat == 8){
-    return true;
-  }else{
-    return false;
-  }
-}
-
-function isRAM(){
-  // verifier que le composant qui va etre ajouté est un processeur
-  $componentProcesseor = getComponent($_POST['id']);
-  if($componentProcesseor !== false && !empty($componentProcesseor)  && $componentProcesseor->id_cat == 4){
-    return true;
-  }else{
-    return false;
-  }
-}
-
-function infoConfig_hasMainboard(){
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-
-  $CreationConception = new CreationConception();
-  $componentMainBoard = $CreationConception->getCreationConception([
-    ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 9]// categorie 9 =  carte mere
-  ])->get();
-  if($componentMainBoard !== false){
-    return true;
-  }else{
-    return false;
-  }
-}
-
-function infoConfig_typeOfRAM(){
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-
-  $CreationConception = new CreationConception();
-  $componentRAM = $CreationConception->getCreationConception([
-    ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 4]// categorie 4 =  mémoire vive
-  ])->get();
-  if ($componentRAM !== false) {
-    // on peut recuprer son id pour le réutiliser pour obtenir ses tags
-    $idRAM = $componentRAM->id_composant;
-
-    $Tag = new Tag();
-    $tags = $Tag->select([
-      ['id_composant', '=', $idRAM]
-    ])->gets();
-    foreach ($tags as $tag) {
-      $whereIN[]= $tag->tag; // on recupere les tags de la RAM
-    }
-    if ($arr = preg_grep ('/^ddr5/i', $whereIN)) {
-        return $arr[0];
-    }
-    if ($arr = preg_grep ('/^ddr4/i', $whereIN)) {
-        return $arr[0];
-    }
-    if ($arr = preg_grep ('/^ddr3/i', $whereIN)) {
-        return $arr[0];
-    }
-    if ($arr = preg_grep ('/^ddr2/i', $whereIN)) {
-        return $arr[0];
-    }
-    return false;
-  }
-}
-
-
-function infoConfig(){
-  $whereIN = [];
-  // recherche d'une carte mère pour savoir
-  // quel processeur est compatible
-  // avec le socket de la carte mere
-  $Creation = new Creation();
-  $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1],
-    ['id_user', '=', UID()]
-  ])->get()->id;
-
-  $CreationConception = new CreationConception();
-  $componentMainBoard = $CreationConception->getCreationConception([
-    ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 9]// categorie 9 =  carte mere
-  ])->get();
-
-  // si on a récupéré une carte mère dans la config actuelle
-  if($componentMainBoard !== false){
-    // on peut recuprer son id pour le réutiliser pour obtenir ses tags
-    $idMainBoard = $componentMainBoard->id_composant;
-
-    $Tag = new Tag();
-    $tags = $Tag->select([
-      ['id_composant', '=', $idMainBoard]
-    ])->gets();
-    foreach ($tags as $tag) {
-      $whereIN[]= $tag->tag; // on recupere les tags de la carte mere
-    }
-  }
-
-  return $whereIN;
-}
-
-function getTags($idComponent){
-  $Tag = new Tag();
-  $componentsArray = $Tag->select([
-    ['id_composant', '=', $idComponent]
-  ])->gets();
-
-  foreach ($componentsArray as $componentStruct) {
-    $whereIN[]= $componentStruct->tag; // on recupere les tags du composant
-  }
-  return $whereIN;
-}
-
-function getTag($tagName){
-  if ($arr = preg_grep ('/^'.$tagName.'$/i', getTags($_POST['id']))) {
-      return $arr[0];
-  }
-  return false;
-}
 
 
 ?>

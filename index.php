@@ -4,6 +4,7 @@ require('app/functions/regex.php');
 require('app/functions/global.php');
 require('app/class/Route.php');
 require('model/modelDatabase.php');
+require('app/functions/vitrine.php');
 
 
 // enregistre les urls de navigation sur le site
@@ -14,7 +15,8 @@ historyURL();
 // si le role de l'utilisateur n'est pas autorisé a passer avec l'url en cours
 // alors ont le redirige
   if ( access() === false ) {
-    ob_start();
+    // ob_start();
+    // ob_end_clean();
     header('Location: http://'.$_SERVER['HTTP_HOST']);
     exit();
   }

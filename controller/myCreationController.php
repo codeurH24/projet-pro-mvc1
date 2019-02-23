@@ -1,9 +1,15 @@
 <?php
 require 'model/modelCreation.php';
 require 'model/modelCreationConception.php';
+require 'model/modelOS.php';
 
 function createMyCreation(){
-  view('account/myCreation/createMyCreation.view.php');
+  $OS = new OS();
+  $os = $OS->getOS()->gets();
+
+  view('account/myCreation/createMyCreation.view.php',[
+    'os' => $os
+  ]);
 }
 function storeMyCreation(){
 
@@ -19,6 +25,7 @@ function storeMyCreation(){
   $Creation->setName($_POST['name']);
   $Creation->setEnable(0);
   $Creation->setDescription($_POST['description']);
+  $Creation->setIdOs($_POST['idOs']);
   $Creation->setIdUser(UID());
   $Creation->setDateCreation(dbDate());
   $isSuccess = $Creation->createCreation();
@@ -32,11 +39,18 @@ function showMyCreation(){
     view('errors/404.view.php');
     exit;
   }
-  // recupere le nom de la config detaillé en cour en cours de visionnage
+  // recupere le nom de la config detaillé en cours de visionnage
   $Creation = new Creation();
   $creation = $Creation->getCreation([
-    ['id', '=', $_GET['id']]
+    ['creation.id', '=', $_GET['id']],
+    ['creation.id_user', '=', UID()]
   ])->get();
+
+  // aucune page visible si l'utilisateur n'est pas le bon
+  if( $creation === false){
+    view('errors/404.view.php');
+    exit;
+  }
 
   // recupere les composants qui appartiennent à la config detaillé en cours de visionnage
   $CreationConception = new CreationConception();
@@ -57,8 +71,12 @@ function editMyCreation(){
     view('errors/404.view.php');
     exit;
   }
+  $OS = new OS();
+  $os = $OS->getOS()->gets();
+
   view('account/myCreation/updateCreation.view.php',[
-    'creation' => getCreationByID($_GET['id'])
+    'creation' => getCreationByID($_GET['id']),
+    'os' => $os
   ]);
 }
 
@@ -71,6 +89,7 @@ function updateMyCreation(){
   $Creation = new Creation();
   $Creation->setName($_POST['name']);
   $Creation->setDescription($_POST['description']);
+  $Creation->setIdOs($_POST['idOs']);
   $isSuccess = $Creation->updateCreation([
     ['id', '=', $_POST['id']]
   ]);
@@ -105,6 +124,9 @@ function deleteItemCreation(){
 }
 
 function enableMyCreation(){
+  if(!UID()){
+    exit('Utilisateur non connecté');
+  }
 
   // recupere l'id pour verifier
   // qu'on n'active pas la meme creation
@@ -112,7 +134,8 @@ function enableMyCreation(){
 
   $Creation = new Creation();
   $ID_creationEnable = $Creation->getCreation([
-    ['enable', '=', 1]
+    ['enable', '=', 1],
+    ['id_user', '=', UID()]
   ])->get()->id;
 
 
@@ -128,7 +151,9 @@ function enableMyCreation(){
   // Desactive toutes les configs
   $Creation = new Creation();
   $Creation->setEnable(0);
-  $isSuccess = $Creation->updateCreation();
+  $isSuccess = $Creation->updateCreation([
+    ['id_user', '=', UID()]
+  ]);
 
   // et ont active la creation demander
   // par inversement de l'etat
@@ -139,7 +164,8 @@ function enableMyCreation(){
   $Creation = new Creation();
   $Creation->setEnable((int)$etat);
   $isSuccess = $Creation->updateCreation([
-    ['id', '=', $_GET['id']]
+    ['id', '=', $_GET['id']],
+    ['id_user', '=', UID()]
   ]);
 
   // enableCreation($_GET['id'],(int)$etat);

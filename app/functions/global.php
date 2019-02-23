@@ -1,11 +1,9 @@
 <?php
 
   function view($viewFile, $vars = []){
-    // genenrate CSRF token
     global $errorsForm;
-    foreach ($vars as $key => $value) {
-      $$key = $value;
-    }
+
+    extract($vars, EXTR_PREFIX_SAME, "wddx");
     ob_start();
     require 'view/'.$viewFile;
     $content = ob_get_clean();
@@ -171,7 +169,7 @@ function historyURL(){
     if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != '/favicon.ico'){
       $_SESSION['historyURL'][] = $_SERVER['HTTP_REFERER'];
     }
-    if( count($_SESSION['historyURL']) > 10){
+    if(isset($_SESSION['historyURL']) && count($_SESSION['historyURL']) > 10){
       $_SESSION['historyURL'] = array_splice($_SESSION['historyURL'], 1, count($_SESSION['historyURL']));
     }
 }
