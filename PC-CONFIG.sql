@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Sam 23 Février 2019 à 08:40
+-- Généré le :  Mar 05 Mars 2019 à 09:39
 -- Version du serveur :  5.7.25-0ubuntu0.18.04.2
 -- Version de PHP :  7.2.15-0ubuntu0.18.04.1
 
@@ -51,19 +51,19 @@ INSERT INTO `access` (`id`, `url`, `role_id`, `pass_right`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categorie`
+-- Structure de la table `category`
 --
 
-CREATE TABLE `categorie` (
+CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Contenu de la table `categorie`
+-- Contenu de la table `category`
 --
 
-INSERT INTO `categorie` (`id`, `nom`) VALUES
+INSERT INTO `category` (`id`, `name`) VALUES
 (2, 'carte graphique'),
 (4, 'mémoire vive'),
 (6, 'disque dur'),
@@ -74,12 +74,11 @@ INSERT INTO `categorie` (`id`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `compatibilite`
+-- Structure de la table `compatibility`
 --
 
-CREATE TABLE `compatibilite` (
+CREATE TABLE `compatibility` (
   `id` int(11) NOT NULL,
-  `degrer` int(11) NOT NULL,
   `autor` varchar(255) NOT NULL,
   `id_component1` int(11) NOT NULL,
   `id_component2` int(11) NOT NULL,
@@ -87,13 +86,13 @@ CREATE TABLE `compatibilite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Contenu de la table `compatibilite`
+-- Contenu de la table `compatibility`
 --
 
-INSERT INTO `compatibilite` (`id`, `degrer`, `autor`, `id_component1`, `id_component2`, `date_at`) VALUES
-(1, 100, 'codeurh24', 54, 38, '2018-11-04 16:14:53'),
-(2, 100, 'codeurh24', 38, 53, '2018-11-04 16:35:14'),
-(3, 100, 'admin master', 37, 88, '2018-12-16 21:10:18');
+INSERT INTO `compatibility` (`id`, `autor`, `id_component1`, `id_component2`, `date_at`) VALUES
+(1, 'codeurh24', 54, 38, '2018-11-04 16:14:53'),
+(2, 'codeurh24', 38, 53, '2018-11-04 16:35:14'),
+(3, 'admin master', 37, 88, '2018-12-16 21:10:18');
 
 -- --------------------------------------------------------
 
@@ -185,15 +184,18 @@ INSERT INTO `compatibility_tag` (`id`, `id_component`, `tag`) VALUES
 (76, 130, '2 fentes RAM'),
 (77, 131, 'am4'),
 (79, 132, 'am4'),
-(80, 132, '4 fentes RAM');
+(80, 132, '4 fentes RAM'),
+(82, 143, '1151'),
+(83, 143, 'ddr4'),
+(84, 143, '2 fentes RAM');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `composant`
+-- Structure de la table `component`
 --
 
-CREATE TABLE `composant` (
+CREATE TABLE `component` (
   `id` int(11) NOT NULL,
   `model` varchar(255) NOT NULL,
   `marque` varchar(255) NOT NULL,
@@ -204,10 +206,10 @@ CREATE TABLE `composant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Contenu de la table `composant`
+-- Contenu de la table `component`
 --
 
-INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `autor`, `id_cat`, `date_at`) VALUES
+INSERT INTO `component` (`id`, `model`, `marque`, `point_puissance`, `autor`, `id_cat`, `date_at`) VALUES
 (17, 'CPU INTEL CELERON G4920 - DOUBLE COEUR DE 3.2GHZ - 8EME GENERATION - COFFEE LAKE', 'Intel', 3521, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (18, 'CPU INTEL PENTIUM G5400 - DOUBLE COEUR DE 3.7GHZ - 8EME GENERATION - COFFEE LAKE-S', 'Intel', 5231, 'codeurh24', 8, '2018-10-14 08:23:00'),
 (19, 'CPU AMD RYZEN 3 1200 WRAITH STEALTH EDITION - 4C/4T - 3.1  3.4GHZ', 'AMD', 6758, 'Florent Corlouer', 8, '2018-10-27 13:10:15'),
@@ -322,7 +324,9 @@ INSERT INTO `composant` (`id`, `model`, `marque`, `point_puissance`, `autor`, `i
 (129, 'Intel Core i7-7800X (3.5 GHz)', 'intel', 14598, 'admin master', 8, '2019-02-16 13:31:05'),
 (130, 'Asus M5A78L-M LX3', 'asus', 0, 'admin master', 9, '2019-02-18 10:49:15'),
 (131, 'AMD A10 9700 (3,5 GHz)', 'amd', 5677, 'admin master', 8, '2019-02-18 16:03:17'),
-(132, 'Asus PRIME B450M-A', 'asus', 0, 'admin master', 9, '2019-02-18 16:08:03');
+(132, 'Asus PRIME B450M-A', 'asus', 0, 'admin master', 9, '2019-02-23 11:41:26'),
+(142, 'interessant', 'interessant', 1200, 'admin master', 8, '2019-02-23 11:46:13'),
+(143, 'Emilie carte mere', 'Emilie', 0, 'admin master', 9, '2019-03-03 21:53:50');
 
 -- --------------------------------------------------------
 
@@ -349,12 +353,12 @@ INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_os`, `id_user
 (32, 'PC Gamer', 0, 'Ma super config ultra puissante pour jouer en 8K', 2, 14, '2018-11-03 14:23:31'),
 (34, 'config X', 1, 'test X', 0, 24, '2018-11-04 09:35:28'),
 (41, 'Config No Name', 0, 'Config No Name', 0, 24, '2018-11-04 09:52:30'),
-(42, 'PC familial', 0, 'Besoin d\'un pc pour toute la famille', 5, 14, '2018-12-15 21:37:54'),
 (44, 'config de test', 0, 'pour tester', 4, 14, '2019-01-13 10:41:53'),
 (48, 'No Name', 1, 'Creation crée par défaut', 1, 35, '2019-02-18 16:13:22'),
 (49, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:19:47'),
 (50, 'No Name', 1, 'Creation crée par défaut', 1, 70, '2019-02-18 16:27:54'),
-(51, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:35:33');
+(51, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:35:33'),
+(52, 'PC FAMILIAL', 0, 'Ma super config ultra puissante pour jouer en 8K', 3, 14, '2019-03-01 09:34:49');
 
 -- --------------------------------------------------------
 
@@ -399,140 +403,16 @@ INSERT INTO `creation_conception` (`id`, `id_component`, `id_creation`, `id_user
 (104, 28, 50, 70, '2019-02-18 16:47:03'),
 (105, 17, 9, 14, '2019-02-20 10:14:28'),
 (106, 64, 9, 14, '2019-02-20 10:14:37'),
-(107, 52, 48, 35, '2019-02-20 12:31:57');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `image_composant`
---
-
-CREATE TABLE `image_composant` (
-  `id` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `id_component` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Contenu de la table `image_composant`
---
-
-INSERT INTO `image_composant` (`id`, `image`, `id_component`) VALUES
-(12, 'G4920x300.jpg', 17),
-(13, 'G5400x300.jpg', 18),
-(14, 'RYZEN31200x300.jpg', 19),
-(15, 'G5400x300.jpg', 20),
-(16, 'RYZEN31200x300.jpg', 21),
-(17, 'G5400x300.jpg', 22),
-(18, 'RYZEN31200x300.jpg', 23),
-(19, 'RYZEN31200x300.jpg', 24),
-(20, 'I37350Kx300.jpg', 25),
-(21, 'ATHLON200GEx300.jpg', 26),
-(22, 'I57640Xx300.jpg', 27),
-(23, 'N7101GD3HLPx300.jpg', 28),
-(24, 'N7101GD3HLPx300.jpg', 29),
-(25, 'N7101GD3HLPx300.jpg', 30),
-(26, 'GVN1030D52GLx300.jpg', 31),
-(27, 'N10502GOCx300.jpg', 32),
-(28, 'GVN1050D52GDx300.jpg', 33),
-(29, 'GVN1050G1GAMING2Gx300.jpg', 34),
-(30, 'GTX1050x300.jpg', 35),
-(31, 'N10502GTLPx300.jpg', 36),
-(32, 'N1050AERO2GOCx300.jpg', 37),
-(33, 'N10502GOCx300.jpg', 38),
-(34, 'GTX1050O2GGAMINGx300.jpg', 39),
-(35, 'GVN1050TIG1GAMING4Gx300.jpg', 40),
-(36, 'N1050TIGAMINGX4Gx300.jpg', 41),
-(37, 'GTX10603Gx300.jpg', 42),
-(38, 'GVN1070IXOC8GDx300.jpg', 43),
-(39, 'GVN1080WF3OC8GDx300.jpg', 44),
-(40, 'N2070AERO8Gx300.jpg', 45),
-(41, 'GVN2080GAMINGOC8GCx300.jpg', 46),
-(42, 'GVNTITANXXTREME12GDBx300.jpg', 47),
-(43, 'N2080TIGAMINGXTRIOx300.jpg', 48),
-(44, 'B250MPROVDx300.jpg', 49),
-(45, 'H110MECOx300.jpg', 50),
-(46, 'H110MM2x300.jpg', 51),
-(47, 'A320MPROVHx300.jpg', 52),
-(48, 'H310MPROVHx300.jpg', 53),
-(49, 'H310MKx300.jpg', 54),
-(50, 'B350MPROVDPLUSx300.jpg', 55),
-(51, 'B360MHx300.jpg', 56),
-(52, 'B350MGAMINGPROx300.jpg', 57),
-(53, 'B360GGAMINGx300.jpg', 58),
-(55, 'KVR16N11S62x100.jpg', 60),
-(56, 'JM800QLU2Gx300.jpg', 61),
-(57, 'KVR16LS114x300.jpg', 62),
-(58, 'KVR16LS114x300.jpg', 63),
-(59, 'KVR24N17S64x300.jpg', 64),
-(60, 'IN4T4GNDURXx300.jpg', 65),
-(61, 'CMK4GX4M1A2400C14Rx300.jpg', 66),
-(62, 'HX426C15FB4x300.jpg', 67),
-(63, 'BLS4G4D26BFSCx300.jpg', 68),
-(64, 'TS512MLH64V1Hx300.jpg', 69),
-(65, 'BLS4G4D240FSBx300.jpg', 70),
-(66, 'BLS4G4D26BFSEx300.jpg', 71),
-(67, 'KCP424NS64x300.jpg', 72),
-(68, 'KCP424NS64x300.jpg', 73),
-(69, 'CMV4GX4M1A2400C16x300.jpg', 74),
-(70, 'KVR16N11S8H4x300.jpg', 75),
-(71, 'HX313C9FR4x300.jpg', 76),
-(72, 'HX313C9FB4x300.jpg', 77),
-(73, 'HX316C10F8x300.jpg', 78),
-(74, 'KVR16LN118x300.jpg', 79),
-(75, 'CMV8GX3M2A1333C9x300.jpg', 80),
-(76, 'LD0001545558_2_0001545612.jpg', 81),
-(77, 'LD0001545558_2_0001545612.jpg', 82),
-(78, 'LD0004383903_2.jpg', 83),
-(79, 'LD0001026223_2_0001026228_0001026257_0001026267.jpg', 84),
-(80, 'LD0001026223_2_0001026228_0001026257_0001026267.jpg', 85),
-(81, 'LD0004383903_2.jpg', 86),
-(82, 'LD0000903707_2.jpg', 87),
-(83, 'LD0001299407_2_0001299533_0001300966.jpg', 88),
-(84, 'LD0001301134_2.jpg', 89),
-(85, 'LD0000824111.jpg', 90),
-(86, 'LD0000903725_2_0000920397_0000920409_0001016463_0001104276.jpg', 91),
-(87, 'LD0000824098.jpg', 92),
-(88, 'LD0000824095_0000980231.jpg', 93),
-(89, 'LD0000787367_0001079176.jpg', 94),
-(90, 'LD0000937300_2_0001016516.jpg', 95),
-(91, 'LD0000792163.jpg', 96),
-(92, 'LD0001664479_2.jpg', 97),
-(93, 'LD0001426723_2_0001426738.jpg', 98),
-(94, 'LD0001426778_2_0001426798.jpg', 99),
-(95, 'LD0001426708_2.jpg', 100),
-(96, 'LD0001426768_2.jpg', 101),
-(97, 'LD0001426723_2.jpg', 102),
-(98, 'LD0001024085_2_0001292900.jpg', 103),
-(99, 'LD0001024085_2_0001292900_0001310346.jpg', 104),
-(100, 'LD0001024080_2_0001293070_0001293164_0001310423.jpg', 105),
-(101, 'LD0001024214_2.jpg', 106),
-(102, 'LD0000681275.jpg', 107),
-(103, 'LD0000681219.jpg', 108),
-(104, 'LD0000920441_2.jpg', 109),
-(105, 'LD0000920441_2_0001180599.jpg', 110),
-(106, 'LD0001180609_2_0001180614.jpg', 111),
-(107, 'LD0001171742_2_0001171747.jpg', 112),
-(108, 'LD0000832717.jpg', 113),
-(109, 'LD0001522956_2.jpg', 114),
-(110, 'LD0001522956_2.jpg', 115),
-(111, 'LD0000768023.jpg', 116),
-(112, 'LD0000722452.jpg', 117),
-(113, 'LD0000722397.jpg', 118),
-(114, 'LD0000722474.jpg', 119),
-(115, 'LD0000724885.jpg', 120),
-(116, 'LD0001121357_2_0001121371_0001167161.jpg', 121),
-(117, 'LD0001016549_2_0001292905_0001292950.jpg', 122),
-(118, 'LD0000863952.jpg', 123),
-(119, 'LD0001426778_2_0001426847.jpg', 124),
-(120, 'LD0001024210_2.jpg', 125),
-(121, 'LD0000920429_2.jpg', 126),
-(122, 'LD0000913130.jpg', 127),
-(123, 'LD0004572488_2.jpg', 128),
-(124, 'LD0004430669_2_0004430679.jpg', 129),
-(125, 'MN0005206978_1.jpg', 130),
-(126, 'AR201707210170_g1.jpg', 131),
-(127, 'AR201807050068_g1.jpg', 132);
+(107, 52, 48, 35, '2019-02-20 12:31:57'),
+(108, 64, 32, 14, '2019-02-23 10:13:38'),
+(109, 64, 32, 14, '2019-02-23 10:13:42'),
+(110, 64, 32, 14, '2019-02-23 10:13:46'),
+(112, 53, 52, 14, '2019-03-01 09:35:52'),
+(113, 49, 52, 14, '2019-03-01 09:36:01'),
+(119, 143, 53, 14, '2019-03-03 21:58:35'),
+(120, 17, 53, 14, '2019-03-03 21:58:43'),
+(121, 65, 53, 14, '2019-03-03 21:59:29'),
+(122, 64, 53, 14, '2019-03-03 21:59:37');
 
 -- --------------------------------------------------------
 
@@ -652,14 +532,14 @@ INSERT INTO `log` (`id`, `user_id`, `name_task`, `date`) VALUES
 CREATE TABLE `os` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'terminal_icon.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `os`
 --
 
-INSERT INTO `os` (`id`, `name`, `image`) VALUES
+INSERT INTO `os` (`id`, `name`, `picture`) VALUES
 (1, 'windows 10', 'windows-10.png'),
 (2, 'windows xp', 'windows-xp.png'),
 (3, 'ubuntu', 'ubuntu.png'),
@@ -669,19 +549,154 @@ INSERT INTO `os` (`id`, `name`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `revendeur`
+-- Structure de la table `picture_component`
 --
 
-CREATE TABLE `revendeur` (
+CREATE TABLE `picture_component` (
   `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL
+  `picture` varchar(255) NOT NULL,
+  `id_component` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Contenu de la table `revendeur`
+-- Contenu de la table `picture_component`
 --
 
-INSERT INTO `revendeur` (`id`, `nom`) VALUES
+INSERT INTO `picture_component` (`id`, `picture`, `id_component`) VALUES
+(12, 'G4920x300.jpg', 17),
+(13, 'G5400x300.jpg', 18),
+(14, 'RYZEN31200x300.jpg', 19),
+(15, 'G5400x300.jpg', 20),
+(16, 'RYZEN31200x300.jpg', 21),
+(17, 'G5400x300.jpg', 22),
+(18, 'RYZEN31200x300.jpg', 23),
+(19, 'RYZEN31200x300.jpg', 24),
+(20, 'I37350Kx300.jpg', 25),
+(21, 'ATHLON200GEx300.jpg', 26),
+(22, 'I57640Xx300.jpg', 27),
+(23, 'N7101GD3HLPx300.jpg', 28),
+(24, 'N7101GD3HLPx300.jpg', 29),
+(25, 'N7101GD3HLPx300.jpg', 30),
+(26, 'GVN1030D52GLx300.jpg', 31),
+(27, 'N10502GOCx300.jpg', 32),
+(28, 'GVN1050D52GDx300.jpg', 33),
+(29, 'GVN1050G1GAMING2Gx300.jpg', 34),
+(30, 'GTX1050x300.jpg', 35),
+(31, 'N10502GTLPx300.jpg', 36),
+(32, 'N1050AERO2GOCx300.jpg', 37),
+(33, 'N10502GOCx300.jpg', 38),
+(34, 'GTX1050O2GGAMINGx300.jpg', 39),
+(35, 'GVN1050TIG1GAMING4Gx300.jpg', 40),
+(36, 'N1050TIGAMINGX4Gx300.jpg', 41),
+(37, 'GTX10603Gx300.jpg', 42),
+(38, 'GVN1070IXOC8GDx300.jpg', 43),
+(39, 'GVN1080WF3OC8GDx300.jpg', 44),
+(40, 'N2070AERO8Gx300.jpg', 45),
+(41, 'GVN2080GAMINGOC8GCx300.jpg', 46),
+(42, 'GVNTITANXXTREME12GDBx300.jpg', 47),
+(43, 'N2080TIGAMINGXTRIOx300.jpg', 48),
+(44, 'B250MPROVDx300.jpg', 49),
+(45, 'H110MECOx300.jpg', 50),
+(46, 'H110MM2x300.jpg', 51),
+(47, 'A320MPROVHx300.jpg', 52),
+(48, 'H310MPROVHx300.jpg', 53),
+(49, 'H310MKx300.jpg', 54),
+(50, 'B350MPROVDPLUSx300.jpg', 55),
+(51, 'B360MHx300.jpg', 56),
+(52, 'B350MGAMINGPROx300.jpg', 57),
+(53, 'B360GGAMINGx300.jpg', 58),
+(55, 'KVR16N11S62x100.jpg', 60),
+(56, 'JM800QLU2Gx300.jpg', 61),
+(57, 'KVR16LS114x300.jpg', 62),
+(58, 'KVR16LS114x300.jpg', 63),
+(59, 'KVR24N17S64x300.jpg', 64),
+(60, 'IN4T4GNDURXx300.jpg', 65),
+(61, 'CMK4GX4M1A2400C14Rx300.jpg', 66),
+(62, 'HX426C15FB4x300.jpg', 67),
+(63, 'BLS4G4D26BFSCx300.jpg', 68),
+(64, 'TS512MLH64V1Hx300.jpg', 69),
+(65, 'BLS4G4D240FSBx300.jpg', 70),
+(66, 'BLS4G4D26BFSEx300.jpg', 71),
+(67, 'KCP424NS64x300.jpg', 72),
+(68, 'KCP424NS64x300.jpg', 73),
+(69, 'CMV4GX4M1A2400C16x300.jpg', 74),
+(70, 'KVR16N11S8H4x300.jpg', 75),
+(71, 'HX313C9FR4x300.jpg', 76),
+(72, 'HX313C9FB4x300.jpg', 77),
+(73, 'HX316C10F8x300.jpg', 78),
+(74, 'KVR16LN118x300.jpg', 79),
+(75, 'CMV8GX3M2A1333C9x300.jpg', 80),
+(76, 'LD0001545558_2_0001545612.jpg', 81),
+(77, 'LD0001545558_2_0001545612.jpg', 82),
+(78, 'LD0004383903_2.jpg', 83),
+(79, 'LD0001026223_2_0001026228_0001026257_0001026267.jpg', 84),
+(80, 'LD0001026223_2_0001026228_0001026257_0001026267.jpg', 85),
+(81, 'LD0004383903_2.jpg', 86),
+(82, 'LD0000903707_2.jpg', 87),
+(83, 'LD0001299407_2_0001299533_0001300966.jpg', 88),
+(84, 'LD0001301134_2.jpg', 89),
+(85, 'LD0000824111.jpg', 90),
+(86, 'LD0000903725_2_0000920397_0000920409_0001016463_0001104276.jpg', 91),
+(87, 'LD0000824098.jpg', 92),
+(88, 'LD0000824095_0000980231.jpg', 93),
+(89, 'LD0000787367_0001079176.jpg', 94),
+(90, 'LD0000937300_2_0001016516.jpg', 95),
+(91, 'LD0000792163.jpg', 96),
+(92, 'LD0001664479_2.jpg', 97),
+(93, 'LD0001426723_2_0001426738.jpg', 98),
+(94, 'LD0001426778_2_0001426798.jpg', 99),
+(95, 'LD0001426708_2.jpg', 100),
+(96, 'LD0001426768_2.jpg', 101),
+(97, 'LD0001426723_2.jpg', 102),
+(98, 'LD0001024085_2_0001292900.jpg', 103),
+(99, 'LD0001024085_2_0001292900_0001310346.jpg', 104),
+(100, 'LD0001024080_2_0001293070_0001293164_0001310423.jpg', 105),
+(101, 'LD0001024214_2.jpg', 106),
+(102, 'LD0000681275.jpg', 107),
+(103, 'LD0000681219.jpg', 108),
+(104, 'LD0000920441_2.jpg', 109),
+(105, 'LD0000920441_2_0001180599.jpg', 110),
+(106, 'LD0001180609_2_0001180614.jpg', 111),
+(107, 'LD0001171742_2_0001171747.jpg', 112),
+(108, 'LD0000832717.jpg', 113),
+(109, 'LD0001522956_2.jpg', 114),
+(110, 'LD0001522956_2.jpg', 115),
+(111, 'LD0000768023.jpg', 116),
+(112, 'LD0000722452.jpg', 117),
+(113, 'LD0000722397.jpg', 118),
+(114, 'LD0000722474.jpg', 119),
+(115, 'LD0000724885.jpg', 120),
+(116, 'LD0001121357_2_0001121371_0001167161.jpg', 121),
+(117, 'LD0001016549_2_0001292905_0001292950.jpg', 122),
+(118, 'LD0000863952.jpg', 123),
+(119, 'LD0001426778_2_0001426847.jpg', 124),
+(120, 'LD0001024210_2.jpg', 125),
+(121, 'LD0000920429_2.jpg', 126),
+(122, 'LD0000913130.jpg', 127),
+(123, 'LD0004572488_2.jpg', 128),
+(124, 'LD0004430669_2_0004430679.jpg', 129),
+(125, 'MN0005206978_1.jpg', 130),
+(126, 'AR201707210170_g1.jpg', 131),
+(127, 'AR201807050068_g1.jpg', 132),
+(137, 'AR201807050068_g1.jpg', 142),
+(138, 'earth_low.jpg', 143);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reseller`
+--
+
+CREATE TABLE `reseller` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Contenu de la table `reseller`
+--
+
+INSERT INTO `reseller` (`id`, `name`) VALUES
 (2, 'materiel.net'),
 (4, 'cdiscount'),
 (5, 'amazon'),
@@ -690,10 +705,10 @@ INSERT INTO `revendeur` (`id`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `revendeur_composant`
+-- Structure de la table `revendeur_component`
 --
 
-CREATE TABLE `revendeur_composant` (
+CREATE TABLE `revendeur_component` (
   `id` int(11) NOT NULL,
   `prix` float(10,2) NOT NULL,
   `lien` varchar(255) NOT NULL,
@@ -702,6 +717,13 @@ CREATE TABLE `revendeur_composant` (
   `id_component` int(11) NOT NULL,
   `date_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Contenu de la table `revendeur_component`
+--
+
+INSERT INTO `revendeur_component` (`id`, `prix`, `lien`, `autor`, `id_revendeur`, `id_component`, `date_at`) VALUES
+(1, 699.59, 'http://www.ldlc.com/5451249', 'admin master', 5, 20, '2019-02-23 10:27:47');
 
 -- --------------------------------------------------------
 
@@ -734,11 +756,8 @@ INSERT INTO `role` (`id`, `nom`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
   `pseudo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `age` tinyint(4) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
   `date_registration` datetime NOT NULL,
   `date_last_login` datetime NOT NULL,
@@ -749,19 +768,18 @@ CREATE TABLE `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `nom`, `prenom`, `pseudo`, `email`, `age`, `password`, `date_registration`, `date_last_login`, `id_role`) VALUES
-(14, 'florent2', 'Corlouer', 'admin master', 'cci.corlouer@gmail.com', 33, '$2y$10$6R.SHUzOOuTtpMLUJ1xPOeKXAa2G0jECCLczzjuX4W1QEORZdq9yK', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 4),
-(24, '', '', 'codeurh24', 'codeurh24@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 3),
-(26, 'Delmos', 'angalo', 'angelo', 'angelo@gmail.fr', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', 2),
-(27, '', '', 'Alice', 'alice@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', 1),
-(29, '', '', 'Charlie', 'charlie@gmail.com', 0, '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', 2),
-(35, '', '', 'bob', 'bob@gmail.com', 0, '$2y$10$1nzvdsRmbMCrYlv7zbFEpO6pg6bEeZyB7AE/dNaPk9.FtOtSFSsTS', '2019-01-30 22:09:47', '2019-01-30 22:09:47', 1),
-(37, NULL, NULL, 'visiteur', 'visiteur@gmail.com', 33, 'd3000fa849c1dcf8ccc6e27003cd4d8c', '2019-01-01 00:00:00', '2019-01-31 20:40:56', 4),
-(57, NULL, NULL, 'dream3d', 'dream3d@gmail.fr', 0, '$2y$10$H6CCd63lANc4BqjyrX4RJu1okFEm4ISS.OuV83oB9HCvL8TCkjP2i', '2019-02-03 11:51:40', '2019-02-03 11:51:40', 1),
-(59, '', '', 'rogerRabbit', 'rogerRabbit@gmail.com', 0, '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2019-02-03 14:20:13', '2019-02-03 14:20:13', 1),
-(62, NULL, NULL, 'julien76', 'julien76@laposte.fr', 0, '$2y$10$X7IuaKz/P7vj8OGh2nZFKO0nTf2QeAT0I.Ymnr3umyazy01nm5loa', '2019-02-09 01:02:29', '2019-02-09 01:02:29', 1),
-(69, NULL, NULL, 'bob2', 'bob2@gmail.com', 0, '$2y$10$nEQ6hm9KgLIUA.898pYa9eGrKW88sqrxzyGdTXUbiQWRtj1UE3ZMu', '2019-02-10 20:29:49', '2019-02-10 20:29:49', 1),
-(70, NULL, NULL, 'Y_ssine', 'yassine-du-76@hotmail.fr', 0, '$2y$10$sTlonkLNAeRIuX7/oyfoLOhz4JwDVqFdhCI4GuOvHMtyM/UjGkA.a', '2019-02-18 16:18:56', '2019-02-18 16:18:56', 1);
+INSERT INTO `user` (`id`, `pseudo`, `email`, `password`, `date_registration`, `date_last_login`, `id_role`) VALUES
+(14, 'admin master', 'cci.corlouer@gmail.com', '$2y$10$6R.SHUzOOuTtpMLUJ1xPOeKXAa2G0jECCLczzjuX4W1QEORZdq9yK', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 4),
+(24, 'codeurh24', 'codeurh24@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 3),
+(26, 'angelo', 'angelo@gmail.fr', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', 2),
+(27, 'Alice', 'alice@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', 1),
+(29, 'Charlie', 'charlie@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', 2),
+(35, 'bob', 'bob@gmail.com', '$2y$10$1nzvdsRmbMCrYlv7zbFEpO6pg6bEeZyB7AE/dNaPk9.FtOtSFSsTS', '2019-01-30 22:09:47', '2019-01-30 22:09:47', 1),
+(37, 'visiteur', 'visiteur@gmail.com', 'd3000fa849c1dcf8ccc6e27003cd4d8c', '2019-01-01 00:00:00', '2019-01-31 20:40:56', 4),
+(57, 'dream3d', 'dream3d@gmail.fr', '$2y$10$H6CCd63lANc4BqjyrX4RJu1okFEm4ISS.OuV83oB9HCvL8TCkjP2i', '2019-02-03 11:51:40', '2019-02-03 11:51:40', 1),
+(59, 'rogerRabbit', 'rogerRabbit@gmail.com', '$2y$10$hBg1Fq0T4bAT.shdRSQH5.XHAbWmnZZk7xbKYlZ2ACGSt4xv1gRFW', '2019-02-03 14:20:13', '2019-02-03 14:20:13', 2),
+(62, 'julien76', 'julien76@laposte.fr', '$2y$10$X7IuaKz/P7vj8OGh2nZFKO0nTf2QeAT0I.Ymnr3umyazy01nm5loa', '2019-02-09 01:02:29', '2019-02-09 01:02:29', 1),
+(69, 'bob2', 'bob2@gmail.com', '$2y$10$nEQ6hm9KgLIUA.898pYa9eGrKW88sqrxzyGdTXUbiQWRtj1UE3ZMu', '2019-02-10 20:29:49', '2019-02-10 20:29:49', 1);
 
 --
 -- Index pour les tables exportées
@@ -774,18 +792,18 @@ ALTER TABLE `access`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `categorie`
+-- Index pour la table `category`
 --
-ALTER TABLE `categorie`
+ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `compatibilite`
+-- Index pour la table `compatibility`
 --
-ALTER TABLE `compatibilite`
+ALTER TABLE `compatibility`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `component1_compatible2` (`id_component1`),
-  ADD KEY `component2_compatible1` (`id_component2`);
+  ADD KEY `composant1_compatible2` (`id_component1`),
+  ADD KEY `composant2_compatible1` (`id_component2`);
 
 --
 -- Index pour la table `compatibility_tag`
@@ -794,9 +812,9 @@ ALTER TABLE `compatibility_tag`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `composant`
+-- Index pour la table `component`
 --
-ALTER TABLE `composant`
+ALTER TABLE `component`
   ADD PRIMARY KEY (`id`),
   ADD KEY `composant_categorie` (`id_cat`);
 
@@ -816,13 +834,6 @@ ALTER TABLE `creation_conception`
   ADD KEY `creation composant` (`id_component`);
 
 --
--- Index pour la table `image_composant`
---
-ALTER TABLE `image_composant`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `image_composant` (`id_component`);
-
---
 -- Index pour la table `log`
 --
 ALTER TABLE `log`
@@ -835,15 +846,22 @@ ALTER TABLE `os`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `revendeur`
+-- Index pour la table `picture_component`
 --
-ALTER TABLE `revendeur`
+ALTER TABLE `picture_component`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `image_composant` (`id_component`);
+
+--
+-- Index pour la table `reseller`
+--
+ALTER TABLE `reseller`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `revendeur_composant`
+-- Index pour la table `revendeur_component`
 --
-ALTER TABLE `revendeur_composant`
+ALTER TABLE `revendeur_component`
   ADD PRIMARY KEY (`id`),
   ADD KEY `revLnkComp` (`id_component`),
   ADD KEY `compLnkRev` (`id_revendeur`);
@@ -871,40 +889,35 @@ ALTER TABLE `user`
 ALTER TABLE `access`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT pour la table `categorie`
+-- AUTO_INCREMENT pour la table `category`
 --
-ALTER TABLE `categorie`
+ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT pour la table `compatibilite`
+-- AUTO_INCREMENT pour la table `compatibility`
 --
-ALTER TABLE `compatibilite`
+ALTER TABLE `compatibility`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `compatibility_tag`
 --
 ALTER TABLE `compatibility_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
--- AUTO_INCREMENT pour la table `composant`
+-- AUTO_INCREMENT pour la table `component`
 --
-ALTER TABLE `composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+ALTER TABLE `component`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 --
 -- AUTO_INCREMENT pour la table `creation`
 --
 ALTER TABLE `creation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT pour la table `creation_conception`
 --
 ALTER TABLE `creation_conception`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
---
--- AUTO_INCREMENT pour la table `image_composant`
---
-ALTER TABLE `image_composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 --
 -- AUTO_INCREMENT pour la table `log`
 --
@@ -916,15 +929,20 @@ ALTER TABLE `log`
 ALTER TABLE `os`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT pour la table `revendeur`
+-- AUTO_INCREMENT pour la table `picture_component`
 --
-ALTER TABLE `revendeur`
+ALTER TABLE `picture_component`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+--
+-- AUTO_INCREMENT pour la table `reseller`
+--
+ALTER TABLE `reseller`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT pour la table `revendeur_composant`
+-- AUTO_INCREMENT pour la table `revendeur_component`
 --
-ALTER TABLE `revendeur_composant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `revendeur_component`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -934,36 +952,36 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- Contraintes pour les tables exportées
 --
 
 --
--- Contraintes pour la table `compatibilite`
+-- Contraintes pour la table `compatibility`
 --
-ALTER TABLE `compatibilite`
-  ADD CONSTRAINT `component1_compatible2` FOREIGN KEY (`id_component1`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `component2_compatible1` FOREIGN KEY (`id_component2`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `compatibility`
+  ADD CONSTRAINT `composant1_compatible2` FOREIGN KEY (`id_component1`) REFERENCES `component` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `composant2_compatible1` FOREIGN KEY (`id_component2`) REFERENCES `component` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `composant`
+-- Contraintes pour la table `component`
 --
-ALTER TABLE `composant`
-  ADD CONSTRAINT `composant_categorie` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id`);
+ALTER TABLE `component`
+  ADD CONSTRAINT `composant_categorie` FOREIGN KEY (`id_cat`) REFERENCES `category` (`id`);
 
 --
--- Contraintes pour la table `image_composant`
+-- Contraintes pour la table `picture_component`
 --
-ALTER TABLE `image_composant`
-  ADD CONSTRAINT `image_composant` FOREIGN KEY (`id_component`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `picture_component`
+  ADD CONSTRAINT `image_composant` FOREIGN KEY (`id_component`) REFERENCES `component` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `revendeur_composant`
+-- Contraintes pour la table `revendeur_component`
 --
-ALTER TABLE `revendeur_composant`
-  ADD CONSTRAINT `compLnkRev` FOREIGN KEY (`id_revendeur`) REFERENCES `revendeur` (`id`),
-  ADD CONSTRAINT `revLnkComp` FOREIGN KEY (`id_component`) REFERENCES `composant` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `revendeur_component`
+  ADD CONSTRAINT `compLnkRev` FOREIGN KEY (`id_revendeur`) REFERENCES `reseller` (`id`),
+  ADD CONSTRAINT `revLnkComp` FOREIGN KEY (`id_component`) REFERENCES `component` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

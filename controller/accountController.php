@@ -25,7 +25,8 @@ function submitLogin(){
     $_SESSION['user'] = [
       'id' =>  $user->id,
       'pseudo' => $user->pseudo,
-      'roleID' => $user->id_role
+      'roleID' => $user->id_role,
+      'csrf' => md5(md5(time()*rand(100000,999999)).md5($user->pseudo.$user->id))
     ];
     header('Location: /mes-creations/');
     exit('User trouvé');

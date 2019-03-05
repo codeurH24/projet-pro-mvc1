@@ -47,14 +47,13 @@ function livelyMemory(){
 function mainBoard(){
   $category = 'carte mère';
   $whereIN = [];
-
   // ont regarde la config seulement si l'utilisateur est connecté
   if(UID() !== false) {
-      if (infoConfig_hasMainboard() === true) {
-        $_SESSION['notification'] = 'Aucune carte mère de disponible tant que vous aurez une carte mère dans votre création';
-        header('Location: /mes-creations/detail/'.infoConfig_ID().'.php');
-        exit;
-      }
+      // if (infoConfig_hasMainboard() === true) {
+      //   $_SESSION['notification'] = 'Aucune carte mère de disponible tant que vous aurez une carte mère dans votre création';
+      //   header('Location: /mes-creations/detail/'.infoConfig_ID().'.php');
+      //   exit;
+      // }
       if (infoConfig_hasMainboard() === false){
         // limite les cartes mères affichées en fonction des barrettes mémoire déjà dans la config
         $numberOfRAM = infoConfig_numberOfRAM(); // recupere le nombre de barrette mémoire depuis la config
@@ -180,7 +179,6 @@ function addComponent(){
     header('Location: '.back());
     exit;
   }
-
 
   if(infoConfig_hasProcessor() !== false && isProcessor()){
     $_SESSION['notification'] = 'Un seul processeur par création est autorisé';

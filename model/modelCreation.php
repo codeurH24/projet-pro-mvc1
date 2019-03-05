@@ -1,5 +1,4 @@
 <?php
-//SELECT * FROM `creation` WHERE `id_user` = $UID ORDER BY `creation`.`enable` DESC
 
 function createCreation($name, $enable, $description, $id_user, $date_creation){
 	try
@@ -105,13 +104,16 @@ function updateCreation($id, $name, $description){
 		WHERE id = :id';
 
 		$requete = $db->prepare($sql);
-		$requete->execute([':id' => $id, ':name' => $name, ':description' => $description]);
+		$requete->execute([
+			':id' => $id,
+			':name' => $name,
+			':description' => $description
+		]);
 	}
 	catch(Exception $e)
 	{
 		die('Erreur : '.$e->getMessage());
 	}
-
 }
 
 function deleteCreation($id){
@@ -209,9 +211,13 @@ function whoIsEnableInMyCreation(){
 	}
 }
 
-
+// modèle objet qui permet de communiquer intelligemment avec la vue
+// par l'intermédiare du contrôleur
+// la classe représente une table de la base de données
 class Creation extends Database {
 
+	// propriétés de la classe
+	// qui permet d'être utilisé comme des colonnes de la table
 	protected $id;
 	protected $name;
 	protected $enable;
@@ -220,43 +226,64 @@ class Creation extends Database {
 	protected $id_user;
 	protected $date_creation;
 
+	// récupère les données sélectionnées
+	// Utile pour afficher, mettre a jour
 	function getCreation($where = NULL)
 	{
-
+		// si une erreur PDO intervient, l'erreur sera affichée
 		try
 		{
+			// partie where SQL qui génère une requête
+			// initialisation de la chaîne where sql en string vide
 			$sqlWhere = '';
+			// si le tableau qui renseigne le where n'est pas NULL
+			// c'est à dire que l'argument de la fonction membre est renseigné
+			// alors
 			if(! is_null($where) ) {
+				// on récupère la contruction de la requête au niveau du where
 				$sqlWhere = $this->generateWhere($where);
+				// on récupère le tableau de bind au niveau correspondant au where
+				// qui vient d'être généré
 				$sqlBindWhere = $this->generateBindWhere($where);
 			}
 
+			// simplification de la connection PDO dans la variable $db
 			$bd = $this->db;
+			// préparation de la requete de selection
+			// accompagné ou non de la chaine where
 			$requete = $bd->prepare('SELECT creation.*, os.picture FROM `creation`
 																LEFT JOIN os ON os.id = creation.id_os
 																 '.$sqlWhere.'
 																ORDER BY `creation`.`enable` DESC
 															');
-
+			// récupère automatiquement le tableau de bind par rapport
+			// au attributs de la classe non nulle
 			$attributs = $this->getNominativeMarker();
 
+			// si on a renseigné l'argument where dans la fonction
+			// alors on devrait obtenir une variable $sqlBindWhere
+			// comptant au moins un élément de tableau
 			if( isset($sqlBindWhere) && count($sqlBindWhere) > 0){
-				// debug($sqlBindWhere);
+				// si un résultat existe alors on additionne le résultat
+				// des binds du where vers les binds des attributs
 				$attributs = array_merge($attributs, $sqlBindWhere);
 			}
 
+			// une fois tous les binds bien obtenus, on renseigne
+			// les binds avec l'exécution de la requête
 			$requete->execute($attributs);
+			// mémorisation de la requête pour pouvoir récupérer
+			// le résultat sous forme de tableau 2D ou 1D
+			// c'est à dire une ligne de tableau ou plusieurs d'un coup
 			$this->setResultQuery($requete);
 
+			// on retourne l'objet pour continuer son utilisation
 			return $this;
-
 		}
 		catch(Exception $e)
 		{
 			die('Erreur : '.$e->getMessage());
 		}
-
-
 	}
 
 	public function createCreation(){
@@ -265,12 +292,12 @@ class Creation extends Database {
 			// connection à la database
 			$bd = $this->db;
 
-			// genere la chaine de colonne valeur au format Set
-			// ne prend en compte que les attributs non null modifié par les setters
+			// génère la chaîne de colonne valeur au format Set
+			// ne prend en compte que les attributs non null modifiés par les setters
 			$sqlSet = $this->getSqlSet();
 			$requete = $bd->prepare('INSERT INTO `creation` SET '.$sqlSet);
 
-			// ne prend en compte que les attributs non null modifié par les setters
+			// ne prend en compte que les attributs non null modifiés par les setters
 			$attributs = $this->getNominativeMarker();
 
 			$isSuccess = $requete->execute($attributs);
@@ -317,19 +344,17 @@ class Creation extends Database {
 	public function updateCreation($where = NULL){
 		try
 		{
-			$sqlWhere = '';
-			$sqlBindWhere = [];
+			$sqlWhere = ''; $sqlBindWhere = [];
 			if(! is_null($where) ) {
 				$sqlWhere = $this->generateWhere($where);
 				$sqlBindWhere = $this->generateBindWhere($where);
 			}
 
-
 			// connection à la database
 			$bd = $this->db;
 
-			// genere la chaine de colonne valeur au format Set
-			// ne prend en compte que les attributs non null modifié par les setters
+			// génère la chaîne de colonne valeur au format Set
+			// ne prend en compte que les attributs non null modifiés par les setters
 			$sqlSet = $this->getSqlSet();
 			$requete = $bd->prepare('UPDATE `creation` SET '.$sqlSet.' '.$sqlWhere);
 

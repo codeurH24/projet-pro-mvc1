@@ -26,6 +26,15 @@
     </div>
   </li>
   <?php endif; ?>
+  <?php if (accessElement('/admin/os/')): ?>
+  <li class="nav-item">
+    <div class="btn-group dropright w-100">
+      <a class="btn btn-primary  w-100" href="/admin/os/" style="color:white">
+        <i class="fas fa-2x fa-terminal"></i><span>Systemes</span>
+      </a>
+    </div>
+  </li>
+  <?php endif; ?>
   <?php if (accessElement('/admin/utilisateurs/')): ?>
     <li class="nav-item">
       <div class="btn-group dropright w-100">

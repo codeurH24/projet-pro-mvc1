@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/carte-graphique-1.php">
-            <img src="public/image/gpu.png" alt="carte graphique" />
+            <img src="public/picture/gpu.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/carte-mere-1.php">
-            <img src="public/image/mainboard1.png" alt="carte mere" />
+            <img src="public/picture/mainboard1.png" alt="carte mere" />
           </a>
         </div>
         <div class="col">
@@ -42,7 +42,7 @@
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/memoire-vive-1.php">
-            <img src="public/image/ram2.png" alt="carte graphique" />
+            <img src="public/picture/ram2.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
@@ -61,7 +61,7 @@
       <div class="row">
         <div class="col-3 col-xl-4">
           <a href="/composants/processeur-1.php">
-            <img src="public/image/processeur.png" alt="carte graphique" />
+            <img src="public/picture/processeur.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">

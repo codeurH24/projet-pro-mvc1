@@ -18,6 +18,36 @@ header p{
   font-size: 1.5rem;
 }
 
+.pageBackgroundComponents{
+  background-color: #FFF;
+  background-image: url(/public/picture/background-components.png);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.pageBackgroundProcessor{
+  background-image: url(/public/picture/background/processor-768.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.pageBackgroundGraphicCard{
+  background: url(/public/picture/background/graphic-card-768.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.pageBackgroundMotherboard{
+  background: url(/public/picture/background/mainboard-768.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.pageBackgroundDDR{
+  background-image: url(/public/picture/background/RAM-768.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
 a:hover {
     text-decoration: none;
@@ -573,40 +603,7 @@ nav input[name=searchInput]{
   background-size: cover;
   background-attachment: fixed;
 }
-.pageBackgroundComponents{
-  background-color: #FFF;
-  background-image: url(/public/picture/background-components.png);
-  background-image: url(http://www.wallpaperdx.com/images/full-hd-3d-blurred-computers-cpu-macro-processor-wallpaper.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-}
 
-.pageBackgroundProcessor{
-  background-color: #FFF;
-  background-image: url(http://www.wallpaperdx.com/images/full-hd-3d-blurred-computers-cpu-macro-processor-wallpaper.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-
-.pageBackgroundGraphicCard{
-  background-color: #FFF;
-  background-image: url(http://www.unisvet.net/wp-content/uploads/2014/04/graphics-card-zotac-graphic-229115.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-}
-.pageBackgroundMotherboard{
-  background-color: #FFF;
-  background-image: url(https://storage-asset.msi.com/global/picture/image/feature/mb/Z370/Z370SLIPLUS/msi-z370-quality-hero-sli-plus.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-}
-.pageBackgroundDDR{
-  background-color: #FFF;
-  background-image: url(https://cc.cnetcontent.com/inlinecontent/mediaserver/all/a9c/4fd/a9c4fdd5c46c1564ad58c1a83b63eb05/original.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-}
 /* permet de mettre la navbar  façon non mobile avant les 1200px qui devient maintenant 1250px*/
 @media (min-width: 1250px){
   .navbar .navbar-collapse {
@@ -685,4 +682,8 @@ nav input[name=searchInput]{
   right:0;
   text-align: center;
   background-color: #0004;
+}
+
+.img-sys{
+  width: 100%;
 }

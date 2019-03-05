@@ -36,7 +36,7 @@
       </div>
       <div class="form-group">
         <label for="pictureComposantUpdate">Image</label>
-        <input type="file" name="picture" id="pictureComposantUpdate" class="form-control-file" aria-describedby="fileHelp">
+        <input type="file" name="picture" id="pictureComposantUpdate" class="form-control-file" />
       </div>
       <div class="form-group">
         <img src="/public/picture/composants/<?= $pictureComponent->picture ?>" alt="image de composant" style="max-width:200px">

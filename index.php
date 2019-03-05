@@ -152,7 +152,7 @@ $Route = new Route();
        ->get('^/mes-creations/update.php$')
        ->controller('myCreationController.php', 'updateMyCreation')
 
-       ->get('^/mes-creations/supprimer-une-creation-([0-9]+)\.php$', ['id'])
+       ->get('^/mes-creations/supprimer-une-creation-([0-9]+)-([a-f0-9]{32})\.php$', ['id', 'token'])
        ->controller('myCreationController.php', 'deleteMyCreation')
 
   /*
@@ -161,24 +161,44 @@ $Route = new Route();
    ->get('^/admin/$')
    ->controller('adminController.php', 'index')
 
+   // OS
+   ->get('^/admin/os/$')
+   ->controller('admin/osController.php', 'index')
+
+   ->get('^/admin/os/creer-un-os.php$')
+   ->controller('admin/osController.php', 'create')
+
+   ->get('^/admin/os/store/$')
+   ->controller('admin/osController.php', 'store')
+
+   ->get('^/admin/os/supprimer-un-os-([0-9]+)\.php$',['id'])
+   ->controller('admin/osController.php', 'delete')
+
+   ->get('^/admin/os/modifier-un-os-([0-9]+)\.php$',['id'])
+   ->controller('admin/osController.php', 'edit')
+
+   ->get('^/admin/os/update/$')
+   ->controller('admin/osController.php', 'update')
+
+
    // CATEGORIES
    ->get('^/admin/categorie/$')
-   ->controller('admin/categoryContoller.php', 'index')
+   ->controller('admin/categoryController.php', 'index')
 
    ->get('^/admin/categorie/creer-categorie.php$')
-   ->controller('admin/categoryContoller.php', 'create')
+   ->controller('admin/categoryController.php', 'create')
 
    ->get('^/admin/categorie/store/$')
-   ->controller('admin/categoryContoller.php', 'store')
+   ->controller('admin/categoryController.php', 'store')
 
    ->get('^/admin/categorie/supprimer-categorie-([0-9]+)\.php$',['id'])
-   ->controller('admin/categoryContoller.php', 'delete')
+   ->controller('admin/categoryController.php', 'delete')
 
    ->get('^/admin/categorie/modifier-categorie-([0-9]+)\.php$',['id'])
-   ->controller('admin/categoryContoller.php', 'edit')
+   ->controller('admin/categoryController.php', 'edit')
 
    ->get('^/admin/categorie/update/$')
-   ->controller('admin/categoryContoller.php', 'update')
+   ->controller('admin/categoryController.php', 'update')
 
    // COMPOSANTS
 

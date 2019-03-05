@@ -29,6 +29,7 @@ if(!empty($_POST['description'])){
   $_POST['description'] = htmlspecialchars($_POST['description']);
 }
 
+
 if(!empty($_POST['idOs'])){
   $_POST['idOs'] = htmlspecialchars($_POST['idOs']);
   $_POST['idOs'] = intval($_POST['idOs']);
@@ -40,8 +41,8 @@ if(!empty($_POST['idOs'])){
 
   if($os === false){
     errorsForm('idOs', 'Systeme d\'exploitation inconnu');
-    $os = $OS->getOS()->get();
-    $_POST['idOs'] = $os->id;
+    $creation = getCreationByID($_POST['id']);
+    $_POST['idOs'] = $creation->id_os;
   }
   // empeche l'interpretation des balises html par le navigateur
 }

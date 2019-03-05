@@ -57,7 +57,7 @@ function infoConfig_numberOfRAM(){
   $CreationConception = new CreationConception();
   $componentsRAM= $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 4]// categorie 4  =  mémoire vive
+    ['component.id_cat', '=', 4]// categorie 4  =  mémoire vive
   ])->gets();
   // retourne les resultats en comptant les lignes de resultat
   if( $componentsRAM !== false){
@@ -84,7 +84,7 @@ function infoConfig_hasProcessor(){
   $CreationConception = new CreationConception();
   $componentsProcessor = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 8]// categorie 8  =  processeur
+    ['component.id_cat', '=', 8]// categorie 8  =  processeur
   ])->gets();
 
   // retourne les resultats en comptant les lignes de resultat
@@ -140,8 +140,9 @@ function infoConfig_hasMainboard(){
   $CreationConception = new CreationConception();
   $componentMainBoard = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 9]// categorie 9 =  carte mere
+    ['component.id_cat', '=', 9]// categorie 9 =  carte mere
   ])->get();
+
   if($componentMainBoard !== false){
     return true;
   }else{
@@ -164,7 +165,7 @@ function infoConfig_typeOfRAM(){
   $CreationConception = new CreationConception();
   $componentRAM = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 4]// categorie 4 =  mémoire vive
+    ['component.id_cat', '=', 4]// categorie 4 =  mémoire vive
   ])->get();
   if ($componentRAM !== false) {
     // on peut recuprer son id pour le réutiliser pour obtenir ses tags
@@ -214,7 +215,7 @@ function infoConfig(){
   $CreationConception = new CreationConception();
   $componentMainBoard = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 9]// categorie 9 =  carte mere
+    ['component.id_cat', '=', 9]// categorie 9 =  carte mere
   ])->get();
 
   // si on a récupéré une carte mère dans la config actuelle
@@ -249,7 +250,7 @@ function getTagsProcesseur(){
   $CreationConception = new CreationConception();
   $componentProcesseur = $CreationConception->getCreationConception([
     ['creation_conception.id_creation', '=', $ID_creationEnable],
-    ['composant.id_cat', '=', 8]// categorie 8  =  processeur
+    ['component.id_cat', '=', 8]// categorie 8  =  processeur
   ])->get();
 
   $Tag = new Tag();

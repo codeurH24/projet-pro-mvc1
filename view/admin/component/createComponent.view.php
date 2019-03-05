@@ -28,7 +28,7 @@
       </div>
       <div class="form-group">
         <label for="pictureComponentCreate">Image</label>
-        <input type="file" name="pictureComponentCreate" id="pictureComponentCreate" class="form-control-file" aria-describedby="fileHelp">
+        <input type="file" name="pictureComponentCreate" id="pictureComponentCreate" class="form-control-file" />
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Enregister</button>

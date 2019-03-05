@@ -15,7 +15,7 @@
     <div class="row align-items-center">
       <div class="col-1">
         <?php if (!empty($creation->picture)): ?>
-          <img src="/public/picture/OS/<?= $creation->picture; ?>" alt="image systeme" style="width:100%" />
+          <img class="img-sys" src="/public/picture/OS/<?= $creation->picture; ?>" alt="image systeme" />
         <?php endif; ?>
       </div>
       <div class="col-8">
@@ -24,11 +24,11 @@
           <?= $creation->name; ?>
         </h4>
       </div>
-      <!-- boutons des actions possible sur la création -->
+      <!-- boutons des actions possibles sur la création -->
       <div class="toolsCreations col-3">
-        <a href="detail/<?= $creation->id ?>.php" class="d-inline-block"><i class="fas fa-2x fa-file-invoice icon-white"></i></a>
+        <a href="detail/<?= $creation->id ?>.php" class="d-inline-block"><i class="fas fa-2x fa-search-plus icon-white"></i></a>
         <a href="/mes-creations/modifier-une-creation-<?= $creation->id ?>.php" class="d-inline-block"><i class="fas fa-2x fa-pen icon-white"></i></a>
-        <a href="/mes-creations/supprimer-une-creation-<?=$creation->id ?>.php" class="d-inline-block"><i class="fas fa-2x fa-trash icon-white"></i></a>
+        <a href="/mes-creations/supprimer-une-creation-<?=$creation->id ?>-<?= $_SESSION['user']['csrf'] ?>.php" class="d-inline-block"><i class="fas fa-2x fa-trash icon-white"></i></a>
         <?php if ($creation->enable){ ?>
           <a href="/mes-creations/activer-une-creation-<?=$creation->id ?>.php" class="d-inline-block"><i class="far fa-3x fa-lightbulb icon-white"></i></a>
         <?php }else{ ?>
@@ -40,7 +40,7 @@
 
 
 
-    <!-- liste les conposants mis dans la création, cela permet un bref aperçu de ce que contient la création  -->
+    <!-- liste les composants mis dans la création, cela permet un bref aperçu de ce que contient la création  -->
     <div id="form<?= $creation->id ?>" class="collapse info" >
       <?php
           foreach (getComponentOfCreationUser($creation->id) as $composant) {

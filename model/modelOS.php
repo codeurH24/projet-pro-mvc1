@@ -3,6 +3,7 @@ class OS extends Database {
 
 	protected $id;
 	protected $name;
+	protected $picture;
 
 	function getOS($where = NULL)
 	{
@@ -40,7 +41,7 @@ class OS extends Database {
 
 	}
 
-	public function createCreation(){
+	public function createOS(){
 		try
 		{
 			// connection à la database
@@ -63,7 +64,7 @@ class OS extends Database {
 		}
 	}
 
-	function deleteCreation($where = NULL)
+	function deleteOS($where = NULL)
 	{
 
 		try
@@ -95,7 +96,7 @@ class OS extends Database {
 
 	}
 
-	public function updateCreation($where = NULL){
+	public function updateOS($where = NULL){
 		try
 		{
 			$sqlWhere = '';
@@ -174,6 +175,31 @@ class OS extends Database {
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Picture
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of Picture
+     *
+     * @param mixed picture
+     *
+     * @return self
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
 
         return $this;
     }
