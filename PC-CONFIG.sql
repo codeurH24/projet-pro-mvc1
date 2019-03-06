@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mar 05 Mars 2019 à 09:39
+-- Généré le :  Mer 06 Mars 2019 à 10:11
 -- Version du serveur :  5.7.25-0ubuntu0.18.04.2
 -- Version de PHP :  7.2.15-0ubuntu0.18.04.1
 
@@ -349,16 +349,10 @@ CREATE TABLE `creation` (
 --
 
 INSERT INTO `creation` (`id`, `name`, `enable`, `description`, `id_os`, `id_user`, `date_creation`) VALUES
-(9, 'Ordinateur pour le voisin', 1, 'Mon voisin  a besoin d\'un ordinateur pour surfer sur internet', 1, 14, '2018-10-28 03:04:07'),
-(32, 'PC Gamer', 0, 'Ma super config ultra puissante pour jouer en 8K', 2, 14, '2018-11-03 14:23:31'),
-(34, 'config X', 1, 'test X', 0, 24, '2018-11-04 09:35:28'),
-(41, 'Config No Name', 0, 'Config No Name', 0, 24, '2018-11-04 09:52:30'),
-(44, 'config de test', 0, 'pour tester', 4, 14, '2019-01-13 10:41:53'),
-(48, 'No Name', 1, 'Creation crée par défaut', 1, 35, '2019-02-18 16:13:22'),
-(49, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:19:47'),
-(50, 'No Name', 1, 'Creation crée par défaut', 1, 70, '2019-02-18 16:27:54'),
-(51, 'No Name', 0, 'Creation crée par défaut', 1, 70, '2019-02-18 16:35:33'),
-(52, 'PC FAMILIAL', 0, 'Ma super config ultra puissante pour jouer en 8K', 3, 14, '2019-03-01 09:34:49');
+(56, 'Configuration de test', 0, 'Juste pour tester', 3, 14, '2019-03-06 09:56:52'),
+(57, 'Config pour un ami', 1, 'Un ami ma demandé un pc pour jouer', 1, 14, '2019-03-06 10:03:22'),
+(59, 'Ma config 2019', 0, 'Renouvellement de mon matos PC', 1, 24, '2019-03-06 10:05:53'),
+(62, 'Configuration  Entreprise', 1, 'Pour répondre aux besoins quotidiens', 4, 24, '2019-03-06 10:10:29');
 
 -- --------------------------------------------------------
 
@@ -379,40 +373,21 @@ CREATE TABLE `creation_conception` (
 --
 
 INSERT INTO `creation_conception` (`id`, `id_component`, `id_creation`, `id_user`, `date_create`) VALUES
-(2, 28, 6, 14, '2018-10-10 00:00:00'),
-(4, 19, 6, 14, '2018-10-10 00:00:00'),
-(5, 16, 6, 14, '2018-10-10 00:00:00'),
-(21, 19, 41, 24, '2018-11-04 09:52:30'),
-(22, 49, 41, 24, '2018-11-04 09:52:42'),
-(33, 19, 7, 14, '2018-12-01 16:38:00'),
-(43, 57, 32, 14, '2019-02-16 12:48:28'),
-(44, 64, 32, 14, '2019-02-16 13:15:25'),
-(45, 19, 32, 14, '2019-02-16 13:15:33'),
-(87, 49, 46, 35, '2019-02-18 14:38:14'),
-(88, 50, 9, 14, '2019-02-18 14:56:16'),
-(91, 44, 49, 70, '2019-02-18 16:19:47'),
-(93, 129, 49, 70, '2019-02-18 16:20:40'),
-(95, 66, 49, 70, '2019-02-18 16:21:37'),
-(96, 66, 49, 70, '2019-02-18 16:21:45'),
-(98, 25, 50, 70, '2019-02-18 16:29:14'),
-(99, 50, 50, 70, '2019-02-18 16:32:22'),
-(100, 49, 51, 70, '2019-02-18 16:35:33'),
-(101, 17, 51, 70, '2019-02-18 16:36:03'),
-(102, 28, 50, 70, '2019-02-18 16:46:44'),
-(103, 28, 50, 70, '2019-02-18 16:46:54'),
-(104, 28, 50, 70, '2019-02-18 16:47:03'),
-(105, 17, 9, 14, '2019-02-20 10:14:28'),
-(106, 64, 9, 14, '2019-02-20 10:14:37'),
-(107, 52, 48, 35, '2019-02-20 12:31:57'),
-(108, 64, 32, 14, '2019-02-23 10:13:38'),
-(109, 64, 32, 14, '2019-02-23 10:13:42'),
-(110, 64, 32, 14, '2019-02-23 10:13:46'),
-(112, 53, 52, 14, '2019-03-01 09:35:52'),
-(113, 49, 52, 14, '2019-03-01 09:36:01'),
-(119, 143, 53, 14, '2019-03-03 21:58:35'),
-(120, 17, 53, 14, '2019-03-03 21:58:43'),
-(121, 65, 53, 14, '2019-03-03 21:59:29'),
-(122, 64, 53, 14, '2019-03-03 21:59:37');
+(127, 49, 56, 14, '2019-03-06 09:56:52'),
+(128, 17, 56, 14, '2019-03-06 10:03:32'),
+(129, 49, 57, 14, '2019-03-06 10:03:49'),
+(130, 49, 58, 24, '2019-03-06 10:05:06'),
+(133, 64, 60, 24, '2019-03-06 10:07:09'),
+(134, 19, 60, 24, '2019-03-06 10:07:15'),
+(135, 52, 60, 24, '2019-03-06 10:07:18'),
+(136, 49, 61, 24, '2019-03-06 10:07:51'),
+(137, 64, 61, 24, '2019-03-06 10:07:56'),
+(138, 17, 61, 24, '2019-03-06 10:08:00'),
+(139, 64, 59, 24, '2019-03-06 10:08:26'),
+(140, 68, 59, 24, '2019-03-06 10:08:31'),
+(141, 53, 62, 24, '2019-03-06 10:10:56'),
+(142, 17, 62, 24, '2019-03-06 10:11:00'),
+(143, 64, 62, 24, '2019-03-06 10:11:04');
 
 -- --------------------------------------------------------
 
@@ -745,8 +720,7 @@ INSERT INTO `role` (`id`, `nom`) VALUES
 (2, 'contributeur'),
 (3, 'admin'),
 (4, 'super admin'),
-(5, 'aucun'),
-(6, 'test');
+(5, 'aucun');
 
 -- --------------------------------------------------------
 
@@ -770,7 +744,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `pseudo`, `email`, `password`, `date_registration`, `date_last_login`, `id_role`) VALUES
 (14, 'admin master', 'cci.corlouer@gmail.com', '$2y$10$6R.SHUzOOuTtpMLUJ1xPOeKXAa2G0jECCLczzjuX4W1QEORZdq9yK', '2018-09-30 08:10:32', '2019-01-27 09:29:59', 4),
-(24, 'codeurh24', 'codeurh24@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 3),
+(24, 'codeurh24', 'codeurh24@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-11-04 08:30:42', '2018-12-15 21:18:22', 1),
 (26, 'angelo', 'angelo@gmail.fr', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-04 13:22:25', '2018-12-04 13:22:25', 2),
 (27, 'Alice', 'alice@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:16:44', '2018-12-20 19:25:00', 1),
 (29, 'Charlie', 'charlie@gmail.com', '$2y$10$cmm.azRib4dLD3xQP.7bwOgAwtwpusjB5r/DJHh/dDLi2VJy9cAbm', '2018-12-15 19:18:03', '2018-12-16 06:07:53', 2),
@@ -912,12 +886,12 @@ ALTER TABLE `component`
 -- AUTO_INCREMENT pour la table `creation`
 --
 ALTER TABLE `creation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT pour la table `creation_conception`
 --
 ALTER TABLE `creation_conception`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 --
 -- AUTO_INCREMENT pour la table `log`
 --

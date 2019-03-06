@@ -206,6 +206,19 @@ function deleteMyCreation(){
     exit('Une erreur de suppression de configuration est survenue');
   }
 
+  $isSuccess = $CreationConception = new CreationConception();
+  $CreationConception->deleteCreationConception([
+    ['id', '=', $_GET['id']]
+  ]);
+
+  // s'il y a une erreur pour enregistrer alors on stoppe bêtement
+  // le script php
+  if($isSuccess === false){
+    $_SESSION['notification'] = 'Une erreur de suppression de configuration est survenue';
+    header('Location: /mes-creations/');
+    exit('Une erreur de suppression de configuration est survenue');
+  }
+
   // si tout s'est bien effectué alors on redirige vers les configurations
   // de l'utilisateur
   header('Location: /mes-creations/');
