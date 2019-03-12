@@ -530,13 +530,7 @@ nav input[name=searchInput]{
   .menu-left .btn {
     padding: 0.75rem 0rem;
   }
-  .menu-left.col-1{
-    background: transparent;
-    width: 0;
-    flex: 0 0 0%;
-    max-width: 0%;
-    z-index: 100;
-  }
+
 
   .content-admin.col-11 {
     flex: 0 0 100%;
@@ -686,4 +680,50 @@ nav input[name=searchInput]{
 
 .img-sys{
   width: 100%;
+}
+
+/* Correctif
+    Avant:  pour le champ de recherche dans la navbar en mode mobile.
+            Ce champ prend 100% de la largeur et force le bouton de recherche a ce mettre en dessous.
+            En résolution inférieur a 634px
+    Apres: LE bouton reste a droit de la barre de cherche
+*/
+
+@media screen and (max-width: 633px) {
+  .form-control {
+      width: 90vw;
+  }
+}
+
+/* Correctif
+    Avant: la barre d'identification en mode mobile, a une marge de 15px sur la droite.
+    Apres: La barre n'as plus c'est marge de 15px a droite
+*/
+@media (max-width: 843px){
+  main.admin > .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .menu-left.col-1{
+    background: transparent;
+    width: 0;
+    flex: 0 0 0%;
+    max-width: 0%;
+    z-index: 100;
+  }
+  .col-11.content-creation{
+    margin-left: 0;
+    margin-right: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    overflow: hidden;
+  }
+   /* bouton de d'ajout à la config etait trop petit */
+  .conponent-item2-page button i {
+      font-size: 7vw;
+  }
 }
