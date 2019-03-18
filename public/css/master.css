@@ -133,6 +133,11 @@ main{
   background: radial-gradient(ellipse at center, #6b6b6b 0%,#383838 100%);
   background-attachment: fixed;
 }
+@media (orientation: portrait){
+  main{
+    min-height: unset;
+  }
+}
 main > .row > * {
   padding: 40px 0;
 }
@@ -165,6 +170,12 @@ header img.logo{
   display:block;
   margin:auto;
   width: 10vw;
+}
+@media (max-width: 360px) {
+  .menuItemCategorie img{
+    margin-left: 6vw;
+    width: 15vw;
+  }
 }
 a.menuItemCategorie{
   display: block;
@@ -558,6 +569,7 @@ nav input[name=searchInput]{
 }
 .page-link {
 	line-height: 1.7;
+  font-weight: bold;
 }
 @media (max-width: 2000px){
   .page-link {
@@ -568,6 +580,36 @@ nav input[name=searchInput]{
     font-family: Tahoma, Geneva, sans-serif;
   }
 }
+@media (max-width: 1024px){
+  .page-link {
+    font-size: 2vw;
+  }
+  .page-number a{
+    font-size: 2vw;
+    font-family: Tahoma, Geneva, sans-serif;
+  }
+}
+
+@media (max-width: 700px){
+  .page-link {
+    font-size: 2vw;
+  }
+  .page-number a{
+    font-size: 2vw;
+    font-family: Tahoma, Geneva, sans-serif;
+  }
+}
+@media (max-width: 450px){
+  .page-link {
+    font-size: 3vw;
+  }
+  .page-number a{
+    font-size: 2.9vw;
+    font-family: Tahoma, Geneva, sans-serif;
+
+  }
+}
+
 .pagination {
 	border-radius: 10px;
 	background-color: white;
@@ -679,6 +721,12 @@ nav input[name=searchInput]{
 
 .descriptionCat{
   color:white;
+  width: 95%;
+}
+@media (max-width: 360px){
+  .descriptionCat{
+    font-size: 3vw;
+  }
 }
 
 .pageBackground{
@@ -688,7 +736,7 @@ nav input[name=searchInput]{
 }
 
 .pageBackgroundRegistration{
-  background-image: url(/public/picture/Technology-Photo-HD-1.png);
+  background-image: url(/public/picture/Technology-Photo-HD-2.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -696,9 +744,10 @@ nav input[name=searchInput]{
 
 .pageBackgroundLogin{
   background-color: #FFF;
-  background-image: url(/public/picture/login2.png);
+  background-image: url(/public/picture/login3.jpg);
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
 }
 
 /* permet de mettre la navbar  façon non mobile avant les 1200px qui devient maintenant 1250px*/
@@ -886,4 +935,18 @@ nav input[name=searchInput]{
     width:98%;
     padding-right: 15px;
   }
+}
+
+@media screen and (min-width: 768px)and (max-width: 960px){
+  nav .nav-link{
+    font-size: 1.2vw;
+  }
+  nav .nav-link i{
+    display:block;
+    font-size: 2rem;
+  }
+}
+
+button:focus {
+    outline: 5px auto #ffad00;
 }

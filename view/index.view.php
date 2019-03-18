@@ -1,27 +1,9 @@
 <main class="container-fluid <?= $class ?>">
   <div class="row justify-content-center ">
-    <div class="col-12 col-md-8 col-xl-5 p-2  menuItemCategorie">
-      <div class="row">
-        <div class="col-3 col-xl-4">
-          <a href="/composants/carte-graphique-1.php">
-            <img src="public/picture/gpu.png" alt="carte graphique" />
-          </a>
-        </div>
-        <div class="col">
-          <a href="/composants/carte-graphique-1.php">
-            <div class="titleCat">
-              <h1 class="h2">Carte Graphique</h1>
-            </div>
-            <div class="descriptionCat">
-              Dédiée à toutes les applications "graphiques" comme les jeux vidéo ou la conception de photos et vidéos.
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
+
     <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
       <div class="row">
-        <div class="col-3 col-xl-4">
+        <div class="col-3 col-xl-4  imgCat">
           <a href="/composants/carte-mere-1.php">
             <img src="public/picture/mainboard1.png" alt="carte mere" />
           </a>
@@ -40,7 +22,26 @@
     </div>
     <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
       <div class="row">
-        <div class="col-3 col-xl-4">
+        <div class="col-3 col-xl-4  imgCat">
+          <a href="/composants/processeur-1.php">
+            <img src="public/picture/processeur.png" alt="carte graphique" />
+          </a>
+        </div>
+        <div class="col">
+          <a href="/composants/processeur-1.php">
+            <div class="titleCat">
+              <h1 class="h2">Processeur</h1>
+            </div>
+            <div class="descriptionCat">
+              Dédié au bon fonctionement générale de l'ordinateur. Augmente de façon générale la vitesse de traitement des taches qui sont stocker en mémoires vives
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
+      <div class="row">
+        <div class="col-3 col-xl-4  imgCat">
           <a href="/composants/memoire-vive-1.php">
             <img src="public/picture/ram2.png" alt="carte graphique" />
           </a>
@@ -57,20 +58,20 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-8 col-xl-5 p-2 menuItemCategorie">
+    <div class="col-12 col-md-8 col-xl-5 p-2  menuItemCategorie">
       <div class="row">
-        <div class="col-3 col-xl-4">
-          <a href="/composants/processeur-1.php">
-            <img src="public/picture/processeur.png" alt="carte graphique" />
+        <div class="col-3 col-xl-4 imgCat">
+          <a href="/composants/carte-graphique-1.php">
+            <img src="public/picture/gpu.png" alt="carte graphique" />
           </a>
         </div>
         <div class="col">
-          <a href="/composants/processeur-1.php">
+          <a href="/composants/carte-graphique-1.php">
             <div class="titleCat">
-              <h1 class="h2">Processeur</h1>
+              <h1 class="h2">Carte Graphique</h1>
             </div>
             <div class="descriptionCat">
-              Dédié au bon fonctionement générale de l'ordinateur. Augmente de façon générale la vitesse de traitement des taches qui sont stocker en mémoires vives
+              Dédiée à toutes les applications "graphiques" comme les jeux vidéo ou la conception de photos et vidéos.
             </div>
           </a>
         </div>

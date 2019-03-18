@@ -7,7 +7,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/googleFonts.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/fontawesome572/css/all.min.css" />
   <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/public/css/form.css" />
   <link rel="stylesheet" href="/public/css/master.css" />
@@ -25,7 +25,7 @@
       <p>Configurer votre PC comme un Pro</p>
     </div>
   </header>
-  <nav class="navbar navbar-dark bg-nav-master sticky-top">
+  <nav class="navbar navbar-dark bg-nav-master navbar-expand-md sticky-top">
     <a class="navbar-brand home" href="/"><i class="fas fa-2x fa-screwdriver mr-1"></i> PC CONFIG</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

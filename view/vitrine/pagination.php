@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-4 ml-auto mr-auto">
+  <div class="col-10 col-sm-8 col-lg-6 col-xl-5 ml-auto mr-auto">
     <ul class="pagination">
     <li class="page-item">
       <a class="page-link  back-page" href="/<?= $page ?>1.php" aria-label="Previous">
