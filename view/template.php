@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <!-- CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Roboto" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/css/googleFonts.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link href="/public/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ML9h/UCooefre72ZPxxOHyjbrLT1xKV0AHON1J+OlOV2iwcYemqmWyMfTcfyzLJ1" crossorigin="anonymous">
+  <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/public/css/form.css" />
   <link rel="stylesheet" href="/public/css/master.css" />
   <link rel="stylesheet" href="/public/css/componentItemPage.css" />
   <link rel="stylesheet" href="/public/css/debug.css" />
   <link rel="stylesheet" href="/public/css/legalNotice.css" />
+  <link rel="stylesheet" href="/public/css/itemCreation.css" />
 
 
   <title><?= $title ?? 'PC CONFIG' ?></title>
@@ -55,10 +55,10 @@
         <?php endif; ?>
         <?php if (isset($_SESSION['user'])): ?>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-2x fa-user-alt"></i> Mon compte
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownAccount">
               <?php if (accessElement('/mes-creations/')): ?>
               <a class="dropdown-item" href="/mes-creations/">Tableau de bord</a>
               <?php endif; ?>
@@ -73,10 +73,10 @@
         <?php endif; ?>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownShowcase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-2x fa-keyboard"></i> Composants
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownShowcase">
             <a class="dropdown-item" href="/composants/carte-mere-1.php">Cartes mères</a>
             <a class="dropdown-item" href="/composants/processeur-1.php">Processeurs</a>
             <a class="dropdown-item" href="/composants/memoire-vive-1.php">Mémoires vives</a>

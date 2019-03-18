@@ -1,0 +1,54 @@
+.showCreationItem button i{
+    margin-left: -13px;
+}
+
+
+@media (min-width: 992px) {
+  .toolsCreations a{
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 769px) {
+  .infoIMG.col-md-2{
+    padding-left: 0;
+  }
+}
+@media (min-width: 768px) {
+  .creationsIndex h4, .creationsIndex .h4 {
+      font-size: 1vw;
+  }
+  .creationsIndex .img-sys {
+      width: 6vw;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .creationsIndex {
+    padding-left: 0px;
+  }
+  .creationsIndex h4, .creationsIndex .h4 {
+      font-size: 2vw;
+  }
+  .creationsIndex .img-sys {
+      width: 10vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .creationsIndex {
+    padding-left: 0px;
+  }
+  .creationsIndex h4, .creationsIndex .h4 {
+      font-size: 3vw;
+  }
+  .creationsIndex .img-sys {
+      width: 15vw;
+  }
+  .col-8.col-creation{
+    flex: 0 0 78.666667%;
+    max-width: 77.666667%;
+    margin-left: 14vw;
+  }
+}

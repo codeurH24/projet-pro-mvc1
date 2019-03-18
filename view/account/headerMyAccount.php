@@ -12,4 +12,6 @@
       <?php endif; ?>
       <div class="container-fluid">
       <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-11 col-xl-8 creations" >
+        <div class="col-12 col-sm-12 col-md-11 col-xl-12 creations" >
+          <div class="row justify-content-center">
+            <div class="col-8 col-md-12 col-creation">

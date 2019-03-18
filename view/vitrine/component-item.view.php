@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid vitrine-content">
   <div class="row">
     <div class="col-12">
       <div class="row justify-content-center">
@@ -35,7 +35,8 @@
                     <form method="post" action="/composants/ajout-a-la-creation/">
                       <input type="hidden" name="id" value="<?= $value->id_component ?>" />
                       <button type="submit" name="button" title="Ajouter à la config">
-                        <i class="fas fa-arrow-circle-up"></i>
+                        <!-- <i class="fas fa-arrow-circle-up"></i> -->
+                        <i class="fas fa-dice-d6"></i>
                       </button>
                     </form>
                   <?php endif; ?>

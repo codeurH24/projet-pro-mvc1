@@ -16,8 +16,19 @@
   width: 20vw;
   max-width: 180px;
   text-align: left;
-  min-width: 156px;
 }
+@media (min-width: 768px) {
+  .conponent-item2-page .image-item img{
+    min-width: 156px;
+  }
+}
+@media (max-width: 768px) {
+  .conponent-item2-page .image-item img{
+    width: 25vw;
+    min-width: 72px;
+  }
+}
+
 .conponent-item2-page{
   background-color: #393939;
   margin: 2vw;

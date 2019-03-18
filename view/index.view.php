@@ -9,12 +9,12 @@
         </div>
         <div class="col">
           <a href="/composants/carte-graphique-1.php">
-            <p class="titleCat">
+            <div class="titleCat">
               <h1 class="h2">Carte Graphique</h1>
-            </p>
-            <p class="descriptionCat">
+            </div>
+            <div class="descriptionCat">
               Dédiée à toutes les applications "graphiques" comme les jeux vidéo ou la conception de photos et vidéos.
-            </p>
+            </div>
           </a>
         </div>
       </div>
@@ -28,12 +28,12 @@
         </div>
         <div class="col">
           <a href="/composants/carte-mere-1.php">
-            <p class="titleCat">
+            <div class="titleCat">
               <h1 class="h2">Carte mere</h1>
-            </p>
-            <p class="descriptionCat">
+            </div>
+            <div class="descriptionCat">
               Permet l'assemblage des composants de l'ordinateur.
-            </p>
+            </div>
           </a>
         </div>
       </div>
@@ -47,12 +47,12 @@
         </div>
         <div class="col">
           <a href="/composants/memoire-vive-1.php">
-            <p class="titleCat">
+            <div class="titleCat">
               <h1 class="h2">Memoire vive</h1>
-            </p>
-            <p class="descriptionCat">
+            </div>
+            <div class="descriptionCat">
               Mémorise les logiciels et le systeme d'exploitation en cours d'utilisation. Un manque de mémoire vive impact lourdement les performances du processeur.
-            </p>
+            </div>
           </a>
         </div>
       </div>
@@ -66,12 +66,12 @@
         </div>
         <div class="col">
           <a href="/composants/processeur-1.php">
-            <p class="titleCat">
+            <div class="titleCat">
               <h1 class="h2">Processeur</h1>
-            </p>
-            <p class="descriptionCat">
+            </div>
+            <div class="descriptionCat">
               Dédié au bon fonctionement générale de l'ordinateur. Augmente de façon générale la vitesse de traitement des taches qui sont stocker en mémoires vives
-            </p>
+            </div>
           </a>
         </div>
       </div>

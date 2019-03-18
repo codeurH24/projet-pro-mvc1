@@ -14,15 +14,19 @@ foreach ($componentsList as $key => $value): ?>
     <form method="post" action="/mes-creations/deleteItemCreation/" class="showCreationItem">
       <div class="container-fluid">
         <div class="row">
-          <div class="col">
+          <div class="col-1">
+            <button class="buttonNone" type="submit" name="deleteItemCreation"><i class="fas fa-2x fa-trash icon-white"></i></button>
             <input type="hidden" value="<?= $value->id ?>" name="idItem" />
             <input type="hidden" value="<?= $_GET['id'] ?>" name="idCreation" />
-            <button class="buttonNone" type="submit" name="deleteItemCreation"><i class="fas fa-2x fa-trash icon-white"></i></button>
           </div>
           <div class="col-10">
-            <a href="/admin/composant/montrer-composant-<?= $value->id_component ?>.php">
-            <?= $value->model ?? '<p class="error">Composant inexistant sur site</p>' ?>
-            </a>
+            <?php if (accessElement('/admin/composant/')): ?>
+              <a href="/admin/composant/montrer-composant-<?= $value->id_component ?>.php">
+                <?= $value->model ?? '<p class="error">Composant inexistant sur site</p>' ?>
+              </a>
+            <?php else: ?>
+                <?= $value->model ?? '<p class="error">Composant inexistant sur site</p>' ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>

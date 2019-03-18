@@ -6,15 +6,15 @@
         <a href="/admin/utilisateurs/creer-un-utilisateur.php" class="btn btn-secondary">Nouvel Utilisateur</a>
       </div>
     </div>
-    <div class="col-12 col-md-11 col-lg-8 indexUser">
+    <div class="col-9 col-md-11 col-lg-8 indexUser">
       <div class="row entete align-items-center">
-        <div class="col-1">
+        <div class="col-1 d-none d-sm-block">
           <span class="align-middle">ID</span>
         </div>
         <div class="col">
           <span class="align-middle">Pseudo</span>
         </div>
-        <div class="col">
+        <div class="col d-none d-sm-block">
           <span class="align-middle">E-mail</span>
         </div>
         <div class="col">
@@ -26,13 +26,13 @@
       </div>
       <?php foreach ($users as $user): ?>
       <div class="row">
-        <div class="col-1" style="height:21px;">
+        <div class="col-1 d-none d-sm-block" style="height:21px;">
           <p><?= $user->id ?></p>
         </div>
         <div class="col" style="height:21px;">
           <p><?= $user->pseudo ?></p>
         </div>
-        <div class="col" style="height:21px;">
+        <div class="col d-none d-sm-block" style="height:21px;">
           <p><?= $user->email ?></p>
         </div>
         <div class="col" style="height:21px;z-index:10">

@@ -5,7 +5,7 @@
         <fieldset>
           <legend>Informations</legend>
           <div class="form-group">
-            <label for="nom">Votre compte vient d'être supprimer</label>
+            <label for="nom">Votre compte vient d'être supprimé</label>
           </div>
           <div class="text-right">
             <button type="submit" class="btn btn-primary">ok</button>

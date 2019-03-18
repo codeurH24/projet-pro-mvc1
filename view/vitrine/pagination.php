@@ -8,7 +8,7 @@
       </a>
     </li>
     <?php for($i=1; $i< $numberSplits+1; $i++  ) { ?>
-    <li class="page-item"><a class="page-link" href="/<?= $page.$i ?>.php"><?= $i ?></a></li>
+    <li class="page-item page-number"><a class="page-link" href="/<?= $page.$i ?>.php"><?= $i ?></a></li>
     <?php } ?>
     <li class="page-item">
       <a class="page-link next-page" href="/<?= $page.$numberSplits ?>.php" aria-label="Next">

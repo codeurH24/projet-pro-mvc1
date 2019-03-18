@@ -152,6 +152,9 @@ $Route = new Route();
        ->get('^/mes-creations/update.php$')
        ->controller('myCreationController.php', 'updateMyCreation')
 
+       ->get('^/mes-creations/demande-pour-supprimer-une-creation-([0-9]+)\.php$', ['id'])
+       ->controller('myCreationController.php', 'deleteRequestMyCreation')
+
        ->get('^/mes-creations/supprimer-une-creation-([0-9]+)-([a-f0-9]{32})\.php$', ['id', 'token'])
        ->controller('myCreationController.php', 'deleteMyCreation')
 

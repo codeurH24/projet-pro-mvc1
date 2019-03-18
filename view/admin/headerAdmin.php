@@ -10,6 +10,6 @@
           <p>Compte de <?= $_SESSION['user']['pseudo'] ?></p>
         </div>
       <?php endif; ?>
-      <h1></i>Administration</h1>
+      <h1>Administration</h1>
       <div class="container-fluid">
         <div class="row justify-content-center">

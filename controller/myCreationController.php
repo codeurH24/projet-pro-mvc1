@@ -176,6 +176,12 @@ function updateMyCreation(){
 
   header('Location: /mes-creations/modifier-une-creation-'.$_POST['id'].'.php');
 }
+// contrôleur de demande de suppression de configurations
+function deleteRequestMyCreation(){
+  view('account\myCreation\deleteMyCreation.php',[
+    'id' => $_GET['id']
+  ]);
+}
 
 // contrôleur de suppression de configurations
 function deleteMyCreation(){

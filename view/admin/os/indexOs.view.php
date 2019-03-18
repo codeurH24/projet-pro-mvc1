@@ -31,16 +31,22 @@
             </p>
           </div>
           <div class="col" style="height:21px;">
-            <p><?= $value->name ?></p>
+
+            <div class="row">
+              <div class="col-6">
+                <p><?= $value->name ?></p>
+              </div>
+              <div class="col-6 admin-tools-users" style="z-index:1">
+                <div class="align-middle">
+                  <ul class="text-right">
+                    <li><a href="/admin/os/supprimer-un-os-<?= $value->id ?>.php"><i class="fas fa-2x fa-trash"></i></a></li>
+                    <li><a href="/admin/os/modifier-un-os-<?= $value->id ?>.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-12 admin-tools-users" style="z-index:1">
-            <span class="align-middle">
-              <ul class="text-right">
-                <li><a href="/admin/os/supprimer-un-os-<?= $value->id ?>.php"><i class="fas fa-2x fa-trash"></i></a></li>
-                <li><a href="/admin/os/modifier-un-os-<?= $value->id ?>.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
-              </ul>
-            </span>
-          </div>
+
         </div>
       <?php endforeach; ?>
     </div>

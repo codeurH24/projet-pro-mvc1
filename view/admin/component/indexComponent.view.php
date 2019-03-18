@@ -55,13 +55,13 @@
           <p><?= $value->id_cat ?></p>
         </div>
         <div class="col-12 admin-tools-users" style="z-index:1">
-          <span class="align-middle">
+          <div class="align-middle">
             <ul class="text-right">
               <li><a href="/admin/composant/montrer-composant-<?= $value->id ?>.php"><i class="far fa-2x fa-eye"></i></a></li>
               <li><a href="/admin/composant/supprimer-composant-<?= $value->id ?>.php"><i class="fas fa-2x fa-trash"></i></a></li>
               <li><a href="/admin/composant/modifier-composant-<?= $value->id ?>.php"><i class="fas fa-2x fa-pen-alt"></i></a></li>
             </ul>
-          </span>
+          </div>
         </div>
       </div>
     <?php endforeach; ?>

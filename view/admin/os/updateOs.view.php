@@ -8,11 +8,12 @@
       <legend>Modifier un Systeme d'exploitation</legend>
       <div class="form-group d-none">
         <label for="id">ID du systeme</label>
-        <input name="id" type="text" class="form-control" id="id" value="<?= $_GET['id'] ?>" />
+        <input name="id" type="text" class="form-control" id="id" value="<?= $_GET['id'] ?? $_POST['id']  ?>" />
       </div>
       <div class="form-group">
         <label for="name">Nom du systeme</label>
         <input name="name" type="text" class="form-control" id="name" value="<?= $_POST['name'] ?? $os->name ?>" />
+        <?= errorsForm('name') ?>
       </div>
       <div class="form-group text-center">
         <label for="picture">
@@ -20,6 +21,7 @@
         </label>
         <div>
           <input type="file" name="picture" id="picture" value="<?= $_POST['picture'] ?? $os->picture ?>" />
+          <?= errorsForm('picture') ?>
         </div>
       </div>
       <div class="text-right">

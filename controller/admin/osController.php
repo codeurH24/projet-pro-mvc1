@@ -17,19 +17,29 @@ function create(){
 
 function store(){
   $OS = new OS();
-  $OS->setName($_POST['name']);
 
-  if( !empty($_FILES["picture"]['name']) ) {
+  include 'resquest\form\rule\admin\os\osRules.php';
+
+  if( !empty($_FILES['picture']['name']) ) {
+
     $target_dir = "./public/picture/OS/";
-    $target_file = $target_dir . basename($_FILES["picture"]["name"]);
-    $resultUpload = move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file);
+    $target_file = $target_dir . basename($_FILES['picture']['name']);
+    $resultUpload = move_uploaded_file($_FILES['picture']['tmp_name'], $target_file);
     if( $resultUpload ){
-        $OS->setPicture($_FILES["picture"]['name']);
+        $OS->setPicture($_FILES['picture']['name']);
     }else{
       exit('Problème d\'upload Attention au chmod sous linux');
     }
+  }else{
+    $OS->setPicture('PowerShell.png');
   }
 
+  if(errorsForm()){
+    view('admin/os/createOs.view.php');
+    exit;
+  }
+
+  $OS->setName($_POST['name']);
   $os = $OS->createOS();
   header('location: /admin/os/');
 }
@@ -55,6 +65,21 @@ function edit(){
 
 function update(){
   $OS = new OS();
+
+  include 'resquest\form\rule\admin\os\osRules.php';
+  if(errorsForm()){
+    // debug($_POST['id']);
+    $os = $OS->getOS([
+      ['id', '=', $_POST['id']]
+      ])->get();
+
+    view('admin/os/updateOs.view.php',[
+      'os' => $os
+    ]);
+    exit;
+  }
+
+
   $OS->setName($_POST['name']);
 
 
