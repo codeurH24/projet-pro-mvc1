@@ -22,10 +22,12 @@
         <?php endif; ?>
       </div>
       <div class="col-9 col-md-8 col-lg-7 col-xl-8 infoName">
-        <!-- titre de la creation -->
-        <h4 data-toggle="collapse" data-target="#form<?= $creation->id; ?>" class="d-inline-block">
-          <?= $creation->name; ?>
-        </h4>
+        <!-- titre de la creation  -->
+        <h2   class="h4 d-inline-block">
+            <a href="detail/<?= $creation->id ?>.php" class="d-inline-block icon-white">
+                <?= $creation->name; ?>
+            </a>
+        </h2>
       </div>
       <!-- boutons des actions possibles sur la création -->
       <div class="toolsCreations col-12 col-md-12 col-lg-4 col-xl-3 infoTool">

@@ -237,7 +237,8 @@ h1{
 .creationsIndex:hover{
   border: 1px solid white;
 }
-.creationsIndex h4{
+.creationsIndex h4,
+.creationsIndex h2{
   height: 50px;
   padding-top: 20px;
   padding-bottom: 30px;
